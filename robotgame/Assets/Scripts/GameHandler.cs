@@ -24,7 +24,7 @@ public class GameHandler : MonoBehaviour
 
     public void StartGame() 
     {
-        SceneManager.LoadScene("Level0");
+        SceneManager.LoadScene("demo_scene");
     }
 
     public void MainMenu() 
@@ -32,6 +32,10 @@ public class GameHandler : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
         // Reset all static variables here, for new games:
+    }
+
+    public void levelTwoTemp() {
+        SceneManager.LoadScene("charlotte_work");
     }
 
     public void QuitGame() 
