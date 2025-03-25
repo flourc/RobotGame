@@ -26,12 +26,16 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         pauseMenuUI.SetActive(false);
         GameisPaused = false;
     }
 
     void Update()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameisPaused)

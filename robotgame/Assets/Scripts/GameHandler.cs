@@ -12,6 +12,7 @@ public class GameHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
         player = GameObject.FindWithTag("Player");
         sceneName = SceneManager.GetActiveScene().name;
     }
@@ -30,6 +31,7 @@ public class GameHandler : MonoBehaviour
     public void MainMenu() 
     {
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("MainMenu");
         // Reset all static variables here, for new games:
     }
