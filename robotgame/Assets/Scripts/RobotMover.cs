@@ -13,13 +13,14 @@ public class RobotMover : MonoBehaviour
     public bool shouldJump;
     public Camera cam1;
     public Camera cam2;
-    
+    public bool slashOrStab;
     public GameHandler gh;
 
     // Start is called before the first frame update
     void Start()
     {
         speed = 5f;
+        slashOrStab = true;
         
     }
 
@@ -51,7 +52,7 @@ public class RobotMover : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && (transform.rotation.y < 80f || transform.rotation.y > 100f)) {
             transform.eulerAngles = new Vector3(0f, 90f, 0f);
         }
-        if (Input.GetKeyDown(KeyCode.A) && (transform.rotation.y < -10f || transform.rotation.y > 10f)) {
+        if (Input.GetKeyDown(KeyCode.A) && (transform.rotation.y > -10f || transform.rotation.y < 10f)) {
             transform.eulerAngles = new Vector3(0f, 0f, 0f);
         }
         if (Input.GetKeyDown(KeyCode.S) && (transform.rotation.y < 250f || transform.rotation.y > 280f)) {
@@ -79,6 +80,20 @@ public class RobotMover : MonoBehaviour
             print("hi");
             gh.levelTwoTemp();
         }
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            if (slashOrStab = true) {
+                anim.Play("slash");
+                slashOrStab = false;
+            }
+            else {
+                anim.Play("stab");
+                slashOrStab = true;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.G)) {
+            anim.Play("grab");
+        }
         
     }
     
@@ -101,6 +116,8 @@ public class RobotMover : MonoBehaviour
         cam1.enabled = false;
         cam2.enabled = true;
     }
+
+
 
 
 }
