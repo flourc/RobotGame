@@ -82,7 +82,7 @@ public class RobotMover : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) {
-            if (slashOrStab = true) {
+            if (slashOrStab) {
                 anim.Play("slash");
                 slashOrStab = false;
             }

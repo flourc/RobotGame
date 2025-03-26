@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public AudioMixer mixer;
     public static float volumeLevel = 1.0f;
     private Slider sliderVolumeCtrl;
+    private UnityStandardAssets.Characters.FirstPerson.FirstPersonController controller;
 
     void Awake()
     {
@@ -26,16 +27,13 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
+        controller = GameObject.FindWithTag("FPSctrl").GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
         pauseMenuUI.SetActive(false);
         GameisPaused = false;
     }
 
     void Update()
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameisPaused)
@@ -51,6 +49,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        controller.TogglePaused();
         if (!GameisPaused)
         {
             pauseMenuUI.SetActive(true);

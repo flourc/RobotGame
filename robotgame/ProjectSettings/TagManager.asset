@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PauseMenuSlider
   - Limb
+  - FPSctrl
   layers:
   - Default
   - TransparentFX
