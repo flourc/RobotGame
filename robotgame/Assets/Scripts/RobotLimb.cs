@@ -15,7 +15,6 @@ public class RobotLimb : MonoBehaviour
     public bool attached;
     public Limb limb;
     private Renderer rend;
-    public KeyCode myKey;
     
     // Start is called before the first frame update
     void Start()

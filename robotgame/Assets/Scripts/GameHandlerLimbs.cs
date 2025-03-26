@@ -12,9 +12,8 @@ public class GameHandlerLimbs : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        numLimbs = 4;
-        myKeys = new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, 
-                                 KeyCode.Alpha3, KeyCode.Alpha4 };
+        numLimbs = 2;
+        myKeys = new KeyCode[] { KeyCode.J, KeyCode.K };
         tempLimbs = GameObject.FindGameObjectsWithTag("Limb");
         myLimbs = new RobotLimb[tempLimbs.Length];
         for (int i = 0; i < tempLimbs.Length; i++) 
