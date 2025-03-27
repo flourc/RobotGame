@@ -13,14 +13,14 @@ public class GameHandlerLimbs : MonoBehaviour
     void Start()
     {
         numLimbs = 2;
-        myKeys = new KeyCode[] { KeyCode.J, KeyCode.K };
         tempLimbs = GameObject.FindGameObjectsWithTag("Limb");
         myLimbs = new RobotLimb[tempLimbs.Length];
         for (int i = 0; i < tempLimbs.Length; i++) 
         {
             myLimbs[i] = tempLimbs[i].GetComponent<RobotLimb>();
         }
-        currLimbs = new RobotLimb[myKeys.Length];
+        currLimbs = new RobotLimb[numLimbs];
+        myKeys = new KeyCode[numLimbs];
         InstantiateLimbs();
     }
 
@@ -54,6 +54,7 @@ public class GameHandlerLimbs : MonoBehaviour
         for (int i = 0; i < myLimbs.Length && i < numLimbs; i++)
         {
             currLimbs[i] = myLimbs[i];
+            myKeys[i] = currLimbs[i].myKey;
         }
     }
 }
