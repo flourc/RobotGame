@@ -9,38 +9,80 @@ public class RoombaMove : MonoBehaviour
     private int rotateSpeed;
     private int moveSpeed;
     private bool rotating;
+    private int framesInMotion;
     private bool backingUp;
-    
+    private bool waiting;
+    private const int ROTATE_FRAMES = 1000;
+    private const int BACK_FRAMES = 500;
+
+
     void Start()
     {
         rotating = false;
         backingUp = false;
+        waiting = false;
         moveSpeed = 1;
-        rotateSpeed = 30;
+        rotateSpeed = 60;
+        framesInMotion = 0;
     }
 
     void Update()
     {
-        if (rotating) 
-        {
-
-        } else if (backingUp)
-        {
-
-        } else {
-            GoForward();
+        if (!waiting){
+            if (rotating) {
+                if (framesInMotion > ROTATE_FRAMES) {
+                    StartCoroutine(Waiting());
+                    rotating = false;
+                    framesInMotion = 0;
+                } else {
+                    Rotating();
+                }
+            } else if (backingUp) {
+                if (framesInMotion > BACK_FRAMES) {
+                    StartCoroutine(Waiting());
+                    rotating = true;
+                    backingUp = false;
+                    framesInMotion = 0;
+                } else {
+                    GoBackward();
+                }
+            } else {
+                GoForward();
+            }
         }
-        
     }
 
     void GoForward()
     {
-        transform.position += (Vector3.forward * Time.deltaTime * moveSpeed);
+        transform.Translate(Vector3.down * Time.deltaTime * moveSpeed);
     }
 
-    void OnCollisionEnter(Collision other)
+    void GoBackward()
     {
-        transform.position += (Vector3.forward * -1 * Time.deltaTime * moveSpeed);
-        transform.Rotate(new Vector3 (0, rotateSpeed, 0) * Time.deltaTime);
+        transform.Translate(Vector3.down * -1 * Time.deltaTime * moveSpeed);
+        framesInMotion++;
+    }
+
+    void Rotating()
+    {
+        transform.Rotate(new Vector3 (0, 0, rotateSpeed) * Time.deltaTime);
+        framesInMotion++;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag != "floor") {
+            StartCoroutine(Waiting());
+            backingUp = true;
+        }   
+    }
+
+
+    IEnumerator Waiting()
+    {
+        waiting = true;
+        yield return new WaitForSeconds(1.0f);
+        waiting = false;
+
     }
 }
