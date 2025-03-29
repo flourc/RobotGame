@@ -8,15 +8,15 @@ public class RoombaMove : MonoBehaviour
     //                          IMPORTANT NOTE!!!!!! 
     // the floor of a level MUST have the tag "floor" or otherwise the roomba 
     // will constantly be colliding with the floor and turning around
-    
+
     private int rotateSpeed;
     private int moveSpeed;
     private bool rotating;
     private int framesInMotion;
     private bool backingUp;
     private bool waiting;
-    private const int ROTATE_FRAMES = 1000;
-    private const int BACK_FRAMES = 500;
+    private const int ROTATE_FRAMES = 50;
+    private const int BACK_FRAMES = 25;
 
 
     void Start()
@@ -25,11 +25,11 @@ public class RoombaMove : MonoBehaviour
         backingUp = false;
         waiting = false;
         moveSpeed = 1;
-        rotateSpeed = 60;
+        rotateSpeed = 30;
         framesInMotion = 0;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!waiting){
             if (rotating) {
