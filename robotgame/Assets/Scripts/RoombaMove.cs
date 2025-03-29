@@ -5,7 +5,10 @@ using UnityEngine;
 public class RoombaMove : MonoBehaviour
 {
 
-
+    //                          IMPORTANT NOTE!!!!!! 
+    // the floor of a level MUST have the tag "floor" or otherwise the roomba 
+    // will constantly be colliding with the floor and turning around
+    
     private int rotateSpeed;
     private int moveSpeed;
     private bool rotating;
