@@ -62,11 +62,6 @@ public class RobotMover : MonoBehaviour
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
 
-        if (transform.position.y < -20f) {
-            // transform.position = new Vector3(2f, 10f, 11f);
-            gh.MainMenu();
-        } //why is this permanent.
-
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             switchThirdPersonCam();
