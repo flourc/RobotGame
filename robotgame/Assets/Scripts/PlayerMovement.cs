@@ -67,12 +67,13 @@ private void UpdateAnimationState()
 {
     if (animator != null)
     {
+        print("hi");
         // Movement animations
         bool isMoving = horizontalInput != 0 || verticalInput != 0;
-        animator.SetBool("walk", isMoving && !Input.GetKey(KeyCode.LeftShift));
+        animator.SetBool("walking", isMoving && !Input.GetKey(KeyCode.LeftShift));
         
-        // Running animation (Shift + WASD)
-        animator.SetBool("run", isMoving && Input.GetKey(KeyCode.LeftShift));
+        // // Running animation (Shift + WASD)
+        // animator.SetBool("run", isMoving && Input.GetKey(KeyCode.LeftShift));
         
         // Jump/ground state
         animator.SetBool("isGrounded", grounded);
