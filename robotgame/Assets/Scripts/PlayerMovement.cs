@@ -4,10 +4,9 @@ public class CombinedPlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed = 5f;
-    public float groundDrag = 5f;
     public float jumpForce = 10f;
     public float jumpCooldown = 0.25f;
-    public float airMultiplier = 0.4f;
+    public float gravity = 9.81f;
 
     [Header("Ground Check")]
     public float playerHeight = 2f;
@@ -17,18 +16,18 @@ public class CombinedPlayerMovement : MonoBehaviour
     [Header("References")]
     public Transform orientation;
     public Animator animator;
-    public Rigidbody rb;
+    public CharacterController characterController;
 
     // Movement and Input Variables
     float horizontalInput;
     float verticalInput;
     Vector3 moveDirection;
+    Vector3 velocity;
     bool readyToJump = true;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
+        characterController = GetComponent<CharacterController>();
         
         if (animator == null)
             animator = GetComponent<Animator>();
@@ -42,17 +41,11 @@ public class CombinedPlayerMovement : MonoBehaviour
         // Handle Input
         MyInput();
 
-        // Speed Control and Drag
-        SpeedControl();
-        rb.drag = grounded ? groundDrag : 0;
+        // Movement
+        MovePlayer();
 
         // Animation State
         UpdateAnimationState();
-    }
-
-    private void FixedUpdate()
-    {
-        MovePlayer();
     }
 
     private void MyInput()
@@ -70,53 +63,77 @@ public class CombinedPlayerMovement : MonoBehaviour
         }
     }
 
-    private void UpdateAnimationState()
+private void UpdateAnimationState()
+{
+    if (animator != null)
     {
-        if (animator != null)
+        // Movement animations
+        bool isMoving = horizontalInput != 0 || verticalInput != 0;
+        animator.SetBool("walk", isMoving && !Input.GetKey(KeyCode.LeftShift));
+        
+        // Running animation (Shift + WASD)
+        animator.SetBool("run", isMoving && Input.GetKey(KeyCode.LeftShift));
+        
+        // Jump/ground state
+        animator.SetBool("isGrounded", grounded);
+        
+        // Speed parameter for blend trees if needed
+        animator.SetFloat("Speed", new Vector3(moveDirection.x, 0, moveDirection.z).magnitude);
+        
+        // Combat animations
+        if (Input.GetMouseButtonDown(1)) // Right-click for stab/slash
         {
-            // Walking animation based on movement input
-            bool isWalking = horizontalInput != 0 || verticalInput != 0;
-            animator.SetBool("walking", isWalking);
-
-            // Ground state
-            animator.SetBool("isGrounded", grounded);
-
-            // Speed parameter
-            animator.SetFloat("Speed", new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude);
+            animator.SetTrigger("slash");
+        }
+        
+        if (Input.GetMouseButtonDown(0)) // Left-click for grab
+        {
+            animator.SetTrigger("grab");
+        }
+        
+        // Reset triggers to prevent animation issues
+        if (Input.GetMouseButtonUp(0))
+        {
+            animator.ResetTrigger("grab");
+        }
+        
+        if (Input.GetMouseButtonUp(1))
+        {
+            animator.ResetTrigger("slash");
         }
     }
+}
 
     private void MovePlayer()
     {
         // Calculate move direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = inputDirection.normalized * moveSpeed;
 
-        // Apply force based on ground state
-        if (grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-        else
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-    }
+        // Apply movement
+        characterController.Move(moveDirection * Time.deltaTime);
 
-    private void SpeedControl()
-    {
-        // Limit velocity
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        
-        if (flatVel.magnitude > moveSpeed)
+        // Handle gravity
+        if (!grounded)
         {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            velocity.y -= gravity * Time.deltaTime;
         }
+        else if (velocity.y < 0)
+        {
+            velocity.y = -2f; // Small downward force to keep character grounded
+        }
+
+        // Apply vertical velocity
+        characterController.Move(velocity * Time.deltaTime);
     }
 
     private void Jump()
     {
-        // Reset vertical velocity
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        // Apply jump force
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        if (grounded)
+        {
+            // Apply jump velocity
+            velocity.y = Mathf.Sqrt(jumpForce * 2f * gravity);
+        }
     }
 
     private void ResetJump()
