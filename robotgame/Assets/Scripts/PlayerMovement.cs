@@ -103,7 +103,7 @@ private void UpdateAnimationState()
     }
         
         // Combat animations - Change to use SetBool instead of SetTrigger
-        if (Input.GetMouseButton(0)) // Left-click hold for slash
+        if (Input.GetMouseButton(0)) // Left-click hold for grab
         {
             animator.SetBool("slashing", true);
         }
@@ -112,7 +112,7 @@ private void UpdateAnimationState()
             animator.SetBool("slashing", false);
         }
 
-        if (Input.GetMouseButton(1)) // Right-click hold for grab
+        if (Input.GetMouseButton(1)) // Right-click hold for slash
         {
             animator.SetBool("grabbing", true);
         }
