@@ -67,43 +67,66 @@ private void UpdateAnimationState()
 {
     if (animator != null)
     {
-        print("hi");
-        // Movement animations
+        // Check if player is moving
         bool isMoving = horizontalInput != 0 || verticalInput != 0;
-        animator.SetBool("Walking", isMoving && !Input.GetKey(KeyCode.LeftShift));
         
-        // // Running animation (Shift + WASD)
-        animator.SetBool("Running", isMoving && Input.GetKey(KeyCode.LeftShift));
+        // Set speed parameter based on movement
+        float currentSpeed = 0f; // Default to idle
         
-        // Jump/ground state
-        animator.SetBool("isGrounded", grounded);
-        
-        // Speed parameter for blend trees if needed
-        animator.SetFloat("Speed", new Vector3(moveDirection.x, 0, moveDirection.z).magnitude);
-        
-        // Combat animations
-        if (Input.GetMouseButtonDown(1)) // Right-click for stab/slash
+        if (isMoving)
         {
-            animator.SetTrigger("slash");
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                currentSpeed = 1f; // Running
+                animator.SetBool("Running", true);
+                animator.SetBool("Walking", false);
+            }
+            else
+            {
+                currentSpeed = 0.5f; // Walking
+                animator.SetBool("Walking", true);
+                animator.SetBool("Running", false);
+            }
+        }
+        else
+        {
+            // Not moving - explicitly reset all movement booleans
+            animator.SetBool("Walking", false);
+            animator.SetBool("Running", false);
         }
         
-        if (Input.GetMouseButtonDown(0)) // Left-click for grab
-        {
-            animator.SetTrigger("grab");
-        }
+        // Set the speed parameter that controls the blend tree
+        animator.SetFloat("Speed", currentSpeed);
+        Debug.Log("Speed Parameter: " + currentSpeed); // Debug output
         
-        // Reset triggers to prevent animation issues
-        if (Input.GetMouseButtonUp(0))
-        {
-            animator.ResetTrigger("grab");
-        }
-        
-        if (Input.GetMouseButtonUp(1))
-        {
-            animator.ResetTrigger("slash");
-        }
+        // Rest of your code for combat animations...
     }
+        
+        // Combat animations - Change to use SetBool instead of SetTrigger
+        if (Input.GetMouseButton(0)) // Left-click hold for slash
+        {
+            animator.SetBool("slashing", true);
+        }
+        else
+        {
+            animator.SetBool("slashing", false);
+        }
+
+        if (Input.GetMouseButton(1)) // Right-click hold for grab
+        {
+            animator.SetBool("grabbing", true);
+        }
+        else
+        {
+            animator.SetBool("grabbing", false);
+        }
+
+        Debug.Log("Current State: " + animator.GetCurrentAnimatorStateInfo(0).fullPathHash);
+        Debug.Log("Is Walking: " + animator.GetBool("Walking"));
+        Debug.Log("Is Running: " + animator.GetBool("Running"));
+
 }
+
 
     private void MovePlayer()
     {
