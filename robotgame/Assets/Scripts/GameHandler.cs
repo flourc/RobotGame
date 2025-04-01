@@ -25,7 +25,7 @@ public class GameHandler : MonoBehaviour
 
     public void StartGame() 
     {
-        SceneManager.LoadScene("demo_scene");
+        SceneManager.LoadScene("TutorialLevel");
     }
 
     public void MainMenu() 
@@ -38,7 +38,7 @@ public class GameHandler : MonoBehaviour
     }
 
     public void levelTwoTemp() {
-        SceneManager.LoadScene("charlotte_work");
+        SceneManager.LoadScene("Level_1");
     }
 
     public void QuitGame() 
