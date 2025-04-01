@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     public AudioMixer mixer;
     public static float volumeLevel = 1.0f;
     private Slider sliderVolumeCtrl;
+    public PickUp pickups;
+    public ThirdPersonCam camera;
 
     void Awake()
     {
@@ -32,6 +34,10 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
+        if ((GameisPaused && camera.IsCursorLocked()) ||
+            (!GameisPaused && !camera.IsCursorLocked())) {
+            camera.ToggleCursorLock();
+        } 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameisPaused)
@@ -49,8 +55,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (!GameisPaused)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            pickups.SetLock(false);
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
             GameisPaused = true;
@@ -64,8 +69,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume() 
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
+        pickups.SetLock(true);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameisPaused = false;

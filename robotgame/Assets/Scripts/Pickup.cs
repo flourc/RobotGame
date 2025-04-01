@@ -12,11 +12,14 @@ public class PickUp : MonoBehaviour
     private float rotationSensitivity = 1f; //how fast/slow the object is rotated in relation to mouse movement
     private GameObject heldObj; //object which we pick up
     private Rigidbody heldObjRb; //rigidbody of object we pick up
-    private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
+    public bool canDrop; //this is needed so we don't throw/drop object when rotating the object
+    private bool lockAllActions;
     private int LayerNumber; //layer index
 
     void Start()
     {
+        canDrop = true;
+        lockAllActions = false;
         LayerNumber = LayerMask.NameToLayer("holdLayer"); //if your holdLayer is named differently make sure to change this ""
     }
 
@@ -29,7 +32,7 @@ public class PickUp : MonoBehaviour
         Debug.DrawLine(transform.position, transform.position + transform.TransformDirection(Vector3.forward) * pickUpRange, Color.red);
         DebugDrawSphere(transform.position + transform.TransformDirection(Vector3.forward) * pickUpRange, sphereRadius, Color.yellow);
 
-        if (Input.GetKeyDown((KeyCode.Mouse1))) //pickup with right click
+        if (Input.GetKeyDown((KeyCode.Mouse1)) && !lockAllActions) //pickup with right click
         {
             if (heldObj == null) //if currently not holding anything
             {
@@ -60,18 +63,18 @@ public class PickUp : MonoBehaviour
             }
             else
             {
-                if(canDrop == true)
+                if(canDrop)
                 {
                     StopClipping(); //prevents object from clipping through walls
                     DropObject();
                 }
             }
         }
-        if (heldObj != null) //if player is holding object
+        if (heldObj != null && !lockAllActions) //if player is holding object
         {
             MoveObject(); //keep object position at holdPos
             RotateObject();
-            if (Input.GetKeyDown(KeyCode.Mouse0) && canDrop == true) //Mous0 (leftclick) is used to throw, change this if you want another button to be used)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && canDrop) //Mous0 (leftclick) is used to throw, change this if you want another button to be used)
             {
                 StopClipping();
                 ThrowObject();
@@ -163,6 +166,11 @@ public class PickUp : MonoBehaviour
             //mouseLookScript.lateralSensitivity = originalvalue;
             canDrop = true;
         }
+    }
+
+    public void SetLock(bool newLock)
+    {
+        lockAllActions = newLock;
     }
     
     void ThrowObject()

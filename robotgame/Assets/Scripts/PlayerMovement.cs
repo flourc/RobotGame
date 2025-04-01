@@ -97,7 +97,7 @@ private void UpdateAnimationState()
         
         // Set the speed parameter that controls the blend tree
         animator.SetFloat("Speed", currentSpeed);
-        Debug.Log("Speed Parameter: " + currentSpeed); // Debug output
+        //Debug.Log("Speed Parameter: " + currentSpeed); // Debug output
         
         // Rest of your code for combat animations...
     }
@@ -121,9 +121,9 @@ private void UpdateAnimationState()
             animator.SetBool("grabbing", false);
         }
 
-        Debug.Log("Current State: " + animator.GetCurrentAnimatorStateInfo(0).fullPathHash);
-        Debug.Log("Is Walking: " + animator.GetBool("Walking"));
-        Debug.Log("Is Running: " + animator.GetBool("Running"));
+        //Debug.Log("Current State: " + animator.GetCurrentAnimatorStateInfo(0).fullPathHash);
+        //Debug.Log("Is Walking: " + animator.GetBool("Walking"));
+        //Debug.Log("Is Running: " + animator.GetBool("Running"));
 
 }
 
