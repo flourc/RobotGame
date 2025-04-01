@@ -3,7 +3,32 @@ guid: 650d08517f998478888d4097429c47ca
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 9337d45cc46944dc780e339c62dc363b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 9337d45cc46944dc780e339c62dc363b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.007
+    second: {fileID: 2100000, guid: 9337d45cc46944dc780e339c62dc363b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.008
+    second: {fileID: 2100000, guid: 9337d45cc46944dc780e339c62dc363b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.009
+    second: {fileID: 2100000, guid: 9337d45cc46944dc780e339c62dc363b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -19,27 +44,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'armature.001|armature.001|armature.001Action'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'l.arm'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'armature.001|armature.001|grab' has import animation warnings that might lower
-      retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
-      quality.\n\t'l.arm' is inbetween humanoid transforms and has rotation animation
-      that will be discarded.\n\nClip 'armature.001|armature.001|run' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'l.arm' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\nClip 'armature.001|armature.001|slash'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'l.arm'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'armature.001|armature.001|stab' has import animation warnings that might lower
-      retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
-      quality.\n\t'l.arm' is inbetween humanoid transforms and has rotation animation
-      that will be discarded.\n\nClip 'armature.001|armature.001|walk' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'l.arm' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
