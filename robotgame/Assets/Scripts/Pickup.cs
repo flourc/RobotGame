@@ -6,41 +6,56 @@ public class PickUp : MonoBehaviour
 {
     public GameObject player;
     public Transform holdPos;
-    //if you copy from below this point, you are legally required to like the video
     public float throwForce = 500f; //force at which the object is thrown at
     public float pickUpRange = 5f; //how far the player can pickup the object from
+    public float sphereRadius = 0.2f; // Radius for the SphereCast - adjust based on how small objects are
     private float rotationSensitivity = 1f; //how fast/slow the object is rotated in relation to mouse movement
     private GameObject heldObj; //object which we pick up
     private Rigidbody heldObjRb; //rigidbody of object we pick up
     private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
     private int LayerNumber; //layer index
 
-    //Reference to script which includes mouse movement of player (looking around)
-    //we want to disable the player looking around when rotating the object
-    //example below 
-    //MouseLookScript mouseLookScript;
     void Start()
     {
         LayerNumber = LayerMask.NameToLayer("holdLayer"); //if your holdLayer is named differently make sure to change this ""
-
-        //mouseLookScript = player.GetComponent<MouseLookScript>();
     }
+
     void Update()
     {
+        // Draw debug ray to visualize the pickup range
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * pickUpRange, Color.red);
+        
+        // Draw debug sphere to visualize the SphereCast radius at the maximum range
+        Debug.DrawLine(transform.position, transform.position + transform.TransformDirection(Vector3.forward) * pickUpRange, Color.red);
+        DebugDrawSphere(transform.position + transform.TransformDirection(Vector3.forward) * pickUpRange, sphereRadius, Color.yellow);
+
         if (Input.GetKeyDown((KeyCode.Mouse1))) //pickup with right click
         {
             if (heldObj == null) //if currently not holding anything
             {
-                //perform raycast to check if player is looking at object within pickuprange
+                //perform spherecast to check if player is looking at object within pickuprange
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
+                if (Physics.SphereCast(transform.position, sphereRadius, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
                     //make sure pickup tag is attached
                     if (hit.transform.gameObject.tag == "canPickUp")
                     {
                         //pass in object hit into the PickUpObject function
                         PickUpObject(hit.transform.gameObject);
+                        
+                        // Debug info - show what was picked up
+                        Debug.Log("Picked up: " + hit.transform.gameObject.name + " at distance: " + hit.distance);
                     }
+                    else
+                    {
+                        // Debug info - object hit but wrong tag
+                        Debug.Log("Hit: " + hit.transform.gameObject.name + " but it doesn't have the canPickUp tag");
+                    }
+                }
+                else
+                {
+                    // Debug info - nothing hit
+                    Debug.Log("No object detected within range");
                 }
             }
             else
@@ -61,9 +76,40 @@ public class PickUp : MonoBehaviour
                 StopClipping();
                 ThrowObject();
             }
-
         }
     }
+
+    // Helper method to draw a sphere in the editor for debugging
+    void DebugDrawSphere(Vector3 position, float radius, Color color)
+    {
+        // Draw circle in XZ plane
+        int segments = 16;
+        float angleStep = 360f / segments;
+        
+        for (int i = 0; i < segments; i++)
+        {
+            float angle1 = i * angleStep * Mathf.Deg2Rad;
+            float angle2 = (i + 1) * angleStep * Mathf.Deg2Rad;
+            
+            Vector3 pos1 = position + new Vector3(Mathf.Sin(angle1) * radius, 0, Mathf.Cos(angle1) * radius);
+            Vector3 pos2 = position + new Vector3(Mathf.Sin(angle2) * radius, 0, Mathf.Cos(angle2) * radius);
+            
+            Debug.DrawLine(pos1, pos2, color);
+            
+            // Draw some lines in vertical plane
+            pos1 = position + new Vector3(Mathf.Sin(angle1) * radius, Mathf.Cos(angle1) * radius, 0);
+            pos2 = position + new Vector3(Mathf.Sin(angle2) * radius, Mathf.Cos(angle2) * radius, 0);
+            
+            Debug.DrawLine(pos1, pos2, color);
+            
+            // Another vertical plane (XY)
+            pos1 = position + new Vector3(0, Mathf.Sin(angle1) * radius, Mathf.Cos(angle1) * radius);
+            pos2 = position + new Vector3(0, Mathf.Sin(angle2) * radius, Mathf.Cos(angle2) * radius);
+            
+            Debug.DrawLine(pos1, pos2, color);
+        }
+    }
+
     void PickUpObject(GameObject pickUpObj)
     {
         if (pickUpObj.GetComponent<Rigidbody>()) //make sure the object has a RigidBody
@@ -77,6 +123,7 @@ public class PickUp : MonoBehaviour
             Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
         }
     }
+    
     void DropObject()
     {
         //re-enable collision with player
@@ -86,11 +133,13 @@ public class PickUp : MonoBehaviour
         heldObj.transform.parent = null; //unparent object
         heldObj = null; //undefine game object
     }
+    
     void MoveObject()
     {
         //keep object position the same as the holdPosition position
         heldObj.transform.position = holdPos.transform.position;
     }
+    
     void RotateObject()
     {
         if (Input.GetKey(KeyCode.R))//hold R key to rotate, change this to whatever key you want
@@ -115,6 +164,7 @@ public class PickUp : MonoBehaviour
             canDrop = true;
         }
     }
+    
     void ThrowObject()
     {
         //same as drop function, but add force to object before undefining it
@@ -125,6 +175,7 @@ public class PickUp : MonoBehaviour
         heldObjRb.AddForce(transform.forward * throwForce);
         heldObj = null;
     }
+    
     void StopClipping() //function only called when dropping/throwing
     {
         var clipRange = Vector3.Distance(heldObj.transform.position, transform.position); //distance from holdPos to the camera
