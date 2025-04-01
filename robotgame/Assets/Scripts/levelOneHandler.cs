@@ -20,6 +20,8 @@ public class levelOneHandler : MonoBehaviour
     public bool isOpen;
     public GameObject keyPad;
 
+    public AudioSource audios;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,8 @@ public class levelOneHandler : MonoBehaviour
         info.SetActive(false);
         doorInfo.SetActive(false);
         doorLight.SetColor("_EmissionColor", Color.red);
+
+        audios = GetComponent<AudioSource>();
     }
 
 
@@ -42,11 +46,12 @@ public class levelOneHandler : MonoBehaviour
             info.SetActive(false);
         }
 
-        if (Input.GetKey(KeyCode.E)) {
+        if (Input.GetKey(KeyCode.E) && distance < 5 && slasherOnGround.activeSelf) {
             slasherOnGround.SetActive(false);
             slasher.SetActive(true);
             info.SetActive(false);
             armEquipped = true;
+            audios.Play();
         }
 
 

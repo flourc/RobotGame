@@ -25,10 +25,12 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     bool readyToJump = true;
 
+    public AudioSource audios;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
-        
+        audios = GetComponent<AudioSource>();
         if (animator == null)
             animator = GetComponent<Animator>();
     }
@@ -61,6 +63,13 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+
+        if (animator.GetBool("Walking") == true && !audios.isPlaying) {
+            audios.Play();
+        }
+        else if (animator.GetBool("Walking") == false && audios.isPlaying){
+            audios.Stop();
+        }
     }
 
 private void UpdateAnimationState()
@@ -80,6 +89,8 @@ private void UpdateAnimationState()
                 currentSpeed = 1f; // Running
                 animator.SetBool("Running", true);
                 animator.SetBool("Walking", false);
+
+                
             }
             else
             {
