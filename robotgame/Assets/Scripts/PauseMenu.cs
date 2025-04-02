@@ -12,12 +12,14 @@ public class PauseMenu : MonoBehaviour
     public static float volumeLevel = 1.0f;
     private Slider sliderVolumeCtrl;
     public PickUp pickups;
-    public ThirdPersonCam camera;
+    public GameObject camera_obj;
+    private ThirdPersonCam tpc;
 
     void Awake()
     {
         pauseMenuUI.SetActive(true); // so slider can be set
         SetLevel (volumeLevel);
+        tpc = camera_obj.GetComponent<ThirdPersonCam>();
         GameObject sliderTemp = GameObject.FindWithTag("PauseMenuSlider");
         if (sliderTemp != null)
         {
@@ -34,9 +36,9 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if ((GameisPaused && camera.IsCursorLocked()) ||
-            (!GameisPaused && !camera.IsCursorLocked())) {
-            camera.ToggleCursorLock();
+        if ((GameisPaused && tpc.IsCursorLocked()) ||
+            (!GameisPaused && !tpc.IsCursorLocked())) {
+            tpc.ToggleCursorLock();
         } 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

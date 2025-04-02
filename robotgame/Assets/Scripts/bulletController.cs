@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class bulletController : MonoBehaviour
 {
+    public int damage;
+    public GameObject handler;
+    private HealthBar playerHP;
     // Start is called before the first frame update
     void Start()
     {
-        
+        handler = GameObject.FindWithTag("GameController");
+        playerHP = handler.GetComponent<HealthBar>();
     }
 
     // Update is called once per frame
@@ -16,10 +20,13 @@ public class bulletController : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter (Collision collision) {
-        if (collision.gameObject.tag == "floor" || collision.gameObject.tag == "Player")
+    private void OnTriggerEnter (Collider collider) {
+        if (collider.gameObject.tag == "floor" || collider.gameObject.tag == "Player")
         {
             Destroy (gameObject);
+            if (collider.gameObject.tag == "Player") {
+                playerHP.GetHit(damage);
+            }
         //TODO: set bullet to enemy tag
         }   
     }

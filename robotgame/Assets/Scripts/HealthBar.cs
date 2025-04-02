@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public GameObject entity;
-
     public int health;
     public int startingHealth;
     public float barFill;
@@ -36,6 +35,9 @@ public class HealthBar : MonoBehaviour
         }
         barFill = (float)health / startingHealth;
         updateStatsDisplay();
+        if (health <= 0) {
+            gameObject.BroadcastMessage("LoseScreen");
+        }
     }
 
     public void updateStatsDisplay()

@@ -1985,17 +1985,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1070722377 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6262569752137367896, guid: db773b7b388b54383b4bc625e6e93c04, type: 3}
-  m_PrefabInstance: {fileID: 131581338}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 131581339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd4ac857d89af493fbb3f3a1f4da043d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!81 &1070722378
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3479,11 +3468,15 @@ PrefabInstance:
     - target: {fileID: 7863341294005495620, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: camera
       value: 
-      objectReference: {fileID: 1070722377}
+      objectReference: {fileID: 0}
     - target: {fileID: 7863341294005495620, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: pickups
       value: 
       objectReference: {fileID: 2017250962}
+    - target: {fileID: 7863341294005495620, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
+      propertyPath: camera_obj
+      value: 
+      objectReference: {fileID: 131581339}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

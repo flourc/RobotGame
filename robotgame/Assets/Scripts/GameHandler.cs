@@ -50,6 +50,11 @@ public class GameHandler : MonoBehaviour
         #endif
     }
 
+    public void LoseScreen()
+    {
+        SceneManager.LoadScene("EndLose");
+    }
+
     public void Credits() 
     {
         SceneManager.LoadScene("Credits");
