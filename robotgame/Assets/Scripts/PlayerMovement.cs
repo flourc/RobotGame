@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpCooldown = 0.25f;
     public float gravity = 9.81f;
 
+
     [Header("Ground Check")]
     public float playerHeight = 2f;
     public LayerMask whatIsGround;
@@ -17,6 +18,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform orientation;
     public Animator animator;
     public CharacterController characterController;
+
+    [Header("Audio")]
+    public AudioSource walkAudio;
+    public AudioSource runAudio;    
 
     // Movement and Input Variables
     float horizontalInput;
@@ -62,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
             readyToJump = false;
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
+
         }
 
         // if (animator.GetBool("Walking") == true && !audios.isPlaying) {
@@ -87,16 +93,37 @@ private void UpdateAnimationState()
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 currentSpeed = 1f; // Running
+                moveSpeed = 7f * 1.2f;
                 animator.SetBool("Running", true);
                 animator.SetBool("Walking", false);
 
+                if (!runAudio.isPlaying)
+                {
+                    runAudio.Play();
+                }
+                if (walkAudio.isPlaying)
+                {
+                    walkAudio.Stop();
+                }
                 
             }
             else
             {
                 currentSpeed = 0.5f; // Walking
+                moveSpeed = 7f;
                 animator.SetBool("Walking", true);
                 animator.SetBool("Running", false);
+
+                if (!walkAudio.isPlaying)
+                {
+                    walkAudio.Play();
+                }
+                if (runAudio.isPlaying)
+                {
+                    runAudio.Stop();
+                }
+
+
             }
         }
         else
@@ -104,6 +131,9 @@ private void UpdateAnimationState()
             // Not moving - explicitly reset all movement booleans
             animator.SetBool("Walking", false);
             animator.SetBool("Running", false);
+            if (walkAudio.isPlaying) walkAudio.Stop();
+            if (runAudio.isPlaying) runAudio.Stop();
+
         }
         
         // Set the speed parameter that controls the blend tree
