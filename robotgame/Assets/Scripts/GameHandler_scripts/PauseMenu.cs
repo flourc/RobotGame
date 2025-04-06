@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameisPaused = false;
+    public static bool otherUIActive = false;
     public GameObject pauseMenuUI;
     public AudioMixer mixer;
     public static float volumeLevel = 1.0f;
@@ -36,8 +37,8 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if ((GameisPaused && tpc.IsCursorLocked()) ||
-            (!GameisPaused && !tpc.IsCursorLocked())) {
+        if (((GameisPaused || otherUIActive) && tpc.IsCursorLocked()) ||
+            (!(GameisPaused || otherUIActive) && !tpc.IsCursorLocked())) {
             tpc.ToggleCursorLock();
         } 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -81,5 +82,15 @@ public class PauseMenu : MonoBehaviour
     {
         mixer.SetFloat("MusicVolume", Mathf.Log10 (sliderValue) * 20);
         volumeLevel = sliderValue;
+    }
+
+    public void SetOtherUIActive()
+    {
+        otherUIActive = true;
+    }
+
+    public void SetOtherUIInactive()
+    {
+        otherUIActive = false;
     }
 }

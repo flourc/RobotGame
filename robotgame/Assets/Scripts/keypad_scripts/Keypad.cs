@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Keypad : MonoBehaviour
 {
-
+    public GameHandler handler;
     public enum digits 
-        { zero, uno, two, three, four, five, six, seven, eight, nine, none };
+        { zero, one, two, three, four, five, six, seven, eight, nine, none };
 
 
     public KeypadNumber num1, num2, num3, num4;
@@ -31,62 +31,65 @@ public class Keypad : MonoBehaviour
 
     public void Zero()
     {
-        Debug.Log("zero");
         inputNum(digits.zero);
     }
-    public void Uno()
+    public void One()
     {
-        Debug.Log("one");
-        inputNum(digits.uno);
+        inputNum(digits.one);
     }
     public void Two()
     {
-        Debug.Log("two");
         inputNum(digits.two);
     }
     public void Three()
     {
-        Debug.Log("three");
         inputNum(digits.three);
     }
     public void Four()
     {
-        Debug.Log("four");
         inputNum(digits.four);
     }
     public void Five()
     {
-        Debug.Log("five");
         inputNum(digits.five);
     }
     public void Six()
     {
-        Debug.Log("six");
         inputNum(digits.six);
     }
     public void Seven()
     {
-        Debug.Log("seven");
         inputNum(digits.seven);
     }
     public void Eight()
     {
-        Debug.Log("eight");
         inputNum(digits.eight);
     }
     public void Nine()
     {
-        Debug.Log("nine");
         inputNum(digits.nine);
     }
 
     public void Clear()
     {
-        Debug.Log("clear");
         for (int i = 0; i < 4; i++) {
             nums[i] = digits.none;
         }
         updateNums();
+    }
+
+    public void Check()
+    {
+        bool all_good = true;
+        for (int i = 0; i < 4; i++) {
+            all_good = all_good && (nums[i] == correct_combo[i]);
+        }
+        if (all_good) {
+            handler.SendMessage("openDoor");
+        } else {
+            Clear();
+            handler.SendMessage("KeypadOff");
+        }
     }
 
     void inputNum(digits dig) 
@@ -118,7 +121,7 @@ public class Keypad : MonoBehaviour
     {
         switch (dig) {
             case digits.zero:   return 0;
-            case digits.uno:    return 1;
+            case digits.one:    return 1;
             case digits.two:    return 2;
             case digits.three:  return 3;
             case digits.four:   return 4;
