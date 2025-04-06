@@ -9,6 +9,7 @@ TagManager:
   - FPSctrl
   - floor
   - canPickUp
+  - pushable
   layers:
   - Default
   - TransparentFX
