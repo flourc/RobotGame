@@ -22,9 +22,7 @@ public class HealthBar : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Minus)) {
-            GetHit(1);
-        }
+       
     }
 
     public void GetHit(int dmg)

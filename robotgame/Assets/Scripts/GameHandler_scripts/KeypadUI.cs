@@ -11,7 +11,7 @@ public class KeypadUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        keypadActive = false;
+        KeypadOff();
     }
 
     // Update is called once per frame

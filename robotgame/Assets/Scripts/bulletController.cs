@@ -20,14 +20,14 @@ public class bulletController : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter (Collider collider) {
-        if (collider.gameObject.tag == "floor" || collider.gameObject.tag == "Player")
-        {
-            Destroy (gameObject);
-            if (collider.gameObject.tag == "Player") {
-                playerHP.GetHit(damage);
-            }
-        //TODO: set bullet to enemy tag
-        }   
+    private void OnTriggerEnter (Collider collider) 
+    {
+        Destroy (gameObject);
+        if (collider.gameObject.tag == "Player") {
+            playerHP.GetHit(damage);
+        } else if (collider.gameObject.tag == "enemy") {
+            collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+        }
+
     }
 }
