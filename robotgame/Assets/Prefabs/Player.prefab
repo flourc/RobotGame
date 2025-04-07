@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3309012876302838511}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,13 +56,13 @@ Transform:
   m_GameObject: {fileID: 232984578713069279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3881750452801758017}
   - {fileID: 3952216245105661024}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &473322355916487460
 GameObject:
@@ -224,6 +224,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &6505585981610439374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2092712425805845173}
+  m_Layer: 0
+  m_Name: HoldPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2092712425805845173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505585981610439374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.94}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3881750452801758017}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7035616267366076867
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,11 +401,11 @@ PrefabInstance:
       objectReference: {fileID: 1266679587308729127}
     - target: {fileID: 3759339130989945415, guid: 3cb80d990fc204eac99efd3afe5ecebe, type: 3}
       propertyPath: jumpForce
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3759339130989945415, guid: 3cb80d990fc204eac99efd3afe5ecebe, type: 3}
       propertyPath: moveSpeed
-      value: 7
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 3759339130989945415, guid: 3cb80d990fc204eac99efd3afe5ecebe, type: 3}
       propertyPath: walkAudio
@@ -449,15 +480,44 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8942416204416079464, guid: 3cb80d990fc204eac99efd3afe5ecebe, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 2092712425805845173}
+    - targetCorrespondingSourceObject: {fileID: 8942416204416079464, guid: 3cb80d990fc204eac99efd3afe5ecebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8665623860837148767}
     - targetCorrespondingSourceObject: {fileID: 8942416204416079464, guid: 3cb80d990fc204eac99efd3afe5ecebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 738682268049465918}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8597944002359758034, guid: 3cb80d990fc204eac99efd3afe5ecebe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5482035877821540640}
   m_SourcePrefab: {fileID: 100100000, guid: 3cb80d990fc204eac99efd3afe5ecebe, type: 3}
 --- !u!4 &3881750452801758017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8942416204416079464, guid: 3cb80d990fc204eac99efd3afe5ecebe, type: 3}
   m_PrefabInstance: {fileID: 5316331482122237225}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4509633562353711611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8597944002359758034, guid: 3cb80d990fc204eac99efd3afe5ecebe, type: 3}
+  m_PrefabInstance: {fileID: 5316331482122237225}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5482035877821540640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4509633562353711611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f02e2d889a9e4ca68635daa3970856c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 4509633562353711611}
+  holdPos: {fileID: 2092712425805845173}
+  throwForce: 500
+  pickUpRange: 5
+  sphereRadius: 0.2
+  canDrop: 1
