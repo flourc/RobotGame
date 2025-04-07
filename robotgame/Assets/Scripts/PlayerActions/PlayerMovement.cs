@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     bool readyToJump = true;
 
+    public string whatArm;
     // public AudioSource audios;
 
     private void Start()
@@ -42,6 +43,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        //temporary 
+        whatArm = levelOneHandler.arm;
+
         // Ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
@@ -146,16 +150,20 @@ private void UpdateAnimationState()
         // Combat animations - Change to use SetBool instead of SetTrigger
         if (Input.GetMouseButton(0)) // Left-click hold for grab
         {
-            animator.SetBool("slashing", true);
+            if (whatArm == "slasher") {
+                animator.Play("slash");
+            } 
+            else if (whatArm == "gun") {
+                animator.Play("shoot");
+            }
         }
-        else
-        {
-            animator.SetBool("slashing", false);
-        }
+
+        
 
         if (Input.GetMouseButton(1)) // Right-click hold for slash
         {
-            animator.SetBool("grabbing", true);
+            // animator.SetBool("grabbing", true);
+            animator.Play("grab");
         }
         else
         {

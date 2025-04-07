@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.5748165, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1750,7 +1750,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402124395}
-  m_LocalRotation: {x: 0.33921045, y: 0.07936456, z: -0.028733935, w: 0.9369162}
+  m_LocalRotation: {x: 0.33921045, y: 0.0793646, z: -0.028733952, w: 0.9369162}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5336968127870154709, guid: 427b393a0281847a9bdfb39cf17016a5, type: 3}
   m_PrefabInstance: {fileID: 1707721616}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1425560426}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e82506fa034824ff2af6247bb2079153, type: 3}
@@ -1978,13 +1978,10 @@ MonoBehaviour:
   orientation: {fileID: 388250843}
   player: {fileID: 1575482282}
   playerObj: {fileID: 935448108}
-  rb: {fileID: 1575482281}
+  characterController: {fileID: 0}
   rotationSpeed: 7
-  combatLookAt: {fileID: 0}
   thirdPersonCam: {fileID: 0}
-  combatCam: {fileID: 0}
-  topDownCam: {fileID: 0}
-  currentStyle: 0
+  cursorToggleKey: 27
 --- !u!1 &1540378061
 GameObject:
   m_ObjectHideFlags: 0
