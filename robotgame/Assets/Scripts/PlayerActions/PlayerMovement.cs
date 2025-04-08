@@ -188,7 +188,7 @@ private void UpdateAnimationState()
         // Handle gravity
         if (!grounded)
         {
-            velocity.y -= gravity * Time.deltaTime;
+            velocity.y -= gravity * 2 * Time.deltaTime;
         }
         else if (velocity.y < 0)
         {

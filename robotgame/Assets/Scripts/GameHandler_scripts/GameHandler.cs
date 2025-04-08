@@ -40,7 +40,7 @@ public class GameHandler : MonoBehaviour
     }
 
     public void levelTwoTemp() {
-        SceneManager.LoadScene("Level_1");
+        SceneManager.LoadScene("combat_scene");
     }
 
     public void QuitGame() 
