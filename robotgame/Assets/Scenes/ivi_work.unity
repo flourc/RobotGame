@@ -1347,6 +1347,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PressurePlate
       objectReference: {fileID: 0}
+    - target: {fileID: 7038082794983058467, guid: f8f01a206c664fc44a90ce0f8a7446e0, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7038082794983058467, guid: f8f01a206c664fc44a90ce0f8a7446e0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7f0f625e787783c43897c008eb14e56f, type: 2}
+    - target: {fileID: 7038082794983058467, guid: f8f01a206c664fc44a90ce0f8a7446e0, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 34ffa78fbff8da741a73bb1ebb59a41d, type: 2}
     - target: {fileID: 7133049509796924978, guid: f8f01a206c664fc44a90ce0f8a7446e0, type: 3}
       propertyPath: m_RootOrder
       value: 5

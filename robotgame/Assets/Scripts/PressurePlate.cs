@@ -12,6 +12,7 @@ public class PressurePlate : MonoBehaviour
     private void Start()
     {
         plateRenderer = GetComponent<MeshRenderer>();
+        plateRenderer.material = originalMaterial;
     }
 
     private void OnTriggerStay(Collider other)
