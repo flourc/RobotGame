@@ -10,8 +10,6 @@ public class levelOneHandler : MonoBehaviour
     public GameObject gunArm;
     public float droneDistance;
 
-    public static string arm;
-
     public Transform player;
     public GameObject info;
 
@@ -32,14 +30,12 @@ public class levelOneHandler : MonoBehaviour
     void Start()
     {
         hasKeyCard = true;
-        slasherArm.SetActive(false);
+        slasherArm.SetActive(true);
         gunArm.SetActive(false);
-
 
         info.SetActive(false);
         doorInfo.SetActive(false);
         doorLight.SetColor("_EmissionColor", Color.red);
-        arm = "none";
         // audios = GetComponent<AudioSource>();
     }
 
@@ -48,7 +44,7 @@ public class levelOneHandler : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(player.position, slasherOnGround.transform.position);
-        if (distance < 5 && arm == "none" && !info.activeSelf) {
+        if (distance < 5 && !slasherArm.activeSelf && !info.activeSelf) {
             info.SetActive(true);
         }
         else if (distance >= 5 && info.activeSelf){
@@ -60,12 +56,11 @@ public class levelOneHandler : MonoBehaviour
             gunArm.SetActive(false);
             slasherArm.SetActive(true);
             info.SetActive(false);
-            arm = "slasher";
             // audios.Play();
         }
 
         droneDistance = Vector3.Distance(player.position, droneOnGround.transform.position);
-        if (droneDistance < 5 && arm == "none" && !info.activeSelf) {
+        if (droneDistance < 5 && !gunArm.activeSelf && !info.activeSelf) {
             info.SetActive(true);
         }
         else if (distance >= 5 && info.activeSelf){
@@ -73,12 +68,9 @@ public class levelOneHandler : MonoBehaviour
         }
 
         if (Input.GetKey(KeyCode.E) && droneDistance < 5 && droneOnGround.activeSelf) {
-            // droneOnGround.SetActive(false);
             gunArm.SetActive(true);
             info.SetActive(false);
             slasherArm.SetActive(false);
-            arm = "gun";
-            // audios.Play();
         }
 
 

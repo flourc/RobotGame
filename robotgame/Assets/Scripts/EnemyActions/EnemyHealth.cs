@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-
     public int maxHealth;
     public int currHealth;
     public bool alive;
@@ -33,6 +32,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int amt)
     {
+        print("taking damage");
         if (!alive) return;
 
         currHealth -= amt;
@@ -87,4 +87,25 @@ public class EnemyHealth : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
+
+    void OnCollisionEnter(Collision collision) {
+        print("collision");
+        if (collision.gameObject.tag == "weapon") {
+            TakeDamage(1);
+            StartCoroutine(damage());
+        }
+    }
+
+    void OnCollisionExit (Collision collision) {
+        if (collision.gameObject.tag == "weapon") {
+            StopCoroutine(damage());
+        }
+    }
+
+    private IEnumerator damage()
+    {
+        yield return new WaitForSeconds(1f);
+        TakeDamage(1);
+    }
 }
+

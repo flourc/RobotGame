@@ -11,6 +11,7 @@ TagManager:
   - canPickUp
   - pushable
   - enemy
+  - weapon
   layers:
   - Default
   - TransparentFX

@@ -9,12 +9,13 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange = 2f;
     public LayerMask enemyLayer;
     public Animator animator;
+    public GameObject swordArm;
 
     private bool isAttacking = false;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isAttacking)
+        if (Input.GetMouseButtonDown(0) && swordArm.activeSelf && !isAttacking)
         {
             StartCoroutine(SlashAttack());
         }

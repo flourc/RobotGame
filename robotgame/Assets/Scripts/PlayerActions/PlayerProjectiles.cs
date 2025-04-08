@@ -14,17 +14,26 @@ public class PlayerProjectiles : MonoBehaviour
     public GameObject bullet;
     public float fireRate = 1f;
 
+    public GameObject gunArm;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        canFire = true;
+        // canFire = false;
         glow.SetColor("_EmissionColor", Color.blue);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gunArm.activeSelf) {
+            canFire = true;
+        }
+        else {
+            canFire = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.Mouse0) && canFire) {
             shoot();
         }
@@ -35,9 +44,9 @@ public class PlayerProjectiles : MonoBehaviour
 
     public void shoot() {
         canFire = false;
-        glow.SetColor("_EmissionColor", Color.red);
+        // glow.SetColor("_EmissionColor", Color.red);
         GameObject bul = Instantiate(bullet, gun.position, transform.rotation);
-        Vector3 shootDir = transform.forward + new Vector3(-100f, 0f, 0f);
+        Vector3 shootDir = transform.forward + new Vector3(90f, 0f, 0f);
         bul.GetComponent<Rigidbody>().velocity = gun.forward * 30;
         StartCoroutine(Waiting());
     }
