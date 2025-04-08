@@ -61,3 +61,6 @@ crashlytics-build.properties
 
 # Mac OS Finder files
 *.DS_Store
+*.zip
+/robotgamebuildv1/robotgamebuildv1
+/robotgamebuildv1/robotgamebuildv2

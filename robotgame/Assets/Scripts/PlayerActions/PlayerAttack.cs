@@ -22,6 +22,11 @@ public class PlayerAttack : MonoBehaviour
 
     private bool isAttacking = false;
 
+    void Start()
+    {
+        toggleArm();
+    }
+
     public void toggleArm()
     {
         if (swordArm.activeSelf) {

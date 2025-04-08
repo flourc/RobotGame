@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public GameObject entity;
+    public GameObject player;
     public int health;
     public int startingHealth;
     public float barFill;
@@ -18,6 +18,7 @@ public class HealthBar : MonoBehaviour
         barFill = 1.0f;
         health = startingHealth;
         healthBar.SetActive(true);
+        player = GameObject.FindWithTag("Player");
     }
 
     void Update()

@@ -6,17 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class GameHandler : MonoBehaviour
 {
-    public GameObject player;
+    //public GameObject player;
     private string sceneName;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = true;
-        //player = GameObject.FindWithTag("Player");
+        
         sceneName = SceneManager.GetActiveScene().name;
 
-        player.GetComponent<PlayerAttack>().toggleArm();
+        
     }
 
     // Update is called once per frame
