@@ -11,13 +11,44 @@ public class PlayerAttack : MonoBehaviour
     public Animator animator;
     public GameObject swordArm;
 
+    private bool canFire = false;
+
+    public GameObject gun;
+
+    public Material glow;
+    public GameObject bullet;
+    public float fireRate = 1f;
+
+
     private bool isAttacking = false;
+
+    public void toggleArm()
+    {
+        if (swordArm.activeSelf) {
+            swordArm.SetActive(false);
+            gun.SetActive(true);
+        } else if (gun.activeSelf) {
+            gun.SetActive(false);
+            swordArm.SetActive(true);
+        }
+    }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && swordArm.activeSelf && !isAttacking)
         {
             StartCoroutine(SlashAttack());
+        }
+
+        if (gun.activeSelf) {
+            canFire = true;
+        }
+        else {
+            canFire = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canFire) {
+            shoot();
         }
     }
 
@@ -62,5 +93,22 @@ public class PlayerAttack : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    public void shoot() {
+        canFire = false;
+        glow.SetColor("_EmissionColor", Color.red);
+    
+        GameObject bul = Instantiate(bullet, gun.GetComponent<Transform>().position, transform.rotation);
+        bul.tag = "weapon";
+        bul.GetComponent<Rigidbody>().velocity = gun.GetComponent<Transform>().forward * 20;
+        StartCoroutine(Waiting());
+    }
+
+    IEnumerator Waiting()
+    {
+        yield return new WaitForSeconds(fireRate);
+        canFire = true;
+        glow.SetColor("_EmissionColor", Color.blue);
     }
 }

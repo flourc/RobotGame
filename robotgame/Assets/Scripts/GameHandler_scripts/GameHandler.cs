@@ -15,6 +15,8 @@ public class GameHandler : MonoBehaviour
         Cursor.visible = true;
         player = GameObject.FindWithTag("Player");
         sceneName = SceneManager.GetActiveScene().name;
+
+        player.GetComponent<PlayerAttack>().toggleArm();
     }
 
     // Update is called once per frame
