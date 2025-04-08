@@ -46,7 +46,7 @@ public class PlayerProjectiles : MonoBehaviour
         // glow.SetColor("_EmissionColor", Color.red);
     
         GameObject bul = Instantiate(bullet, gun.position, player.rotation);
-        
+        bul.tag = "weapon";
         bul.GetComponent<Rigidbody>().velocity = gun.forward * 20;
         StartCoroutine(Waiting());
     }
