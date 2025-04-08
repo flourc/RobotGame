@@ -101,7 +101,7 @@ public class PlayerAttack : MonoBehaviour
     
         GameObject bul = Instantiate(bullet, gun.GetComponent<Transform>().position, transform.rotation);
         bul.tag = "weapon";
-        bul.GetComponent<Rigidbody>().velocity = gun.GetComponent<Transform>().forward * 20;
+        bul.GetComponent<Rigidbody>().velocity = gun.GetComponent<Transform>().right * 20;
         StartCoroutine(Waiting());
     }
 
