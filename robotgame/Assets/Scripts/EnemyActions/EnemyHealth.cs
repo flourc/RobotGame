@@ -39,7 +39,7 @@ public class EnemyHealth : MonoBehaviour
         if (currHealth <= 0)
         {
             currHealth = 0;
-            alive = false;
+            // alive = false;
 
             DisableAllOtherScripts();
             DropCurrency(); // 💰 Drop the goods!
@@ -86,6 +86,7 @@ public class EnemyHealth : MonoBehaviour
         isSinking = true;
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
+        alive = false;
     }
 
     void OnCollisionEnter(Collision collision) {
@@ -104,8 +105,12 @@ public class EnemyHealth : MonoBehaviour
 
     private IEnumerator damage()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.2f);
         TakeDamage(1);
+    }
+
+    public bool returnAlive() {
+        return alive;
     }
 }
 

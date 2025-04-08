@@ -26,11 +26,14 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = true;
 
         // Start attack animation by setting the slashing bool to true
-        animator.SetBool("slashing", true);
+        // animator.SetBool("slashing", true);
+        animator.Play("slash");
 
         // Wait until the animation begins (OPTIONAL: short delay to simulate wind-up)
-        yield return new WaitForSeconds(0.2f);
-
+        
+        // yield return new WaitForSeconds(0.2f);
+        //NOTE i got rid of this because i feel like our attack is pretty fast
+        
         // Wait until the animation is fully complete — adjust to match your animation length
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         float attackDuration = stateInfo.length > 0 ? stateInfo.length : 0.7f;

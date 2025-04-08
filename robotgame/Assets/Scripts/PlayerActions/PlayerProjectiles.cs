@@ -8,7 +8,6 @@ public class PlayerProjectiles : MonoBehaviour
     public bool canFire;
     public Transform player;
     public Transform gun;
-    public Transform gunBody;
 
     public Material glow;
     public GameObject bullet;
@@ -45,9 +44,10 @@ public class PlayerProjectiles : MonoBehaviour
     public void shoot() {
         canFire = false;
         // glow.SetColor("_EmissionColor", Color.red);
-        GameObject bul = Instantiate(bullet, gun.position, transform.rotation);
-        Vector3 shootDir = transform.forward + new Vector3(90f, 0f, 0f);
-        bul.GetComponent<Rigidbody>().velocity = gun.forward * 30;
+    
+        GameObject bul = Instantiate(bullet, gun.position, player.rotation);
+        
+        bul.GetComponent<Rigidbody>().velocity = gun.forward * 20;
         StartCoroutine(Waiting());
     }
 
