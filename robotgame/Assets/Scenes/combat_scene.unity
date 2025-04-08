@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.5748165, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2196,27 +2196,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2516200313959841932, guid: 74e7d1daf72c64b4aa19c4f347feec1b, type: 3}
   m_PrefabInstance: {fileID: 1825610036416476642}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1169819184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1124128242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3951114dc50654da79128558ef631b91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 0
-  currHealth: 0
-  alive: 0
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
-  currencyPickupPrefab: {fileID: 0}
-  minCurrencyDrop: 1
-  maxCurrencyDrop: 5
 --- !u!54 &1169819185
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2259,7 +2238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1183180824
 Transform:
   m_ObjectHideFlags: 0
@@ -3447,15 +3426,15 @@ PrefabInstance:
       objectReference: {fileID: 1692625852}
     - target: {fileID: 688533659130460433, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 688533659130460433, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 688533659130460433, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2920243916474176595, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: m_Name
@@ -3463,7 +3442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2920243916474176595, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3868603936932446329, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: m_RootOrder
@@ -3511,11 +3490,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5801999547537730745, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5801999547537730745, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7863341294005495620, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: camera
@@ -3661,6 +3640,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8695b7ee4d632447994d98b09edd9b8a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1599670021}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8695b7ee4d632447994d98b09edd9b8a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1599670022}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8695b7ee4d632447994d98b09edd9b8a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1599670023}
     - targetCorrespondingSourceObject: {fileID: 6835239500159114223, guid: 8695b7ee4d632447994d98b09edd9b8a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 113105534}
@@ -3767,6 +3752,45 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1599670022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599670017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b67b84eb421d8449aba466edd6392fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  attackRange: 2
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  animator: {fileID: 1599670021}
+  swordArm: {fileID: 113105531}
+--- !u!114 &1599670023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599670017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4c9748ef55f427f8a840f3c518ad97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canFire: 0
+  player: {fileID: 1599670016}
+  gun: {fileID: 1814973559}
+  gunBody: {fileID: 1814973559}
+  glow: {fileID: 2100000, guid: 55cd4c3a3505c4240a7a122148878343, type: 2}
+  bullet: {fileID: 6939781771997299712, guid: c52fcb9fa9fc445e188306e055360a2c, type: 3}
+  fireRate: 1
+  gunArm: {fileID: 1814973557}
 --- !u!1 &1608156858
 GameObject:
   m_ObjectHideFlags: 0
@@ -4073,6 +4097,11 @@ BoxCollider:
 --- !u!1 &1814973557 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5289294443340380607, guid: 8695b7ee4d632447994d98b09edd9b8a, type: 3}
+  m_PrefabInstance: {fileID: 1599670015}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1814973559 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2327539042273696835, guid: 8695b7ee4d632447994d98b09edd9b8a, type: 3}
   m_PrefabInstance: {fileID: 1599670015}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1888642623
@@ -4568,9 +4597,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1680753097}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2999545194065287734, guid: 74e7d1daf72c64b4aa19c4f347feec1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1169819184}
     - targetCorrespondingSourceObject: {fileID: 2999545194065287734, guid: 74e7d1daf72c64b4aa19c4f347feec1b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1169819185}
