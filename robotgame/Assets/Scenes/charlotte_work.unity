@@ -224,6 +224,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db773b7b388b54383b4bc625e6e93c04, type: 3}
+--- !u!1 &51955365 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7380623954097611628, guid: 1e5d3d37267414ff5a589e08e65c615d, type: 3}
+  m_PrefabInstance: {fileID: 852571004}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &89478296 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2174417262440865152, guid: f004cfa7d356740f8b4b84ea59e3fce3, type: 3}
@@ -325,12 +330,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4c9748ef55f427f8a840f3c518ad97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canFire: 0
   player: {fileID: 288592486}
   gun: {fileID: 2080916418}
-  gunBody: {fileID: 2080916418}
   glow: {fileID: 2100000, guid: 55cd4c3a3505c4240a7a122148878343, type: 2}
   bullet: {fileID: 6939781771997299712, guid: c52fcb9fa9fc445e188306e055360a2c, type: 3}
   fireRate: 1
+  gunArm: {fileID: 51955365}
 --- !u!1 &288592485 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4509633562353711611, guid: 1e5d3d37267414ff5a589e08e65c615d, type: 3}
@@ -730,7 +736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &713154883
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1407,7 +1413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1004160824
 Transform:
   m_ObjectHideFlags: 0
@@ -1456,7 +1462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2055578868575960651, guid: 9ccd87ec05fe848fb847748e2684473c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5.84
       objectReference: {fileID: 0}
     - target: {fileID: 2055578868575960651, guid: 9ccd87ec05fe848fb847748e2684473c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1486,6 +1492,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8991529178369888910, guid: 9ccd87ec05fe848fb847748e2684473c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 288592486}
+    - target: {fileID: 8991529178369888910, guid: 9ccd87ec05fe848fb847748e2684473c, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 138958303}
     m_RemovedComponents:
     - {fileID: 4162838931548144242, guid: 9ccd87ec05fe848fb847748e2684473c, type: 3}
     - {fileID: 3339510890975141230, guid: 9ccd87ec05fe848fb847748e2684473c, type: 3}
@@ -2013,7 +2027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2006796888
 Transform:
   m_ObjectHideFlags: 0
@@ -2046,6 +2060,7 @@ MonoBehaviour:
   health: 1
   attackPower: 1
   visionRadius: 5
+  player: {fileID: 0}
 --- !u!114 &2006796890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2061,7 +2076,12 @@ MonoBehaviour:
   maxHealth: 10
   currHealth: 0
   alive: 1
-  myMesh: {fileID: 2006796887}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  currencyPickupPrefab: {fileID: 0}
+  minCurrencyDrop: 1
+  maxCurrencyDrop: 5
 --- !u!4 &2080916418 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6750201550740711531, guid: 1e5d3d37267414ff5a589e08e65c615d, type: 3}
