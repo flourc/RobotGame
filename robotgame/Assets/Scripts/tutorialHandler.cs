@@ -7,6 +7,7 @@ public class tutorialHandler : MonoBehaviour
     public Transform player;
     public GameObject movementDir;
     public GameObject grabDir;
+    public DoorNextScene door;
     public bool gshown;
     public GameObject nextButton;
     public GameHandler gh;
@@ -33,8 +34,8 @@ public class tutorialHandler : MonoBehaviour
             gshown = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.N) && gshown) {
-            gh.levelTwoTemp();
+        if (Input.GetKeyDown(KeyCode.E) && gshown && door.inRadius) {
+            door.GoNextScene();
         }
     }
 

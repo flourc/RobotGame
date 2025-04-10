@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// NOTE TO SELF: keypad code is 2602
+
 public class Keypad : MonoBehaviour
 {
     public GameHandler handler;
