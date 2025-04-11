@@ -18,6 +18,7 @@ public class EntityHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currHealth = maxHealth;
         alive = true;
         defaultColor = myMaterial.GetColor("_Color");
     }

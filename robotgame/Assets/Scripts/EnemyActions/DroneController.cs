@@ -12,6 +12,7 @@ public class DroneController : MonoBehaviour
 
 
     public bool hostile;
+    public bool active;
     public Material glow;
     public float distanceFromPlayer;
     public GameObject bullet;
@@ -22,26 +23,30 @@ public class DroneController : MonoBehaviour
     void Start()
     {
         hostile = false;
+        active = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y > 10) {
+            transform.Translate(Vector3.down);
+        }
         distanceFromPlayer = Vector3.Distance(player.position, transform.position);
         
-        if (distanceFromPlayer < 15f && !hostile) {
+        if (distanceFromPlayer < 15f && !hostile && active) {
             hostile = true;
             InvokeRepeating("shoot", .5f, .7f);
             glow.SetColor("_EmissionColor", Color.red);
             gunBody.Rotate(new Vector3(-10f, 0f, 0f));
         }
-        else if (distanceFromPlayer >= 15f && hostile){
+        else if (distanceFromPlayer >= 15f && hostile && active){
             CancelInvoke();
             gunBody.Rotate(new Vector3(10f, 0f, 0f));
             hostile = false;
         }
 
-        if (hostile) {
+        if (hostile && active) {
             transform.LookAt(aimFor);
             transform.Rotate(new Vector3(-90f, 0f, 0f));
         }
@@ -61,8 +66,15 @@ public class DroneController : MonoBehaviour
     }
 
     public void shoot() {
-        GameObject bul = Instantiate(bullet, gun.position, transform.rotation);
-        Vector3 shootDir = transform.forward + new Vector3(-100f, 0f, 0f);
-        bul.GetComponent<Rigidbody>().velocity = gun.forward * 30;
+        if (active) {
+            GameObject bul = Instantiate(bullet, gun.position, transform.rotation);
+            Vector3 shootDir = transform.forward + new Vector3(-100f, 0f, 0f);
+            bul.GetComponent<Rigidbody>().velocity = gun.forward * 30;
+        }
+    }
+
+    public void Deactivate()
+    {
+        active = false;
     }
 }

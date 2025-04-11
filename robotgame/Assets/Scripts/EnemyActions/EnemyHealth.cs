@@ -14,11 +14,6 @@ public class EnemyHealth : EntityHealth
     public int minCurrencyDrop = 1;
     public int maxCurrencyDrop = 5;
 
-    void Start()
-    {
-        currHealth = maxHealth;
-        alive = true;
-    }
 
     void Update()
     {
@@ -44,6 +39,9 @@ public class EnemyHealth : EntityHealth
             if (script != this)
                 script.enabled = false;
         }
+
+        DroneController controller = GetComponent<DroneController>();
+        controller.Deactivate();
     }
 
     private void DropCurrency()

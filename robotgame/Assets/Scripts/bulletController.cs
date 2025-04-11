@@ -23,10 +23,8 @@ public class bulletController : MonoBehaviour
     private void OnTriggerEnter (Collider collider) 
     {
         Destroy (gameObject);
-        if (collider.gameObject.CompareTag("Player")) {
-            playerHP.TakeDamage(damage);
-        } else if (collider.gameObject.CompareTag("enemy")) {
-            collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+        if (collider.gameObject.GetComponent<EntityHealth>() != null) {
+            collider.gameObject.GetComponent<EntityHealth>().TakeDamage(damage);
         }
 
     }
