@@ -8,6 +8,8 @@ public class DroneController : MonoBehaviour
     public Transform gun;
     public Transform gunBody;
 
+    public Transform aimFor;
+
 
     public bool hostile;
     public Material glow;
@@ -40,7 +42,7 @@ public class DroneController : MonoBehaviour
         }
 
         if (hostile) {
-            transform.LookAt(player);
+            transform.LookAt(aimFor);
             transform.Rotate(new Vector3(-90f, 0f, 0f));
         }
         else {

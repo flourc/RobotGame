@@ -23,9 +23,9 @@ public class bulletController : MonoBehaviour
     private void OnTriggerEnter (Collider collider) 
     {
         Destroy (gameObject);
-        if (collider.gameObject.tag == "Player") {
-            playerHP.GetHit(damage);
-        } else if (collider.gameObject.tag == "enemy") {
+        if (collider.gameObject.CompareTag("Player")) {
+            playerHP.TakeDamage(damage);
+        } else if (collider.gameObject.CompareTag("enemy")) {
             collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
 

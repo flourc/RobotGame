@@ -3,40 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : EntityHealth
 {
-    public GameObject player;
-    public int health;
-    public int startingHealth;
     public float barFill;
     public GameObject healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
-        startingHealth = 10;
+        maxHealth = 10;
         barFill = 1.0f;
-        health = startingHealth;
+        currHealth = maxHealth;
         healthBar.SetActive(true);
-        player = GameObject.FindWithTag("Player");
     }
 
     void Update()
     {
-       
+        barFill = (float)currHealth / maxHealth;
+        updateStatsDisplay();
     }
 
-    public void GetHit(int dmg)
+    public virtual void OnDeath()
     {
-        health -= dmg;
-        if (health < 0) {
-            health = 0;
-        }
-        barFill = (float)health / startingHealth;
-        updateStatsDisplay();
-        if (health <= 0) {
-            gameObject.BroadcastMessage("LoseScreen");
-        }
+        gameObject.BroadcastMessage("LoseScreen");
     }
 
     public void updateStatsDisplay()

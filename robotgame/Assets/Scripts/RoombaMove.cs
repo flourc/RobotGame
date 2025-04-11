@@ -90,7 +90,7 @@ public class RoombaMove : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (hostile && other.gameObject.tag == "Player") {
-            handler.GetComponent<HealthBar>().GetHit(1);
+            handler.GetComponent<HealthBar>().TakeDamage(1);
         }
         if (other.gameObject.tag != "floor") {
             StartCoroutine(Waiting());

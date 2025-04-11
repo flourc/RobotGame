@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : EntityHealth
 {
-    public int maxHealth;
-    public int currHealth;
-    public bool alive;
+    
     [Header("Ground Detection")]
     public LayerMask whatIsGround;
     private bool isSinking = false;
@@ -28,23 +26,14 @@ public class EnemyHealth : MonoBehaviour
         {
             transform.position -= new Vector3(0, Time.deltaTime, 0);
         }
+
     }
 
-    public void TakeDamage(int amt)
+    public virtual void OnDeath()
     {
-        print("taking damage");
-        if (!alive) return;
-
-        currHealth -= amt;
-        if (currHealth <= 0)
-        {
-            currHealth = 0;
-            // alive = false;
-
-            DisableAllOtherScripts();
-            DropCurrency(); // 💰 Drop the goods!
-            StartCoroutine(SinkAndDestroy());
-        }
+        DisableAllOtherScripts();
+        DropCurrency(); // 💰 Drop the goods!
+        StartCoroutine(SinkAndDestroy());
     }
 
     private void DisableAllOtherScripts()
@@ -87,26 +76,6 @@ public class EnemyHealth : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
         alive = false;
-    }
-
-    void OnCollisionEnter(Collision collision) {
-        print("collision");
-        if (collision.gameObject.tag == "weapon") {
-            TakeDamage(1);
-            StartCoroutine(damage());
-        }
-    }
-
-    void OnCollisionExit (Collision collision) {
-        if (collision.gameObject.tag == "weapon") {
-            StopCoroutine(damage());
-        }
-    }
-
-    private IEnumerator damage()
-    {
-        yield return new WaitForSeconds(.2f);
-        TakeDamage(1);
     }
 
     public bool returnAlive() {

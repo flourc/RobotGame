@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight = 2f;
     public LayerMask whatIsGround;
-    bool grounded;
+    public bool grounded;
 
     [Header("References")]
     public Transform orientation;
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     float verticalInput;
     Vector3 moveDirection;
     Vector3 velocity;
-    bool readyToJump = true;
+    public bool readyToJump = true;
 
     public GameObject gunArm;
     public GameObject swordArm;
@@ -204,7 +204,7 @@ private void UpdateAnimationState()
         if (grounded)
         {
             // Apply jump velocity
-            velocity.y = Mathf.Sqrt(jumpForce * 2f * gravity);
+            velocity.y = Mathf.Sqrt(jumpForce * gravity);
         }
     }
 
