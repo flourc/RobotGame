@@ -134,8 +134,8 @@ private void UpdateAnimationState()
             // Not moving - explicitly reset all movement booleans
             animator.SetBool("Walking", false);
             animator.SetBool("Running", false);
-            if (walkAudio.isPlaying) walkAudio.Stop();
-            if (runAudio.isPlaying) runAudio.Stop();
+            if (walkAudio.isPlaying) {walkAudio.Stop();}
+            if (runAudio.isPlaying) {runAudio.Stop();}
 
         }
         
