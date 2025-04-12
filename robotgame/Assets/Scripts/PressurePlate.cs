@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
-    public Material newMaterial;  // Material to apply when object is on the plate
-    public Material originalMaterial; // Original material of the plate
-
     private Renderer plateRenderer; // Renderer of the plate
 
     private void Start()
     {
         plateRenderer = GetComponent<MeshRenderer>();
-        plateRenderer.material = originalMaterial;
+        plateRenderer.material.color = Color.red;
     }
 
     private void OnTriggerStay(Collider other)
     {
         // Change the material of the plate when an object is on it
+        //Debug.Log("Object staying on plate: " + other.name);
         if (plateRenderer != null)
         {
-            plateRenderer.material = newMaterial;
+            plateRenderer.material.color = Color.green;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         // Revert the material of the plate back to the original when the object leaves
+        //Debug.Log("Object left plate: " + other.name);
         if (plateRenderer != null)
         {
-            plateRenderer.material = originalMaterial;
+            plateRenderer.material.color = Color.red;
         }
     }
 }

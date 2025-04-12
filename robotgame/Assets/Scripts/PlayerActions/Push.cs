@@ -9,17 +9,24 @@ public class Push : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.tag == "pushable")
+        // Only push tagged objects
+        if (hit.gameObject.CompareTag("pushable"))
         {
-            Rigidbody box = hit.collider.GetComponent<Rigidbody>();
-            if (box != null)
-            {
-                box.velocity = Vector3.zero; // Stop the existing velocity (prevents unwanted rotation effects)
-                box.AddForce(transform.forward * pushForce, ForceMode.Impulse);
+            Rigidbody box = hit.collider.attachedRigidbody;
 
-                // Prevent rotation by zeroing out angular velocity
-                box.angularVelocity = Vector3.zero;
-            }
+            // Make sure the object has a rigidbody and it's not kinematic
+            if (box == null || box.isKinematic)
+                return;
+
+            // Don't push objects below or above the character (e.g. jumping on top of a box)
+            if (hit.moveDirection.y < -0.3f)
+                return;
+
+            // Calculate push direction (ignore vertical component)
+            Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+
+            // Apply the push (instant burst or tweak for smoother effect)
+            box.velocity = pushDir * pushForce;
         }
     }
 }
