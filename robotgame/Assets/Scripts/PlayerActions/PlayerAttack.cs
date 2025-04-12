@@ -14,17 +14,22 @@ public class PlayerAttack : MonoBehaviour
     private bool canFire = false;
 
     public GameObject gun;
+    public GameObject crosshair;
+    public Vector3 mousePos;
+    public Vector3 worldPos;
 
     public Material glow;
     public GameObject bullet;
     public float fireRate = 1f;
 
-
     private bool isAttacking = false;
+    public Camera camera;
 
     void Start()
     {
-        toggleArm();
+        // toggleArm(); //should this be in update?
+        gun.SetActive(true); //temp
+
     }
 
     public void toggleArm()
@@ -40,21 +45,34 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+        gun.SetActive(true);//temp i couldnt make it active for some reason
+        
         if (Input.GetMouseButtonDown(0) && swordArm.activeSelf && !isAttacking)
         {
             StartCoroutine(SlashAttack());
         }
 
         if (gun.activeSelf) {
+            crosshair.SetActive(true);
             canFire = true;
         }
         else {
+            // crosshair.SetActive(false);
             canFire = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && canFire) {
             shoot();
         }
+    //cursor stuff
+        // Camera camera = SceneView.lastActiveSceneView.camera;
+
+        mousePos = Input.mousePosition;
+        worldPos = camera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, camera.nearClipPlane + 20));
+//lol fix this
+        
+        crosshair.transform.position = mousePos;
+
     }
 
     IEnumerator SlashAttack()
@@ -102,11 +120,33 @@ public class PlayerAttack : MonoBehaviour
 
     public void shoot() {
         canFire = false;
+
         glow.SetColor("_EmissionColor", Color.red);
+
     
         GameObject bul = Instantiate(bullet, gun.GetComponent<Transform>().position, transform.rotation);
         bul.tag = "weapon";
-        bul.GetComponent<Rigidbody>().velocity = gun.GetComponent<Transform>().right * 20;
+
+        bul.GetComponent<Rigidbody>().velocity = gun.GetComponent<Transform>().forward * 30;
+    
+
+        Vector3 targetPosition = new Vector3(worldPos.x,
+                                       worldPos.y, 
+                                      worldPos.z);//? bruh
+
+        Vector3 roboTarget = new Vector3(worldPos.x, 
+                                       transform.position.y, 
+                                       worldPos.z);
+
+        // transform.LookAt(roboTarget);
+        print(targetPosition);
+        transform.LookAt(roboTarget);
+        gun.GetComponent<Transform>().LookAt(targetPosition);
+        // bul.transform.LookAt(targetPosition);
+        
+        RaycastHit hit;
+        
+        
         StartCoroutine(Waiting());
     }
 

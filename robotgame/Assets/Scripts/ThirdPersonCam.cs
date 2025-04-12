@@ -37,6 +37,7 @@ public class ThirdPersonCam : MonoBehaviour
         // Handle cursor locking
         if (Input.GetKeyDown(cursorToggleKey))
         {
+
             ToggleCursorLock();
         }
         
@@ -56,9 +57,10 @@ public class ThirdPersonCam : MonoBehaviour
     // Cursor Control Methods
     private void LockCursor()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        isCursorLocked = true;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        // isCursorLocked = true;
+        //temp;
     }
     
     private void UnlockCursor()

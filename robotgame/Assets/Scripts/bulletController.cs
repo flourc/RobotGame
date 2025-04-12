@@ -22,7 +22,10 @@ public class bulletController : MonoBehaviour
 
     private void OnTriggerEnter (Collider collider) 
     {
-        Destroy (gameObject);
+        if (collider.gameObject.tag != "Player") {
+            Destroy (gameObject);
+        }
+        
         if (collider.gameObject.GetComponent<EntityHealth>() != null) {
             collider.gameObject.GetComponent<EntityHealth>().TakeDamage(damage);
         }
