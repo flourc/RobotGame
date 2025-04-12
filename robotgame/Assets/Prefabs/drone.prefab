@@ -208,7 +208,9 @@ MonoBehaviour:
   player: {fileID: 0}
   gun: {fileID: 3149357494602430568}
   gunBody: {fileID: 4711289972054468969}
+  aimFor: {fileID: 0}
   hostile: 0
+  active: 0
   glow: {fileID: 2100000, guid: 55cd4c3a3505c4240a7a122148878343, type: 2}
   distanceFromPlayer: 0
   bullet: {fileID: 6939781771997299712, guid: c52fcb9fa9fc445e188306e055360a2c, type: 3}
@@ -249,10 +251,13 @@ MonoBehaviour:
   maxHealth: 5
   currHealth: 5
   alive: 1
+  myMaterial: {fileID: -8411721932577417540, guid: a984763f2348b4037a18aae4290ee1d8, type: 3}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  feedbackColor: {r: 1, g: 0, b: 0, a: 1}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
-  currencyPickupPrefab: {fileID: 0}
+  currencyPickupPrefab: {fileID: 2945394849935775148, guid: 4bda367e044694b0dad443f3e0f01efd, type: 3}
   minCurrencyDrop: 1
   maxCurrencyDrop: 5
 --- !u!4 &4711289972054468969 stripped

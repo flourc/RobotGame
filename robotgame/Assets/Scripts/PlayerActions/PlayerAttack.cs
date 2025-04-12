@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
     private bool canFire = false;
 
     public GameObject gun;
+    public Transform bulletSpawn;
     public GameObject crosshair;
     public Vector3 mousePos;
     public Vector3 worldPos;
@@ -91,7 +92,7 @@ public class PlayerAttack : MonoBehaviour
         // Wait until the animation is fully complete — adjust to match your animation length
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         float attackDuration = stateInfo.length > 0 ? stateInfo.length : 0.7f;
-        yield return new WaitForSeconds(attackDuration);
+        
 
         // Now we check for enemies in range
         Collider[] hits = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
@@ -106,7 +107,7 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
-
+        yield return new WaitForSeconds(attackDuration);
         // End attack animation
         animator.SetBool("slashing", false);
         isAttacking = false;
@@ -124,10 +125,11 @@ public class PlayerAttack : MonoBehaviour
         glow.SetColor("_EmissionColor", Color.red);
 
     
-        GameObject bul = Instantiate(bullet, gun.GetComponent<Transform>().position, transform.rotation);
+        GameObject bul = Instantiate(bullet, bulletSpawn.position, transform.rotation);
+        print(bulletSpawn.position);
         bul.tag = "weapon";
 
-        bul.GetComponent<Rigidbody>().velocity = gun.GetComponent<Transform>().forward * 30;
+        bul.GetComponent<Rigidbody>().velocity = gun.GetComponent<Transform>().forward * 50;
     
 
         Vector3 targetPosition = new Vector3(worldPos.x,
