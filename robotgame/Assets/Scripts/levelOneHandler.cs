@@ -13,7 +13,6 @@ public class levelOneHandler : MonoBehaviour
     public Transform player;
     public GameObject info;
 
-    public GameObject door;
     public float distance;
 
     public EnemyHealth eh;
@@ -37,7 +36,6 @@ public class levelOneHandler : MonoBehaviour
     {
         if (!eh.returnAlive()) {
             droneOnGround.SetActive(true);
-            door.SetActive(false);
         }
 
         distance = Vector3.Distance(player.position, slasherOnGround.transform.position);
