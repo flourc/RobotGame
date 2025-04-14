@@ -5,9 +5,12 @@ using UnityEngine;
 public class PressurePlate : MonoBehaviour
 {
     private Renderer plateRenderer; // Renderer of the plate
+    public static bool open;
 
     private void Start()
     {
+        open = false;
+
         plateRenderer = GetComponent<MeshRenderer>();
         plateRenderer.material.color = Color.red;
     }
@@ -19,6 +22,7 @@ public class PressurePlate : MonoBehaviour
         if (plateRenderer != null)
         {
             plateRenderer.material.color = Color.green;
+            open = true;
         }
     }
 
@@ -29,6 +33,7 @@ public class PressurePlate : MonoBehaviour
         if (plateRenderer != null)
         {
             plateRenderer.material.color = Color.red;
+            open = false;
         }
     }
 }

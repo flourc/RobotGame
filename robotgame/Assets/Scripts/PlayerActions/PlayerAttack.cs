@@ -86,7 +86,7 @@ public class PlayerAttack : MonoBehaviour
             cameraSnap = true;
             transform.LookAt(roboTarget);
             gun.GetComponent<Transform>().LookAt(targetPosition);
-            if (!animator.GetBool("Walking")) {
+            if (!animator.GetBool("Walking")){
                 animator.Play("shoot");
             }
             // if (animator.GetBool("Walking")) {
