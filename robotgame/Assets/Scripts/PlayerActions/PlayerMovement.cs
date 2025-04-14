@@ -141,7 +141,7 @@ private void UpdateAnimationState()
         }
         
         // Set the speed parameter that controls the blend tree
-        animator.SetFloat("Speed", currentSpeed);
+        // animator.SetFloat("Speed", currentSpeed);
         //Debug.Log("Speed Parameter: " + currentSpeed); // Debug output
         
         // Rest of your code for combat animations...
