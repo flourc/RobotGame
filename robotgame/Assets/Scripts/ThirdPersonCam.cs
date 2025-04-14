@@ -15,6 +15,9 @@ public class ThirdPersonCam : MonoBehaviour
     [Header("Cursor Settings")]
     [SerializeField] private KeyCode cursorToggleKey = KeyCode.Escape; // Key to toggle cursor
     private bool isCursorLocked = true;
+
+    public bool snap;
+    public PlayerAttack pa;
     
     private void Start()
     {
@@ -43,7 +46,12 @@ public class ThirdPersonCam : MonoBehaviour
         
         // Rotate orientation
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-        orientation.forward = viewDir.normalized;
+        
+        if (pa.returnSnap()) {
+            // viewDir = player.position;
+        }
+        else {
+            orientation.forward = viewDir.normalized;
         
         // Rotate player object
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -52,6 +60,16 @@ public class ThirdPersonCam : MonoBehaviour
         
         if (inputDir != Vector3.zero)
             playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+        }
+        // orientation.forward = viewDir.normalized;
+        
+        // // Rotate player object
+        // float horizontalInput = Input.GetAxis("Horizontal");
+        // float verticalInput = Input.GetAxis("Vertical");
+        // Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        
+        // if (inputDir != Vector3.zero)
+        //     playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
     }
     
     // Cursor Control Methods
@@ -60,6 +78,7 @@ public class ThirdPersonCam : MonoBehaviour
         // Cursor.lockState = CursorLockMode.Locked;
         // Cursor.visible = false;
         // isCursorLocked = true;
+
         //temp;
     }
     

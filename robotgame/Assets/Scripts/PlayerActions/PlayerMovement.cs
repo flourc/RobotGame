@@ -58,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateAnimationState();
     }
 
+
     private void MyInput()
     {
         // Get input axes
@@ -146,16 +147,16 @@ private void UpdateAnimationState()
         // Rest of your code for combat animations...
     }
         
-        // Combat animations - Change to use SetBool instead of SetTrigger
-        if (Input.GetMouseButton(0)) // Left-click hold for grab
-        {
-            if (swordArm.activeSelf) {
-                animator.Play("slash");
-            } 
-            else if (gunArm.activeSelf) {
-                animator.Play("shoot");
-            }
-        }
+        // // Combat animations - Change to use SetBool instead of SetTrigger
+        // if (Input.GetMouseButtonDown(0)) // Left-click hold for grab
+        // {
+        //     if (swordArm.activeSelf) {
+        //         animator.Play("slash");
+        //     } 
+        //     else if (gunArm.activeSelf) {
+        //         animator.Play("shoot");
+        //     }
+        // }
 
         
 

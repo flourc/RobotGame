@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class PlayerAttack : MonoBehaviour
 
     private bool isAttacking = false;
     public Camera camera;
+    public bool cameraSnap;
 
     void Start()
     {
@@ -62,18 +64,55 @@ public class PlayerAttack : MonoBehaviour
             canFire = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && canFire) {
+        // if (Input.GetKeyDown(KeyCode.Mouse0) && canFire) {
+        //     crosshair.GetComponent<Image>().color = Color.red;
+        //     shoot();
+        // }TEMPORARILY ERASED
+
+        //TEMP REPLACEMENT BELOW
+
+        Vector3 targetPosition = new Vector3(worldPos.x,
+                                       worldPos.y, 
+                                      worldPos.z);//? i kno this looks stupid but its so its easier to switch out any one of the variables lool
+
+        Vector3 roboTarget = new Vector3(worldPos.x, 
+                                       transform.position.y, 
+                                       worldPos.z);
+
+
+
+        if (Input.GetMouseButton(0) && canFire) {
+            crosshair.GetComponent<Image>().color = Color.red;
+            cameraSnap = true;
+            transform.LookAt(roboTarget);
+            gun.GetComponent<Transform>().LookAt(targetPosition);
+            if (!animator.GetBool("Walking")) {
+                animator.Play("shoot");
+            }
+            // if (animator.GetBool("Walking")) {
+            //     // animator.SetBool("aiming", true);
+            // }
+            // else {
+            //     animator.Play("shoot");
+            // }
+        
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            crosshair.GetComponent<Image>().color = Color.white;
             shoot();
+            cameraSnap = false;
         }
     //cursor stuff
         // Camera camera = SceneView.lastActiveSceneView.camera;
-
         mousePos = Input.mousePosition;
-        worldPos = camera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, camera.nearClipPlane + 20));
-//lol fix this
-        
+        worldPos = camera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, camera.nearClipPlane + 20));        
         crosshair.transform.position = mousePos;
 
+    }
+
+    public bool returnSnap() {
+        return cameraSnap;
     }
 
     IEnumerator SlashAttack()
@@ -132,18 +171,16 @@ public class PlayerAttack : MonoBehaviour
         bul.GetComponent<Rigidbody>().velocity = gun.GetComponent<Transform>().forward * 50;
     
 
-        Vector3 targetPosition = new Vector3(worldPos.x,
-                                       worldPos.y, 
-                                      worldPos.z);//? bruh
+        // Vector3 targetPosition = new Vector3(worldPos.x,
+        //                                worldPos.y, 
+        //                               worldPos.z);//? i kno this looks stupid but its so its easier to switch out any one of the variables lool
 
-        Vector3 roboTarget = new Vector3(worldPos.x, 
-                                       transform.position.y, 
-                                       worldPos.z);
+        // Vector3 roboTarget = new Vector3(worldPos.x, 
+        //                                transform.position.y, 
+        //                                worldPos.z);
 
         // transform.LookAt(roboTarget);
-        print(targetPosition);
-        transform.LookAt(roboTarget);
-        gun.GetComponent<Transform>().LookAt(targetPosition);
+        // gun.GetComponent<Transform>().LookAt(targetPosition);
         // bul.transform.LookAt(targetPosition);
         
         RaycastHit hit;
