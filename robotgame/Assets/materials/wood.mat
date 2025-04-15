@@ -135,7 +135,7 @@ Material:
     - _WorldSpaceNrm: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.2830189, g: 0.21682735, b: 0.060519733, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 0}
     - _DeepColor: {r: 0.13, g: 0.57, b: 0.73, a: 1}
     - _Direction: {r: 0, g: 1, b: 0, a: 0}
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}

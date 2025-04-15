@@ -8,9 +8,12 @@ public class KeypadUI : MonoBehaviour
     public GameObject keypadUI;
     public float keypadInteractRadius;
     private bool keypadActive;
+    public Transform player;
+
     // Start is called before the first frame update
     void Start()
     {
+        keypadInteractRadius = 8;
         KeypadOff();
     }
 
@@ -21,7 +24,7 @@ public class KeypadUI : MonoBehaviour
             KeypadOn();
         }
 
-        if (keypadActive && Input.GetKeyDown(KeyCode.Escape)) {
+        if (keypadActive && (Input.GetKeyDown(KeyCode.Escape))) {
             KeypadOff();
         }
     }
@@ -42,12 +45,14 @@ public class KeypadUI : MonoBehaviour
 
     bool playerNearby()
     {
-        Transform player = 
-                    GameObject.FindWithTag("Player").GetComponent<Transform>();
+        // Transform player = 
+        //             GameObject.FindWithTag("Player").GetComponent<Transform>();
         Vector3 playerXZ = Vector3.ProjectOnPlane(player.position, Vector3.up);
         Transform keypadLoc = keypadObj.GetComponent<Transform>();
         Vector3 keypadXZ = 
                         Vector3.ProjectOnPlane(keypadLoc.position, Vector3.up);
+        float dist = Vector3.Distance(player.position, keypadLoc.position);
+        
         return (Vector3.Distance(playerXZ, keypadXZ) <= keypadInteractRadius);
     }
 }

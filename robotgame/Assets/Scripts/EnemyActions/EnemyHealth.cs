@@ -24,12 +24,12 @@ public class EnemyHealth : EntityHealth
 
     }
 
-    public virtual void OnDeath()
+    public override void OnDeath()
     {
         print("hello");
 
         DisableAllOtherScripts();
-        DropCurrency(); // 💰 Drop the goods!
+        // DropCurrency(); // 💰 Drop the goods!
         StartCoroutine(SinkAndDestroy());
     }
 
@@ -42,8 +42,11 @@ public class EnemyHealth : EntityHealth
                 script.enabled = false;
         }
 
-        DroneController controller = GetComponent<DroneController>();
-        controller.Deactivate();
+        if (GetComponent<DroneController>() != null) {
+            DroneController controller = GetComponent<DroneController>();
+            controller.Deactivate();
+        }
+
     }
 
     private void DropCurrency()

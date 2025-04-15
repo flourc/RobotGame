@@ -25,11 +25,12 @@ public class levelOneHandler : MonoBehaviour
     public EnemyHealth eh;
     public bool holdShown;
 
-    public GameObject keyPad;
-    public GameObject keyPadPhysical;
+    public GameObject keypad;
 
     public GameObject creep;
     public Transform doorTwo;
+    public GameObject keyInfo;
+    public float keyDistance;
     
 
     // public AudioSource audios;
@@ -44,6 +45,7 @@ public class levelOneHandler : MonoBehaviour
         info.SetActive(false);
         atkInfo.SetActive(false);
         holdInfo.SetActive(false);
+        keyInfo.SetActive(false);
         holdShown = false;
 
     }
@@ -114,6 +116,17 @@ public class levelOneHandler : MonoBehaviour
         // if (creep == null) {
         //     doorTwo.Translate(5f, 0f, 0f);
         // }
+
+    //keypad info
+
+        keyDistance = Vector3.Distance(player.position, keypad.transform.position);
+        if (keyDistance < 8 && !keyInfo.activeSelf) {
+            keyInfo.SetActive(true);
+        }
+        else if (keyDistance > 8 && keyInfo.activeSelf) {
+            keyInfo.SetActive(false);
+        }
+        
     }
 
         IEnumerator waitForSeconds(float duration)

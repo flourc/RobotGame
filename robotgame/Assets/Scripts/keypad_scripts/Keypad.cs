@@ -23,6 +23,7 @@ public class Keypad : MonoBehaviour
         for (int i = 0; i < 4; i++) {
             nums[i] = digits.none;
         }
+        // correct_combo = {digits.two, digits.six, digits.zero, digits.two};
     }
 
     // Update is called once per frame
@@ -87,8 +88,11 @@ public class Keypad : MonoBehaviour
             all_good = all_good && (nums[i] == correct_combo[i]);
         }
         if (all_good) {
-            handler.SendMessage("openDoor");
+            print("passed");
+            // handler.SendMessage("openDoor");
+            handler.MainMenu();
         } else {
+            print("failed");
             Clear();
             handler.SendMessage("KeypadOff");
         }

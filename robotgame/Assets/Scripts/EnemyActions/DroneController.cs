@@ -10,7 +10,6 @@ public class DroneController : MonoBehaviour
 
     public Transform aimFor;
 
-
     public bool hostile;
     public bool active;
     public Material glow;
@@ -29,9 +28,9 @@ public class DroneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y > 10) {
-            transform.Translate(Vector3.down);
-        }
+        // if (transform.position.y > 10) {
+        //     transform.Translate(Vector3.right);
+        // }
         distanceFromPlayer = Vector3.Distance(player.position, transform.position);
         
         if (distanceFromPlayer < 15f && !hostile && active) {

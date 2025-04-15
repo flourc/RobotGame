@@ -49,7 +49,7 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         // gun.SetActive(true);//temp i couldnt make it active for some reason
-        
+       
         if (Input.GetMouseButtonDown(0) && swordArm.activeSelf && !isAttacking)
         {
             // StartCoroutine(SlashAttack());

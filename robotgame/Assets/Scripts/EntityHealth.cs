@@ -10,9 +10,36 @@ public class EntityHealth : MonoBehaviour
     public Material myMaterial;
     public Color defaultColor, feedbackColor;
 
-    public void OnDeath()
-    {
+    // public virtual void OnDeath()
+    // {
+    //     print("hi");
+    // }
 
+//temp copy pasted methods
+    public virtual void OnDeath() {
+    // {
+    //     // DisableAllOtherScripts();
+        // Destroy(gameObject);
+        alive = false;
+        // transform.Translate(0f, -100f, 0f);
+    }
+
+    private void DisableAllOtherScripts()
+    {
+        MonoBehaviour[] scripts = GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour script in scripts)
+        {
+            print("script");
+            if (script != this)
+                script.enabled = false;
+        }
+
+        if (GetComponent<DroneController>() != null)
+        {
+            DroneController controller = GetComponent<DroneController>();
+            controller.Deactivate();
+        }
+        
     }
 
     // Start is called before the first frame update
@@ -24,11 +51,11 @@ public class EntityHealth : MonoBehaviour
         myMaterial.SetColor("_Color", defaultColor);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    // // Update is called once per frame
+    // virtual void Update()
+    // {
         
-    }
+    // }
 
     public void TakeDamage(int dmg) 
     {
@@ -51,7 +78,11 @@ public class EntityHealth : MonoBehaviour
     private IEnumerator damageFeedback()
     {
         myMaterial.SetColor("_Color", feedbackColor);
+        myMaterial.SetColor("_Color", Color.red);
         yield return new WaitForSeconds(.2f);
+
         myMaterial.SetColor("_Color", defaultColor);
     }
 }
+    
+
