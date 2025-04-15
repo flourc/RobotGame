@@ -24,11 +24,12 @@ public class bulletController : MonoBehaviour
     {
         if (collider.gameObject.tag != "Player") {
             Destroy (gameObject);
+
+            if (collider.gameObject.GetComponent<EntityHealth>() != null) {
+            collider.gameObject.GetComponent<EntityHealth>().TakeDamage(damage);
+            }
         }
         
-        if (collider.gameObject.GetComponent<EntityHealth>() != null) {
-            collider.gameObject.GetComponent<EntityHealth>().TakeDamage(damage);
-        }
 
     }
 }

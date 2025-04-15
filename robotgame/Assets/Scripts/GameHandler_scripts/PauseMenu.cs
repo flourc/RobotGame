@@ -16,6 +16,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject camera_obj;
     private ThirdPersonCam tpc;
 
+    public GameObject crosshair;
+
     void Awake()
     {
         pauseMenuUI.SetActive(true); // so slider can be set
@@ -54,6 +56,10 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public bool paused() {
+        return GameisPaused;
+    }
+
     public void Pause()
     {
         if (!GameisPaused)
@@ -62,9 +68,11 @@ public class PauseMenu : MonoBehaviour
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
             GameisPaused = true;
+
         }
         else 
         { 
+
             Resume ();
         }
         // NOTE: This added conditional is for a pause button

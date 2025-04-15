@@ -32,6 +32,7 @@ public class levelOneHandler : MonoBehaviour
     public GameObject keyInfo;
     public float keyDistance;
     
+    public GameObject crosshair;
 
     // public AudioSource audios;
 
@@ -47,7 +48,7 @@ public class levelOneHandler : MonoBehaviour
         holdInfo.SetActive(false);
         keyInfo.SetActive(false);
         holdShown = false;
-
+        crosshair.SetActive(false);
     }
 
 
@@ -61,11 +62,9 @@ public class levelOneHandler : MonoBehaviour
         distance = Vector3.Distance(player.position, slasherOnGround.transform.position);
         if (distance < 7 && !slasherArm.activeSelf && !info.activeSelf) {
             info.SetActive(true);
-            print("true");
         }
         else if (distance >= 7 && info.activeSelf){
             info.SetActive(false);
-            print("false");
         }
 
         if (Input.GetKey(KeyCode.E) && distance < 7 && slasherOnGround.activeSelf) {
@@ -86,6 +85,7 @@ public class levelOneHandler : MonoBehaviour
 
         if (Input.GetKey(KeyCode.E) && droneDistance < 7 && droneOnGround.activeSelf) {
             gunArm.SetActive(true);
+            crosshair.SetActive(true);
             info.SetActive(false);
             slasherArm.SetActive(false);
         }

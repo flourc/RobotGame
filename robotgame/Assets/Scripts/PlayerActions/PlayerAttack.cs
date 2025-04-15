@@ -28,10 +28,14 @@ public class PlayerAttack : MonoBehaviour
     public Camera camera;
     public bool cameraSnap;
 
+    public PauseMenu pm;
+
     void Start()
     {
         // toggleArm(); //should this be in update?
         // gun.SetActive(true); //temp
+        canFire = true;
+        crosshair.SetActive(false);
 
     }
 
@@ -48,6 +52,8 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+
+
         // gun.SetActive(true);//temp i couldnt make it active for some reason
        
         if (Input.GetMouseButtonDown(0) && swordArm.activeSelf && !isAttacking)
@@ -56,14 +62,24 @@ public class PlayerAttack : MonoBehaviour
             slashTemp();
         }
 
-        if (gun.activeSelf) {
+        if (pm.paused()) {
+            if (crosshair.activeSelf) {
+                crosshair.SetActive(false);
+                canFire = false;
+            }
+        }
+        else if (gun.activeSelf) {
             crosshair.SetActive(true);
             canFire = true;
         }
-        else {
-            crosshair.SetActive(false);
-            canFire = false;
-        }
+        // if (gun.activeSelf) {
+        //     crosshair.SetActive(true);
+        //     canFire = true;
+        // }
+        // else {
+        //     crosshair.SetActive(false);
+        //     canFire = false;
+        // }
 
         // if (Input.GetKeyDown(KeyCode.Mouse0) && canFire) {
         //     crosshair.GetComponent<Image>().color = Color.red;
@@ -167,6 +183,9 @@ public class PlayerAttack : MonoBehaviour
                 {
                     enemy.TakeDamage(damage);
                 }
+            }
+            else if (hit.CompareTag("Player")) {
+                print("hi");
             }
         }
     }
