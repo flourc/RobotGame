@@ -13,9 +13,10 @@ public class PressurePlate : MonoBehaviour
     private void Start()
     {
         open = false;
-
         plateRenderer = GetComponent<MeshRenderer>();
+        plateRenderer.material.EnableKeyword("_EMISSION");
         plateRenderer.material.color = Color.red;
+        plateRenderer.material.SetColor("_EmissionColor", Color.red);
 
         plateInfo.SetActive(false);
     }
@@ -38,6 +39,7 @@ public class PressurePlate : MonoBehaviour
         if (plateRenderer != null)
         {
             plateRenderer.material.color = Color.green;
+            plateRenderer.material.SetColor("_EmissionColor", Color.green);
             open = true;
             plateInfo.SetActive(true);
         }
@@ -50,6 +52,7 @@ public class PressurePlate : MonoBehaviour
         if (plateRenderer != null)
         {
             plateRenderer.material.color = Color.red;
+            plateRenderer.material.SetColor("_EmissionColor", Color.red);
             open = false;
             plateInfo.SetActive(false);
         }

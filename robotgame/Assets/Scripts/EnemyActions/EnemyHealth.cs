@@ -26,6 +26,8 @@ public class EnemyHealth : EntityHealth
 
     public virtual void OnDeath()
     {
+        print("hello");
+
         DisableAllOtherScripts();
         DropCurrency(); // 💰 Drop the goods!
         StartCoroutine(SinkAndDestroy());
@@ -72,6 +74,7 @@ public class EnemyHealth : EntityHealth
     {
         isSinking = true;
         yield return new WaitForSeconds(2f);
+        print("dead");
         Destroy(gameObject);
         alive = false;
     }

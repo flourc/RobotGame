@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerAttack : MonoBehaviour
 {
     public int damage = 1;
-    public float attackRange = 2f;
+    public float attackRange = 5f;
     public LayerMask enemyLayer;
     public Animator animator;
     public GameObject swordArm;
@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         // toggleArm(); //should this be in update?
-        gun.SetActive(true); //temp
+        // gun.SetActive(true); //temp
 
     }
 
@@ -48,11 +48,12 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        gun.SetActive(true);//temp i couldnt make it active for some reason
+        // gun.SetActive(true);//temp i couldnt make it active for some reason
         
         if (Input.GetMouseButtonDown(0) && swordArm.activeSelf && !isAttacking)
         {
-            StartCoroutine(SlashAttack());
+            // StartCoroutine(SlashAttack());
+            slashTemp();
         }
 
         if (gun.activeSelf) {
@@ -60,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
             canFire = true;
         }
         else {
-            // crosshair.SetActive(false);
+            crosshair.SetActive(false);
             canFire = false;
         }
 
@@ -97,7 +98,7 @@ public class PlayerAttack : MonoBehaviour
             // }
         
         }
-        if (Input.GetMouseButtonUp(0))
+        if (canFire &&Input.GetMouseButtonUp(0))
         {
             crosshair.GetComponent<Image>().color = Color.white;
             shoot();
@@ -115,29 +116,51 @@ public class PlayerAttack : MonoBehaviour
         return cameraSnap;
     }
 
-    IEnumerator SlashAttack()
-    {
-        isAttacking = true;
+    // IEnumerator SlashAttack()
+    // {
+    //     isAttacking = true;
 
-        // Start attack animation by setting the slashing bool to true
-        // animator.SetBool("slashing", true);
-        animator.Play("slash");
+    //     // Start attack animation by setting the slashing bool to true
+    //     // animator.SetBool("slashing", true);
+    //     animator.Play("slash");
 
-        // Wait until the animation begins (OPTIONAL: short delay to simulate wind-up)
+    //     // Wait until the animation begins (OPTIONAL: short delay to simulate wind-up)
         
-        // yield return new WaitForSeconds(0.2f);
-        //NOTE i got rid of this because i feel like our attack is pretty fast
+    //     // yield return new WaitForSeconds(0.2f);
+    //     //NOTE i got rid of this because i feel like our attack is pretty fast
         
-        // Wait until the animation is fully complete — adjust to match your animation length
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        float attackDuration = stateInfo.length > 0 ? stateInfo.length : 0.7f;
+    //     // Wait until the animation is fully complete — adjust to match your animation length
+    //     AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+    //     float attackDuration = stateInfo.length > 0 ? stateInfo.length : 0.7f;
         
+
+    //     // Now we check for enemies in range
+    //     Collider[] hits = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
+    //     foreach (Collider hit in hits)
+    //     {
+    //         if (hit.CompareTag("enemy"))
+    //         {
+    //             EnemyHealth enemy = hit.GetComponent<EnemyHealth>();
+    //             if (enemy != null)
+    //             {
+    //                 enemy.TakeDamage(damage);
+    //             }
+    //         }
+    //     }
+    //     yield return new WaitForSeconds(attackDuration);
+    //     // End attack animation
+    //     animator.SetBool("slashing", false);
+    //     isAttacking = false;
+    // }
+
+    public void slashTemp() {
+         animator.Play("slash");
 
         // Now we check for enemies in range
         Collider[] hits = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
         foreach (Collider hit in hits)
         {
-            if (hit.CompareTag("enemy"))
+            if (hit.CompareTag("enemy") && hit.gameObject != null)
             {
                 EnemyHealth enemy = hit.GetComponent<EnemyHealth>();
                 if (enemy != null)
@@ -146,10 +169,6 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
-        yield return new WaitForSeconds(attackDuration);
-        // End attack animation
-        animator.SetBool("slashing", false);
-        isAttacking = false;
     }
 
     void OnDrawGizmosSelected()
@@ -165,7 +184,7 @@ public class PlayerAttack : MonoBehaviour
 
     
         GameObject bul = Instantiate(bullet, bulletSpawn.position, transform.rotation);
-        print(bulletSpawn.position);
+        // print(bulletSpawn.position);
         bul.tag = "weapon";
 
         bul.GetComponent<Rigidbody>().velocity = gun.GetComponent<Transform>().forward * 50;

@@ -14,8 +14,22 @@ public class levelOneHandler : MonoBehaviour
     public GameObject info;
 
     public float distance;
+    public float atkDistance;
+    public GameObject rubble;
+    public GameObject atkInfo;
+
+    public float holdDistance;
+    public GameObject crate;
+    public GameObject holdInfo;
 
     public EnemyHealth eh;
+    public bool holdShown;
+
+    public GameObject keyPad;
+    public GameObject keyPadPhysical;
+
+    public GameObject creep;
+    public Transform doorTwo;
     
 
     // public AudioSource audios;
@@ -25,25 +39,31 @@ public class levelOneHandler : MonoBehaviour
     {
         slasherArm.SetActive(false);
         gunArm.SetActive(false);
-        droneOnGround.SetActive(false);
+        droneOnGround.SetActive(true);
 
         info.SetActive(false);
+        atkInfo.SetActive(false);
+        holdInfo.SetActive(false);
+        holdShown = false;
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (!eh.returnAlive()) {
-            droneOnGround.SetActive(true);
-        }
+        // if (!eh.returnAlive()) {
+        //     droneOnGround.SetActive(true);
+        // } 
 
         distance = Vector3.Distance(player.position, slasherOnGround.transform.position);
         if (distance < 7 && !slasherArm.activeSelf && !info.activeSelf) {
             info.SetActive(true);
+            print("true");
         }
         else if (distance >= 7 && info.activeSelf){
             info.SetActive(false);
+            print("false");
         }
 
         if (Input.GetKey(KeyCode.E) && distance < 7 && slasherOnGround.activeSelf) {
@@ -58,7 +78,7 @@ public class levelOneHandler : MonoBehaviour
         if (droneDistance < 7 && !gunArm.activeSelf && !info.activeSelf && droneOnGround.activeSelf) {
             info.SetActive(true);
         }
-        else if (distance >= 7 && info.activeSelf){
+        else if (distance >= 7 && droneDistance >= 7 && info.activeSelf){
             info.SetActive(false);
         }
 
@@ -67,9 +87,45 @@ public class levelOneHandler : MonoBehaviour
             info.SetActive(false);
             slasherArm.SetActive(false);
         }
+    //rubble info
 
+        if (rubble != null) {
+            atkDistance = Vector3.Distance(player.position, rubble.transform.position);
+            if (atkDistance < 4 && slasherArm.activeSelf && !atkInfo.activeSelf && rubble.activeSelf) {
+                atkInfo.SetActive(true);
+            }
+            else if ((atkDistance >= 4 && atkInfo.activeSelf) || !rubble.activeSelf){
+                atkInfo.SetActive(false);
+            }
+        }
 
-        
+    //crate info
+
+        if (crate != null) {
+            holdDistance = Vector3.Distance(player.position, crate.transform.position);
+            if (holdDistance < 15 && !holdInfo.activeSelf && !holdShown) {
+                holdInfo.SetActive(true);
+                StartCoroutine(waitForSeconds(3f));
+            }
+        }
+
+    //misc
+
+        // if (creep == null) {
+        //     doorTwo.Translate(5f, 0f, 0f);
+        // }
     }
+
+        IEnumerator waitForSeconds(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            if (holdInfo.activeSelf) {
+                holdInfo.SetActive(false);
+                holdShown = true;
+            }
+        }
+    
+
+    
 
 }

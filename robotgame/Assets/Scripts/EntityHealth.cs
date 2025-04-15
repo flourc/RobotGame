@@ -20,7 +20,8 @@ public class EntityHealth : MonoBehaviour
     {
         currHealth = maxHealth;
         alive = true;
-        defaultColor = myMaterial.GetColor("_Color");
+        // defaultColor = myMaterial.GetColor("_Color");
+        myMaterial.SetColor("_Color", defaultColor);
     }
 
     // Update is called once per frame
@@ -32,6 +33,9 @@ public class EntityHealth : MonoBehaviour
     public void TakeDamage(int dmg) 
     {
         currHealth -= dmg;
+        if (dmg < 1) {
+            currHealth -= 1;
+        }
         StartCoroutine(damageFeedback());
         if (currHealth < 0) {
             currHealth = 0;
@@ -40,6 +44,7 @@ public class EntityHealth : MonoBehaviour
         if (currHealth == 0) {
             alive = false;
             OnDeath();
+
         }
     }
 
