@@ -89,8 +89,7 @@ public class Keypad : MonoBehaviour
         }
         if (all_good) {
             print("passed");
-            // handler.SendMessage("openDoor");
-            handler.MainMenu();
+            handler.SendMessage("MainMenu");
         } else {
             print("failed");
             Clear();

@@ -10,6 +10,7 @@ public class KeypadUI : MonoBehaviour
     private bool keypadActive;
     public Transform player;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,10 @@ public class KeypadUI : MonoBehaviour
         KeypadOff();
     }
 
+    public bool returnKeypadOn() {
+        return keypadActive;
+    }
+    
     // Update is called once per frame
     void Update()
     {

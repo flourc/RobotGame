@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.5748165, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -177,9 +177,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keypadObj: {fileID: 1613413872}
-  keypadUI: {fileID: 0}
+  keypadUI: {fileID: 1940620498}
   keypadInteractRadius: 5
   player: {fileID: 842642124}
+--- !u!114 &119255722 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8908450513028709730, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+  m_PrefabInstance: {fileID: 561516643}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119255716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4676dd7d251934ac3b752b927ad5375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &119255724 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7796476907715232352, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+  m_PrefabInstance: {fileID: 561516643}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119255716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56555b8ba80144a5f89a94d7dbdf56e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &125097654 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7146521406498821007, guid: bf768498209e1401c915155fdea4aa35, type: 3}
@@ -1665,6 +1687,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 151158776475253640, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: kp
+      value: 
+      objectReference: {fileID: 119255721}
+    - target: {fileID: 151158776475253640, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: pm
+      value: 
+      objectReference: {fileID: 119255724}
+    - target: {fileID: 151158776475253640, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 850577960}
@@ -1814,15 +1844,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.3578907
+      value: -0.35789073
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000010837793
+      value: 0.000000016990528
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000041538843
+      value: 0.00000000651209
       objectReference: {fileID: 0}
     - target: {fileID: 5878959581073901981, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5173,20 +5203,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3128330518303461680, guid: f004cfa7d356740f8b4b84ea59e3fce3, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 119255722}
+    - target: {fileID: 3128330518303461680, guid: f004cfa7d356740f8b4b84ea59e3fce3, type: 3}
       propertyPath: correct_combo.Array.data[0]
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3128330518303461680, guid: f004cfa7d356740f8b4b84ea59e3fce3, type: 3}
       propertyPath: correct_combo.Array.data[1]
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3128330518303461680, guid: f004cfa7d356740f8b4b84ea59e3fce3, type: 3}
       propertyPath: correct_combo.Array.data[2]
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3128330518303461680, guid: f004cfa7d356740f8b4b84ea59e3fce3, type: 3}
       propertyPath: correct_combo.Array.data[3]
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5688998967700979603, guid: f004cfa7d356740f8b4b84ea59e3fce3, type: 3}
       propertyPath: m_Name
@@ -6910,6 +6944,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1908433045}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1940620498 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5688998967700979603, guid: f004cfa7d356740f8b4b84ea59e3fce3, type: 3}
+  m_PrefabInstance: {fileID: 1397153408}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1945817960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8126,6 +8165,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1169819186}
     - target: {fileID: 7572482661614342082, guid: 1403cbc932edf45b2815a9e4595add68, type: 3}
+      propertyPath: kp
+      value: 
+      objectReference: {fileID: 119255721}
+    - target: {fileID: 7572482661614342082, guid: 1403cbc932edf45b2815a9e4595add68, type: 3}
       propertyPath: door
       value: 
       objectReference: {fileID: 0}
@@ -8185,6 +8228,10 @@ PrefabInstance:
       propertyPath: holdInfo
       value: 
       objectReference: {fileID: 733614299}
+    - target: {fileID: 7572482661614342082, guid: 1403cbc932edf45b2815a9e4595add68, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1841834928272975152, guid: c40f08a953f294d41816c0fe511a1ce6, type: 3}
     - target: {fileID: 7572482661614342082, guid: 1403cbc932edf45b2815a9e4595add68, type: 3}
       propertyPath: slasherArm
       value: 

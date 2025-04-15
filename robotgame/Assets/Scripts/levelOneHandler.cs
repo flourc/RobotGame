@@ -33,6 +33,7 @@ public class levelOneHandler : MonoBehaviour
     public float keyDistance;
     
     public GameObject crosshair;
+    public KeypadUI kp;
 
     // public AudioSource audios;
 
@@ -120,10 +121,10 @@ public class levelOneHandler : MonoBehaviour
     //keypad info
 
         keyDistance = Vector3.Distance(player.position, keypad.transform.position);
-        if (keyDistance < 8 && !keyInfo.activeSelf) {
+        if (keyDistance < 8 && !keyInfo.activeSelf && !kp.returnKeypadOn()) {
             keyInfo.SetActive(true);
         }
-        else if (keyDistance > 8 && keyInfo.activeSelf) {
+        else if ((keyDistance > 8 && keyInfo.activeSelf) || kp.returnKeypadOn()) {
             keyInfo.SetActive(false);
         }
         

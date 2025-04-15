@@ -29,6 +29,7 @@ public class PlayerAttack : MonoBehaviour
     public bool cameraSnap;
 
     public PauseMenu pm;
+    public KeypadUI kp;
 
     void Start()
     {
@@ -62,7 +63,7 @@ public class PlayerAttack : MonoBehaviour
             slashTemp();
         }
 
-        if (pm.paused()) {
+        if (pm.paused() || kp.returnKeypadOn()) {
             if (crosshair.activeSelf) {
                 crosshair.SetActive(false);
                 canFire = false;
