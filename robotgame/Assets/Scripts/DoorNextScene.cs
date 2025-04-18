@@ -8,6 +8,7 @@ public class DoorNextScene : MonoBehaviour
 {
     public string nextScene;
     public float interactRadius;
+    public bool locked = true;
     private Transform playerLoc;
     public bool inRadius;
     public Material activeMaterial;
@@ -27,7 +28,7 @@ public class DoorNextScene : MonoBehaviour
     {
         float dist = Vector3.Distance(playerLoc.position, transform.position);
         inRadius = dist <= interactRadius;
-        if (inRadius) {
+        if (inRadius && !locked) {
             myRenderer.material = activeMaterial;
         } else {
             myRenderer.material = passiveMaterial;
