@@ -9,7 +9,6 @@ public class tutorialHandler : MonoBehaviour
     public GameObject grabDir;
     public DoorNextScene door;
     public bool gshown;
-    public GameObject nextButton;
     public GameHandler gh;
 
     // Start is called before the first frame update
@@ -17,7 +16,6 @@ public class tutorialHandler : MonoBehaviour
     {
         movementDir.SetActive(true);
         grabDir.SetActive(false);
-        nextButton.SetActive(false);
 
         gshown = false;
     }
@@ -39,11 +37,4 @@ public class tutorialHandler : MonoBehaviour
         }
     }
 
-    // void closeMPanel() {
-    //     movementDir.SetActive(false);
-    // }
-
-    // void closeGPanel() {
-    //     grabDir.SetActive(false);
-    // }
 }
