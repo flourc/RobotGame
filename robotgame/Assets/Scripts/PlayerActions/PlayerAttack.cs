@@ -29,7 +29,7 @@ public class PlayerAttack : MonoBehaviour
     public bool cameraSnap;
 
     public PauseMenu pm;
-    public KeypadUI kp;
+    // public KeypadUI kp;
 
     void Start()
     {
@@ -63,16 +63,19 @@ public class PlayerAttack : MonoBehaviour
             slashTemp();
         }
 
-        if (pm.paused() || kp.returnKeypadOn()) {
-            if (crosshair.activeSelf) {
-                crosshair.SetActive(false);
-                canFire = false;
-            }
-        }
-        else if (gun.activeSelf) {
-            crosshair.SetActive(true);
-            canFire = true;
-        }
+        crosshair.SetActive(false);
+        canFire = false;
+
+        // if (pm.paused() || kp.returnKeypadOn()) {
+        //     if (crosshair.activeSelf) {
+        //         crosshair.SetActive(false);
+        //         canFire = false;
+        //     }
+        // }
+        // else if (gun.activeSelf) {
+        //     crosshair.SetActive(true);
+        //     canFire = true;
+        // }
         // if (gun.activeSelf) {
         //     crosshair.SetActive(true);
         //     canFire = true;
