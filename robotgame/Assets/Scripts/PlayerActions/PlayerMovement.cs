@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 10f;
     public float jumpCooldown = 0.25f;
     public float gravity = 9.81f;
+    public float fallMultiplier = 9f;
+    public float lowJumpMultiplier = 8.5f;
 
 
     [Header("Ground Check")]
@@ -189,11 +191,12 @@ private void UpdateAnimationState()
         // Handle gravity
         if (!grounded)
         {
-            velocity.y -= gravity * Time.deltaTime;
+            //velocity.y -= gravity * Time.deltaTime;
+            velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime; //test
         }
         else if (velocity.y < 0)
         {
-            velocity.y = -2f; // Small downward force to keep character grounded
+           velocity.y = -3f; // Small downward force to keep character grounded
         }
 
         // Apply vertical velocity
