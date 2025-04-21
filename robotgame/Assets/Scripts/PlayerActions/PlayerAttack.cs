@@ -63,8 +63,8 @@ public class PlayerAttack : MonoBehaviour
             slashTemp();
         }
 
-        crosshair.SetActive(false);
-        canFire = false;
+        // crosshair.SetActive(false);
+        // canFire = false;
 
         // if (pm.paused() || kp.returnKeypadOn()) {
         //     if (crosshair.activeSelf) {
