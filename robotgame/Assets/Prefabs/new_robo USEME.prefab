@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8695b7ee4d632447994d98b09edd9b8a, type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8695b7ee4d632447994d98b09edd9b8a, type: 3}
       propertyPath: m_LocalScale.x
@@ -136,17 +136,21 @@ MonoBehaviour:
   jumpForce: 10
   jumpCooldown: 0.25
   gravity: 9.81
+  fallMultiplier: 9
+  lowJumpMultiplier: 8.5
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
+  grounded: 0
   orientation: {fileID: 0}
   animator: {fileID: 781348026667199563}
   characterController: {fileID: 5376508909187640318}
   walkAudio: {fileID: 0}
   runAudio: {fileID: 0}
-  gunArm: {fileID: 0}
-  swordArm: {fileID: 0}
+  readyToJump: 1
+  gunArm: {fileID: 5749655886204726368}
+  swordArm: {fileID: 6374316171956882992}
 --- !u!114 &4077518137363033075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,3 +190,13 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &5749655886204726368 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5289294443340380607, guid: 8695b7ee4d632447994d98b09edd9b8a, type: 3}
+  m_PrefabInstance: {fileID: 481243962082285023}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6374316171956882992 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6835239500159114223, guid: 8695b7ee4d632447994d98b09edd9b8a, type: 3}
+  m_PrefabInstance: {fileID: 481243962082285023}
+  m_PrefabAsset: {fileID: 0}

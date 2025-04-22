@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
     public float jumpCooldown = 0.25f;
-    public float gravity = 9.81f;
+    // public float gravity = 9.81f;
+     public float gravity = 15.81f;
     public float fallMultiplier = 9f;
     public float lowJumpMultiplier = 8.5f;
 
@@ -191,13 +192,13 @@ private void UpdateAnimationState()
         // Handle gravity
         if (!grounded)
         {
-            //velocity.y -= gravity * Time.deltaTime;
-            velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime; //test
+            velocity.y -= gravity * Time.deltaTime; //TEMP
+            // velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime; //test
         }
-        else if (velocity.y < 0)
-        {
-           velocity.y = -3f; // Small downward force to keep character grounded
-        }
+        // else if (velocity.y < 0)
+        // {
+        //    velocity.y = -3f; // Small downward force to keep character grounded
+        // } //TEMP
 
         // Apply vertical velocity
         characterController.Move(velocity * Time.deltaTime);

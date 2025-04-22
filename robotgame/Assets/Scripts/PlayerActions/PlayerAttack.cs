@@ -29,7 +29,7 @@ public class PlayerAttack : MonoBehaviour
     public bool cameraSnap;
 
     public PauseMenu pm;
-    // public KeypadUI kp;
+    public KeypadUI kp;
 
     void Start()
     {
@@ -63,32 +63,33 @@ public class PlayerAttack : MonoBehaviour
             slashTemp();
         }
 
-        crosshair.SetActive(false);
-        canFire = false;
+        // crosshair.SetActive(false);
+        // canFire = false;
 
-        // if (pm.paused() || kp.returnKeypadOn()) {
-        //     if (crosshair.activeSelf) {
-        //         crosshair.SetActive(false);
-        //         canFire = false;
-        //     }
-        // }
-        // else if (gun.activeSelf) {
-        //     crosshair.SetActive(true);
-        //     canFire = true;
-        // }
-        // if (gun.activeSelf) {
-        //     crosshair.SetActive(true);
-        //     canFire = true;
-        // }
-        // else {
-        //     crosshair.SetActive(false);
-        //     canFire = false;
-        // }
+        if (pm.paused() || kp.returnKeypadOn()) {
+            if (crosshair.activeSelf) {
+                crosshair.SetActive(false);
+                canFire = false;
+            }
+        }
+        else if (gun.activeSelf) {
+            crosshair.SetActive(true);
+            canFire = true;
+        }
+        if (gun.activeSelf) {
+            crosshair.SetActive(true);
+            canFire = true;
+        }
+        else {
+            crosshair.SetActive(false);
+            canFire = false;
+        }
 
-        // if (Input.GetKeyDown(KeyCode.Mouse0) && canFire) {
-        //     crosshair.GetComponent<Image>().color = Color.red;
-        //     shoot();
-        // }TEMPORARILY ERASED
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canFire) {
+            crosshair.GetComponent<Image>().color = Color.red;
+            shoot();
+        }
+        // TEMPORARILY ERASED
 
         //TEMP REPLACEMENT BELOW
 

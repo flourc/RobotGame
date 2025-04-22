@@ -40,7 +40,7 @@ public class levelOneHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        slasherArm.SetActive(false);
+        // slasherArm.SetActive(true);
         gunArm.SetActive(false);
         droneOnGround.SetActive(true);
 
@@ -60,21 +60,21 @@ public class levelOneHandler : MonoBehaviour
         //     droneOnGround.SetActive(true);
         // } 
 
-        distance = Vector3.Distance(player.position, slasherOnGround.transform.position);
-        if (distance < 7 && !slasherArm.activeSelf && !info.activeSelf) {
-            info.SetActive(true);
-        }
-        else if (distance >= 7 && info.activeSelf){
-            info.SetActive(false);
-        }
+        // distance = Vector3.Distance(player.position, slasherOnGround.transform.position);
+        // if (distance < 7 && !slasherArm.activeSelf && !info.activeSelf) {
+        //     info.SetActive(true);
+        // }
+        // else if (distance >= 7 && info.activeSelf){
+        //     info.SetActive(false);
+        // }
 
-        if (Input.GetKey(KeyCode.E) && distance < 7 && slasherOnGround.activeSelf) {
-            slasherOnGround.SetActive(false);
-            gunArm.SetActive(false);
-            slasherArm.SetActive(true);
-            info.SetActive(false);
-            // audios.Play();
-        }
+        // if (Input.GetKey(KeyCode.E) && distance < 7 && slasherOnGround.activeSelf) {
+        //     slasherOnGround.SetActive(false);
+        //     gunArm.SetActive(false);
+        //     slasherArm.SetActive(true);
+        //     info.SetActive(false);
+        //     // audios.Play();
+        // }
 
         droneDistance = Vector3.Distance(player.position, droneOnGround.transform.position);
         if (droneDistance < 7 && !gunArm.activeSelf && !info.activeSelf && droneOnGround.activeSelf) {

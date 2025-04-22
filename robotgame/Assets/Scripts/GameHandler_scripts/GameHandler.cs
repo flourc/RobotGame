@@ -28,7 +28,7 @@ public class GameHandler : MonoBehaviour
     public void StartGame() 
     {
         // SceneManager.LoadScene("TutorialLevel");
-        SceneManager.LoadScene("combat_scene");
+        SceneManager.LoadScene("Level_1");
     }
 
     public void MainMenu() 
