@@ -11,12 +11,16 @@ public class levelZeroHandler : MonoBehaviour
     public float distance;
     public GameObject info;
     public Transform player;
+    public GameObject doorInfo;
+
+    public DoorNextScene dns;
 
     // Start is called before the first frame update
     void Start()
     {
         gunArm.SetActive(false);
         slasherArm.SetActive(false);
+        doorInfo.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,5 +41,23 @@ public class levelZeroHandler : MonoBehaviour
             info.SetActive(false);
             // audios.Play();
         }
+
+        if (dns.inRadius) {
+            doorInfo.SetActive(true);
+            dns.Unlock();
+        }
+        else {
+            doorInfo.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && dns.inRadius) {
+            dns.GoNextScene();
+        }
+
+
     }
+
+
+
+
 }

@@ -7,7 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 10f;
     public float jumpCooldown = 0.25f;
     // public float gravity = 9.81f;
-     public float gravity = 15.81f;
+     public float gravity = 18f;
+
     public float fallMultiplier = 9f;
     public float lowJumpMultiplier = 8.5f;
 
