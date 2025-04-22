@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Mastermind : MonoBehaviour
 {
+    public const int NUM_TRIES = 6;
+    private const int NUM_DIGITS = 4;
     public enum digits 
         { zero, one, two, three, four, five, six, seven, eight, nine, none };
-    public digits [] correct_code = new digits[4];
-    public MastermindTry [] tries = new MastermindTry[4];
+    public digits [] correct_code = new digits[NUM_DIGITS];
+    public MastermindTry [] tries = new MastermindTry[NUM_TRIES];
 
     public Keypad myKeypad;
+
+    
 
     public int tryNum;
     public bool got_it;
@@ -28,20 +32,20 @@ public class Mastermind : MonoBehaviour
 
     public void TransferTry()
     {
-        if (tryNum == 3) {
-            
-        } else {
-            for (int i = 0; i < 4; i++) {
-                tries[tryNum].SetDigit(myKeypad.nums[i], i);
-            }
-            myKeypad.Clear();
-            ValidateLatest();
-            tryNum++;
-            if (got_it) {
-                // do something here
-                // 
-            }
+        for (int i = 0; i < NUM_DIGITS; i++) {
+            tries[tryNum].SetDigit(myKeypad.nums[i], i);
         }
+        myKeypad.Clear();
+        ValidateLatest();
+        tryNum++;
+        if (got_it) {
+            // do something here
+            // yay they got the code!!
+        } else if (tryNum >= NUM_TRIES) {
+            // do something else here
+            // they didn't get it in six, make them fight something
+        }
+        
         
     }
 

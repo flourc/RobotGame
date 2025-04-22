@@ -12,6 +12,7 @@ TagManager:
   - pushable
   - enemy
   - weapon
+  - CanvasLayer
   layers:
   - Default
   - TransparentFX

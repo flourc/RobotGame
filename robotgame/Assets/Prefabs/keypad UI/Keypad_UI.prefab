@@ -2185,7 +2185,7 @@ GameObject:
   - component: {fileID: 3128330518303461680}
   m_Layer: 5
   m_Name: Keypad_UI
-  m_TagString: Untagged
+  m_TagString: CanvasLayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -6,20 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class GameHandler : MonoBehaviour
 {
-    //public GameObject player;
+
+    public GameObject [] my_UI_layers;
+    public static bool UIActive = false;
+    public bool hasUI;
+    public static int UIActive_idx;
     private string sceneName;
 
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = true;
         
         sceneName = SceneManager.GetActiveScene().name;
 
-        
+        my_UI_layers = GameObject.FindGameObjectsWithTag("CanvasLayer");
+        hasUI = !(my_UI_layers == null);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -27,7 +30,6 @@ public class GameHandler : MonoBehaviour
 
     public void StartGame() 
     {
-        // SceneManager.LoadScene("TutorialLevel");
         SceneManager.LoadScene("Level_1");
     }
 
@@ -37,7 +39,6 @@ public class GameHandler : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         SceneManager.LoadScene("MainMenu");
-        // Reset all static variables here, for new games:
     }
 
     public void levelTwoTemp() {
