@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class KeypadNumber : MonoBehaviour
 {
     public GameObject [] numbers = new GameObject[11];
-    private Renderer [] myRenderers;
+    private Image [] myImages;
     // Start is called before the first frame update
     void Start()
     {
+        myImages = GetComponentsInChildren<Image>();
         setNA();
-        myRenderers = GetComponentsInChildren<Renderer>();
     }
 
     // Update is called once per frame
@@ -20,10 +20,10 @@ public class KeypadNumber : MonoBehaviour
 
     }
 
-    public void SetNumColor(Material color)
+    public void SetNumColor(Color color)
     {
         for (int i = 0; i < 11; i++) {
-            myRenderers[i].material = color;
+            myImages[i].color = color;
         }
     }
 

@@ -5,17 +5,14 @@ using UnityEngine.UI;
 
 public class MastermindNumber : MonoBehaviour
 {
-    public GameObject myBG;
     public KeypadNumber myNum;
 
-    private Renderer myRendererBG;
-
-    public Material goodBG, medBG, badBG;
-    public Material goodNum, medNum, badNum;
+    public GameObject neutralBG, goodBG, medBG, badBG;
+    public Color goodNum, medNum, badNum;
 
     void Start()
     {
-        myRendererBG = myBG.GetComponent<Renderer>();
+        DeactivateAllBut(neutralBG);
     }
 
     void Update()
@@ -25,19 +22,30 @@ public class MastermindNumber : MonoBehaviour
 
     public void SetGood()
     {
-        myRendererBG.material = goodBG;
+        DeactivateAllBut(goodBG);
         myNum.SetNumColor(goodNum);
     }
 
     public void SetMed()
     {
-        myRendererBG.material = medBG;
+        DeactivateAllBut(medBG);
         myNum.SetNumColor(medNum);
     }
 
     public void SetBad()
     {
-        myRendererBG.material = badBG;
+        DeactivateAllBut(badBG);
         myNum.SetNumColor(badNum);
     }
+
+    void DeactivateAllBut(GameObject ex)
+    {
+        neutralBG.SetActive(false);
+        goodBG.SetActive(false);
+        medBG.SetActive(false);
+        badBG.SetActive(false);
+
+        ex.SetActive(true);
+    }
+    
 }
