@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using digits = Mastermind.digits;
+
 
 // NOTE TO SELF: keypad code is 2602
 
 public class Keypad : MonoBehaviour
 {
     public GameHandler handler;
-    public enum digits 
-        { zero, one, two, three, four, five, six, seven, eight, nine, none };
-
 
     public KeypadNumber num1, num2, num3, num4;
     public digits [] nums = 
