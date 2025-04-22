@@ -63,8 +63,8 @@ public class PlayerAttack : MonoBehaviour
             slashTemp();
         }
 
-        // crosshair.SetActive(false);
-        // canFire = false;
+        crosshair.SetActive(false);
+        canFire = false;
 
         // if (pm.paused() || kp.returnKeypadOn()) {
         //     if (crosshair.activeSelf) {
@@ -180,8 +180,10 @@ public class PlayerAttack : MonoBehaviour
         Collider[] hits = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
         foreach (Collider hit in hits)
         {
+            print("collision");
             if (hit.CompareTag("enemy") && hit.gameObject != null)
             {
+                print("hit");
                 EnemyHealth enemy = hit.GetComponent<EnemyHealth>();
                 if (enemy != null)
                 {

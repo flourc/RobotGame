@@ -21,6 +21,7 @@ public class DoorNextScene : MonoBehaviour
         playerLoc = GameObject.FindWithTag("Player").GetComponent<Transform>();
         inRadius = false;
         myRenderer.material = passiveMaterial;
+        interactRadius = 5;
     }
 
     // Update is called once per frame
@@ -29,6 +30,7 @@ public class DoorNextScene : MonoBehaviour
         float dist = Vector3.Distance(playerLoc.position, transform.position);
         inRadius = dist <= interactRadius;
         if (inRadius && !locked) {
+            print("unlocked");
             myRenderer.material = activeMaterial;
         } else {
             myRenderer.material = passiveMaterial;
