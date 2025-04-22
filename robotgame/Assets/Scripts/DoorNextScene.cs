@@ -14,6 +14,7 @@ public class DoorNextScene : MonoBehaviour
     public Material activeMaterial;
     public Material passiveMaterial;
     private Renderer myRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +41,11 @@ public class DoorNextScene : MonoBehaviour
     public void GoNextScene()
     {
         SceneManager.LoadScene(nextScene);
+    }
+
+    public void Unlock()
+    {
+        locked = false;
     }
 
 }
