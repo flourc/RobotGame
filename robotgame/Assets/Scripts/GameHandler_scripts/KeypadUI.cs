@@ -21,7 +21,7 @@ public class KeypadUI : UI_Layer_base
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            LayerOff();
+            SendMessageUpwards("DeactivateLayers");
         }
     }
 

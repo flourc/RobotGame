@@ -140,15 +140,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138958303}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9d9cb941451249df959a9e242640e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerUI: {fileID: 429843207}
   keypadObj: {fileID: 243445733}
-  keypadUI: {fileID: 429843207}
   keypadInteractRadius: 3
-  player: {fileID: 0}
+  player: {fileID: 1300230677}
+--- !u!1 &198615957 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6865370010426016612, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+  m_PrefabInstance: {fileID: 4042790144979832136}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &243445733
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,6 +186,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &329514267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7211704629271868585, guid: 7666ffb34e2d340a8adf5b12a0e1ddd6, type: 3}
+  m_PrefabInstance: {fileID: 4367999625853684128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &393343934 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5858820666906732265, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
@@ -1870,7 +1880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5688998967700979603, guid: f004cfa7d356740f8b4b84ea59e3fce3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1953,6 +1963,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4042790144979832137}
     - target: {fileID: 151158776475253640, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 4042790144979832138}
+    - target: {fileID: 151158776475253640, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 1559034093}
@@ -2030,11 +2044,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3393781246661783699, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000021288793
+      value: 0.0000000105502656
       objectReference: {fileID: 0}
     - target: {fileID: 3393781246661783699, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000008731102
+      value: 0.0000000043269455
       objectReference: {fileID: 0}
     - target: {fileID: 3878003954001658626, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_Name
@@ -2082,11 +2096,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000021485583
+      value: 0.0000000106478
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000008234943
+      value: 0.0000000040810626
       objectReference: {fileID: 0}
     - target: {fileID: 5878959581073901981, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2100,6 +2114,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 23.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7796476907715232352, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: layerUI
+      value: 
+      objectReference: {fileID: 198615957}
     - target: {fileID: 7796476907715232352, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: crosshair
       value: 
@@ -2174,6 +2192,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 319701858280246450, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 138958305}
+    - targetCorrespondingSourceObject: {fileID: 319701858280246450, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4042790144979832141}
   m_SourcePrefab: {fileID: 100100000, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
 --- !u!114 &4042790144979832137 stripped
 MonoBehaviour:
@@ -2197,6 +2218,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4676dd7d251934ac3b752b927ad5375c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4042790144979832141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138958303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00394861150c048c08eba68bccad0dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerUI: {fileID: 329514267}
+  keypadObj: {fileID: 243445733}
+  keypadInteractRadius: 0
+  player: {fileID: 1300230677}
 --- !u!1001 &4367999625853684128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2289,6 +2326,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3870087159763481231, guid: 7666ffb34e2d340a8adf5b12a0e1ddd6, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 4042790144979832138}
+    - target: {fileID: 3870087159763481231, guid: 7666ffb34e2d340a8adf5b12a0e1ddd6, type: 3}
+      propertyPath: layerUI
+      value: 
+      objectReference: {fileID: 329514267}
     - target: {fileID: 7211704629271868585, guid: 7666ffb34e2d340a8adf5b12a0e1ddd6, type: 3}
       propertyPath: m_Name
       value: MastermindUI

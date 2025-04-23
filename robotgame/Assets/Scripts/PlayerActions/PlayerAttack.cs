@@ -31,6 +31,8 @@ public class PlayerAttack : MonoBehaviour
     public PauseMenu pm;
     public KeypadUI kp;
 
+    public GameHandler handler;
+
     void Start()
     {
         // toggleArm(); //should this be in update?
@@ -66,17 +68,13 @@ public class PlayerAttack : MonoBehaviour
         // crosshair.SetActive(false);
         // canFire = false;
 
-        if (pm.paused() || kp.returnLayerOn()) {
+        if (handler.UIActive) {
             if (crosshair.activeSelf) {
                 crosshair.SetActive(false);
                 canFire = false;
             }
         }
         else if (gun.activeSelf) {
-            crosshair.SetActive(true);
-            canFire = true;
-        }
-        if (gun.activeSelf) {
             crosshair.SetActive(true);
             canFire = true;
         }

@@ -47,9 +47,9 @@ public class Keypad : MonoBehaviour
             Zero();
         } else if (Input.GetKeyDown(KeyCode.Backspace)) {
             Clear();
-        } else if (Input.GetKeyDown(KeyCode.Return)) {
-            Check();
-        }
+        } //else if (Input.GetKeyDown(KeyCode.Return)) {
+        //    Check();
+        //}
     }
 
     public void Zero()
@@ -113,7 +113,7 @@ public class Keypad : MonoBehaviour
         } else {
             print("failed");
             Clear();
-            handler.SendMessage("KeypadOff");
+            handler.SendMessage("DeactivateLayers");
         }
     }
 

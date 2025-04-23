@@ -12,6 +12,7 @@ public abstract class UI_Layer_base : MonoBehaviour
     void Start()
     {
         LayerOff();
+        Init();
     }
 
     public abstract void Init();
@@ -22,14 +23,13 @@ public abstract class UI_Layer_base : MonoBehaviour
 
     public void LayerOn()
     {
+        SendMessageUpwards("LayerActive");
         layerActive = true;
-        gameObject.SendMessage("SetOtherUIActive");
         layerUI.SetActive(true);
     }
 
     public void LayerOff()
     {
-        gameObject.SendMessage("SetOtherUIInactive");
         layerActive = false;
         layerUI.SetActive(false);
     }

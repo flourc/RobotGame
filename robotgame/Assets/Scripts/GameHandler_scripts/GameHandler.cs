@@ -28,6 +28,11 @@ public class GameHandler : MonoBehaviour
         
     }
 
+    public void LayerActive()
+    {
+        UIActive = true;
+    }
+
     void DeactivateLayers() 
     {
         foreach (UI_Layer_base layer in my_UI_layers) {

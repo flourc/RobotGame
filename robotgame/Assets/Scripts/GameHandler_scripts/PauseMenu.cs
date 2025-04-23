@@ -33,7 +33,7 @@ public class PauseMenu : UI_Layer_base
 
     public override void Init()
     {
-        pauseMenuUI.SetActive(false);
+        LayerOff();
         GameisPaused = false;
     }
 
@@ -65,7 +65,7 @@ public class PauseMenu : UI_Layer_base
         if (!GameisPaused)
         {
             pickups.SetLock(false);
-            pauseMenuUI.SetActive(true);
+            LayerOn();
             Time.timeScale = 0f;
             GameisPaused = true;
 
@@ -81,7 +81,7 @@ public class PauseMenu : UI_Layer_base
     public void Resume() 
     {
         pickups.SetLock(true);
-        pauseMenuUI.SetActive(false);
+        SendMessageUpwards("DeactivateLayers");
         Time.timeScale = 1f;
         GameisPaused = false;
     }

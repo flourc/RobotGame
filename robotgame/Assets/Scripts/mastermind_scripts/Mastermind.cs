@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mastermind : UI_Layer_base
+public class Mastermind : MonoBehaviour
 {
 
     public GameHandler handler;
@@ -21,7 +21,7 @@ public class Mastermind : UI_Layer_base
     public int tryNum;
     public bool got_it;
     
-    public override void Init()
+    void Start()
     {
         tryNum = 0;
         got_it = false;
