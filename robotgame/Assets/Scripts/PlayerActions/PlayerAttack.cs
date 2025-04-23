@@ -66,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
         // crosshair.SetActive(false);
         // canFire = false;
 
-        if (pm.paused() || kp.returnKeypadOn()) {
+        if (pm.paused() || kp.returnLayerOn()) {
             if (crosshair.activeSelf) {
                 crosshair.SetActive(false);
                 canFire = false;

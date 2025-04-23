@@ -121,10 +121,10 @@ public class levelOneHandler : MonoBehaviour
     //keypad info
 
         keyDistance = Vector3.Distance(player.position, keypad.transform.position);
-        if (keyDistance < 8 && !keyInfo.activeSelf && !kp.returnKeypadOn()) {
+        if (keyDistance < 8 && !keyInfo.activeSelf && !kp.returnLayerOn()) {
             keyInfo.SetActive(true);
         }
-        else if ((keyDistance > 8 && keyInfo.activeSelf) || kp.returnKeypadOn()) {
+        else if ((keyDistance > 8 && keyInfo.activeSelf) || kp.returnLayerOn()) {
             keyInfo.SetActive(false);
         }
         

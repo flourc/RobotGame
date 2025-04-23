@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.5748165, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -176,8 +176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d9cb941451249df959a9e242640e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerUI: {fileID: 1940620498}
   keypadObj: {fileID: 1613413872}
-  keypadUI: {fileID: 1940620498}
   keypadInteractRadius: 5
   player: {fileID: 842642124}
 --- !u!114 &119255722 stripped
@@ -1896,6 +1896,10 @@ PrefabInstance:
       propertyPath: AimTargetReticle
       value: 
       objectReference: {fileID: 850577961}
+    - target: {fileID: 7796476907715232352, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: layerUI
+      value: 
+      objectReference: {fileID: 1836103949}
     - target: {fileID: 8219984393018597396, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -5620,6 +5624,11 @@ BoxCollider:
 Transform:
   m_CorrespondingSourceObject: {fileID: 864963278786778385, guid: 5d94c57a33d7e1b4d96320a8c066ac12, type: 3}
   m_PrefabInstance: {fileID: 1388611016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1836103949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6865370010426016612, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+  m_PrefabInstance: {fileID: 561516643}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1841754689 stripped
 GameObject:

@@ -6,11 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameHandler : MonoBehaviour
 {
-
-    public GameObject [] my_UI_layers;
-    public static bool UIActive = false;
+    public UI_Layer_base [] my_UI_layers;
+    public bool UIActive = false;
     public bool hasUI;
-    public static int UIActive_idx;
     private string sceneName;
 
     void Start()
@@ -19,13 +17,23 @@ public class GameHandler : MonoBehaviour
         
         sceneName = SceneManager.GetActiveScene().name;
 
-        my_UI_layers = GameObject.FindGameObjectsWithTag("CanvasLayer");
+        my_UI_layers = 
+                    FindObjectsByType<UI_Layer_base>(FindObjectsSortMode.None);
         hasUI = !(my_UI_layers == null);
+
     }
 
     void Update()
     {
         
+    }
+
+    void DeactivateLayers() 
+    {
+        foreach (UI_Layer_base layer in my_UI_layers) {
+            layer.LayerOff();
+        }
+        UIActive = false;
     }
 
     public void StartGame() 
