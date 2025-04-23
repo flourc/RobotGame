@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : UI_Layer_base
 {
     public static bool GameisPaused = false;
     public static bool otherUIActive = false;
@@ -31,7 +31,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    void Start()
+    public override void Init()
     {
         pauseMenuUI.SetActive(false);
         GameisPaused = false;

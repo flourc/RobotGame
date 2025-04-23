@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mastermind : MonoBehaviour
+public class Mastermind : UI_Layer_base
 {
+
+    public GameHandler handler;
+
     public const int NUM_TRIES = 6;
     private const int NUM_DIGITS = 4;
     public enum digits 
@@ -18,7 +21,7 @@ public class Mastermind : MonoBehaviour
     public int tryNum;
     public bool got_it;
     
-    void Start()
+    public override void Init()
     {
         tryNum = 0;
         got_it = false;
@@ -44,9 +47,7 @@ public class Mastermind : MonoBehaviour
         } else if (tryNum >= NUM_TRIES) {
             // do something else here
             // they didn't get it in six, make them fight something
-        }
-        
-        
+        } 
     }
 
 

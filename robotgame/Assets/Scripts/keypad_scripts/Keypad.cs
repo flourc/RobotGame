@@ -16,19 +16,40 @@ public class Keypad : MonoBehaviour
 
     public digits [] correct_combo = new digits [4];
 
-    // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < 4; i++) {
             nums[i] = digits.none;
         }
-        // correct_combo = {digits.two, digits.six, digits.zero, digits.two};
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            One();
+        } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            Two();
+        } else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            Three();
+        } else if (Input.GetKeyDown(KeyCode.Alpha4)) {
+            Four();
+        } else if (Input.GetKeyDown(KeyCode.Alpha5)) {
+            Five();
+        } else if (Input.GetKeyDown(KeyCode.Alpha6)) {
+            Six();
+        } else if (Input.GetKeyDown(KeyCode.Alpha7)) {
+            Seven();
+        } else if (Input.GetKeyDown(KeyCode.Alpha8)) {
+            Eight();
+        } else if (Input.GetKeyDown(KeyCode.Alpha9)) {
+            Nine();
+        } else if (Input.GetKeyDown(KeyCode.Alpha0)) {
+            Zero();
+        } else if (Input.GetKeyDown(KeyCode.Backspace)) {
+            Clear();
+        } else if (Input.GetKeyDown(KeyCode.Return)) {
+            Check();
+        }
     }
 
     public void Zero()

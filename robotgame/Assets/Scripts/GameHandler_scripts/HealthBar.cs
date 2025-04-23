@@ -23,7 +23,7 @@ public class HealthBar : EntityHealth
         updateStatsDisplay();
     }
 
-    public virtual void OnDeath()
+    public override void OnDeath()
     {
         gameObject.BroadcastMessage("LoseScreen");
     }
