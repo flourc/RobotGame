@@ -196,10 +196,10 @@ private void UpdateAnimationState()
             velocity.y -= gravity * Time.deltaTime; //TEMP
             // velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime; //test
         }
-        // else if (velocity.y < 0)
-        // {
-        //    velocity.y = -3f; // Small downward force to keep character grounded
-        // } //TEMP
+        else if (!grounded && velocity.y < 0)
+        {
+           velocity.y = -3f; // Small downward force to keep character grounded
+        } //TEMP
 
         // Apply vertical velocity
         characterController.Move(velocity * Time.deltaTime);
