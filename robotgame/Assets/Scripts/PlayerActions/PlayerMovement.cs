@@ -194,11 +194,12 @@ private void UpdateAnimationState()
         if (!grounded)
         {
             velocity.y -= gravity * Time.deltaTime; //TEMP
-            // velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime; //test
+            
         }
         else if (!grounded && velocity.y < 0)
         {
-           velocity.y = -3f; // Small downward force to keep character grounded
+           //velocity.y = -3f; // Small downward force to keep character grounded
+           velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime; //test
         } //TEMP
 
         // Apply vertical velocity

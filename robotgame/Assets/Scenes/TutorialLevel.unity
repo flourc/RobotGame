@@ -3758,7 +3758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1246081438365017432, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: lowJumpMultiplier
-      value: 8.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1355552201147501945, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalPosition.y
