@@ -29,7 +29,7 @@ public class EnemyHealth : EntityHealth
         print("hello");
 
         DisableAllOtherScripts();
-        // DropCurrency(); // 💰 Drop the goods!
+        DropCurrency(); // 💰 Drop the goods!
         StartCoroutine(SinkAndDestroy());
     }
 
@@ -49,29 +49,31 @@ public class EnemyHealth : EntityHealth
 
     }
 
-    private void DropCurrency()
+   private void DropCurrency()
+   {
+    int dropAmount = Random.Range(minCurrencyDrop, maxCurrencyDrop + 1);
+    for (int i = 0; i < dropAmount; i++)
     {
-       int dropAmount = Random.Range(minCurrencyDrop, maxCurrencyDrop + 1);
-
-        for (int i = 0; i < dropAmount; i++)
+        Vector3 dropStartPos = transform.position + new Vector3(
+            Random.Range(-0.5f, 0.5f),
+            0.5f, // Start from the center of the enemy
+            Random.Range(-0.5f, 0.5f)
+        );
+        
+        // Raycast down to ground using whatIsGround layer
+        if (Physics.Raycast(dropStartPos, Vector3.down, out RaycastHit hit, 10f, whatIsGround))
         {
-            Vector3 dropStartPos = transform.position + new Vector3(
-                Random.Range(-0.5f, 0.5f),
-                2f, // spawn a bit higher to ensure clear line to ground
-                Random.Range(-0.5f, 0.5f)
-            );
-
-            Vector3 spawnPos = dropStartPos;
-
-            // Raycast down to ground using whatIsGround layer
-            if (Physics.Raycast(dropStartPos, Vector3.down, out RaycastHit hit, 10f, whatIsGround))
-            {
-                spawnPos = hit.point;
-            }
-
+            // Place the currency 0.5 units above the ground hit point
+            Vector3 spawnPos = hit.point + new Vector3(0, 0.5f, 0);
             GameObject pickup = Instantiate(currencyPickupPrefab, spawnPos, Quaternion.identity);
         }
+        else
+        {
+            // If no ground found, just spawn at drop position
+            GameObject pickup = Instantiate(currencyPickupPrefab, dropStartPos, Quaternion.identity);
+        }
     }
+   }
 
     private IEnumerator SinkAndDestroy()
     {
