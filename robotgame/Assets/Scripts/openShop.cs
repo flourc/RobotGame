@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class DoorNextScene : MonoBehaviour
+public class OpenShop : MonoBehaviour
 {
     public string nextScene;
     public float interactRadius;

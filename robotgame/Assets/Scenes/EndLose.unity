@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.5748165, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -293,6 +293,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: text_name
       objectReference: {fileID: 0}
+    - target: {fileID: 2611488877879148533, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 70c18a453e05540e7842dc35052cb30b, type: 3}
     - target: {fileID: 3870138550622422314, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
       propertyPath: m_Name
       value: LoseMessage
@@ -407,7 +411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8011757092257891036, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
       propertyPath: m_Text
-      value: PLAY AGAIN
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8564477488868958986, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
       propertyPath: m_Pivot.x
