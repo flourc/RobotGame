@@ -307,8 +307,28 @@ PrefabInstance:
       value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 3907798499018242268, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: efd8bca822d36405bb862837238efe40, type: 3}
+    - target: {fileID: 3907798499018242268, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
       propertyPath: m_Color.a
-      value: 0.80784315
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907798499018242268, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907798499018242268, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907798499018242268, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907798499018242268, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4077257615253457565, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
       propertyPath: m_Sprite
@@ -517,6 +537,22 @@ PrefabInstance:
     - target: {fileID: 8564477488868958986, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817571102102445924, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817571102102445924, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817571102102445924, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817571102102445924, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9095239667718360429, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
       propertyPath: m_AnchoredPosition.y
