@@ -46,6 +46,11 @@ public class GameHandler : MonoBehaviour
         SceneManager.LoadScene("Level_1");
     }
 
+    public void Level_3()
+    {
+        SceneManager.LoadScene("Level_3");
+    }
+
     public void MainMenu() 
     {
         Time.timeScale = 1f;

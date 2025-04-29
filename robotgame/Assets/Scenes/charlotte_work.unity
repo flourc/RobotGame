@@ -209,22 +209,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 319701858280246450, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
   m_PrefabInstance: {fileID: 4042790144979832136}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &138958305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 138958303}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9d9cb941451249df959a9e242640e30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerUI: {fileID: 429843207}
-  keypadObj: {fileID: 243445733}
-  keypadInteractRadius: 3
-  player: {fileID: 1300230677}
 --- !u!1 &198615957 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6865370010426016612, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
@@ -2147,7 +2131,7 @@ PrefabInstance:
     - target: {fileID: 151158776475253640, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: kp
       value: 
-      objectReference: {fileID: 138958305}
+      objectReference: {fileID: 0}
     - target: {fileID: 151158776475253640, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: pm
       value: 
@@ -2216,6 +2200,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.000000009233439
       objectReference: {fileID: 0}
+    - target: {fileID: 3011968047634694015, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: layerUI
+      value: 
+      objectReference: {fileID: 429843207}
     - target: {fileID: 3393781246661783699, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalPosition.y
       value: 69.98509
@@ -2286,11 +2274,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000001606669
+      value: 0.000000016066691
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000006158005
+      value: 0.000000006158006
       objectReference: {fileID: 0}
     - target: {fileID: 5878959581073901981, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2385,9 +2373,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 319701858280246450, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 138958305}
-    - targetCorrespondingSourceObject: {fileID: 319701858280246450, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 4042790144979832141}
   m_SourcePrefab: {fileID: 100100000, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
 --- !u!114 &4042790144979832137 stripped
@@ -2431,7 +2416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerUI: {fileID: 329514267}
   keypadObj: {fileID: 243445733}
-  keypadInteractRadius: 0
+  keypadInteractRadius: 8
   player: {fileID: 1300230677}
 --- !u!1001 &4367999625853684128
 PrefabInstance:

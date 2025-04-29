@@ -50,7 +50,7 @@ public class Keypad : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.Backspace)) {
             Clear();
         } else if (Input.GetKeyDown(KeyCode.Return)) {
-            BroadcastMessage(enterAction);
+            SendMessageUpwards(enterAction);
         }
     }
 
@@ -111,7 +111,7 @@ public class Keypad : MonoBehaviour
         }
         if (all_good) {
             print("passed");
-            handler.SendMessage("MainMenu");
+            handler.SendMessage("Level_3");
         } else {
             print("failed");
             Clear();
