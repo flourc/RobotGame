@@ -2227,6 +2227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 0}
+  enterAction: Check
   num1: {fileID: 482816995427201913}
   num2: {fileID: 8799413282633593225}
   num3: {fileID: 5608799960969518175}

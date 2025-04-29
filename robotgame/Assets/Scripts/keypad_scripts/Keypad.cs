@@ -10,6 +10,8 @@ public class Keypad : MonoBehaviour
 {
     public GameHandler handler;
 
+    public string enterAction;
+
     public KeypadNumber num1, num2, num3, num4;
     public digits [] nums = 
                     { digits.none, digits.none, digits.none, digits.none };
@@ -47,9 +49,9 @@ public class Keypad : MonoBehaviour
             Zero();
         } else if (Input.GetKeyDown(KeyCode.Backspace)) {
             Clear();
-        } //else if (Input.GetKeyDown(KeyCode.Return)) {
-        //    Check();
-        //}
+        } else if (Input.GetKeyDown(KeyCode.Return)) {
+            BroadcastMessage(enterAction);
+        }
     }
 
     public void Zero()
