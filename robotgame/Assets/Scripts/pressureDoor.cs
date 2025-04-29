@@ -15,11 +15,11 @@ public class pressureDoor : MonoBehaviour
     void Update()
     {
         if (PressurePlate.open && !doorOpen) {
-            transform.Translate(10f, 0f, 0f);
+            transform.Translate(0f, 6f, 0f);
             doorOpen = true;
         }
         else if (!PressurePlate.open && doorOpen){
-            transform.Translate(-10f, 0f, 0f);
+            transform.Translate(0f, 0f, 0f);
             doorOpen = false;
         }
     }

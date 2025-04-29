@@ -11,6 +11,7 @@ public class KeypadUI : UI_Layer_base
     public override void Init()
     {
         keypadInteractRadius = 8;
+        LayerOff();
     }
     
     // Update is called once per frame

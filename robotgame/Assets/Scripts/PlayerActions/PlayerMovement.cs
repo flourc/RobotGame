@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed = 5f;
-    public float jumpForce = 10f;
+    public float jumpForce = 5f;
     public float jumpCooldown = 0.25f;
     // public float gravity = 9.81f;
      public float gravity = 18f;
@@ -96,7 +96,7 @@ private void UpdateAnimationState()
         // Set speed parameter based on movement
         float currentSpeed = 0f; // Default to idle
         
-        if (isMoving)
+        if (isMoving && grounded)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
