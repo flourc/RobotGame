@@ -5,12 +5,13 @@ using TMPro;
 
 public class PlayerMovement2 : MonoBehaviour
 {
+	private Animator animator;
     [Header("Movement")]
-    public float moveSpeed;
+    public float moveSpeed = 10f;
 
     public float groundDrag;
 
-    public float jumpForce;
+    public float jumpForce = 10f;
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump;
@@ -24,7 +25,7 @@ public class PlayerMovement2 : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
-    bool grounded;
+    public bool grounded = true;
 
     public Transform orientation;
 
@@ -37,6 +38,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void Start()
     {
+		animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -46,7 +48,7 @@ public class PlayerMovement2 : MonoBehaviour
     private void Update()
     {
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+        //grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
         MyInput();
         SpeedControl();
@@ -77,6 +79,13 @@ public class PlayerMovement2 : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+
+		if ((grounded) && ((horizontalInput) != 0 || (verticalInput != 0))){
+			animator.SetBool("Walking", true);
+		} else {
+			animator.SetBool("Walking", false);
+		}
+
     }
 
     private void MovePlayer()
@@ -116,4 +125,21 @@ public class PlayerMovement2 : MonoBehaviour
     {
         readyToJump = true;
     }
+
+	void OnCollisionEnter(Collision other){
+		//if (other.gameObject.layer==LayerMask.NameToLayer("whatIsGround")){
+		if (other.gameObject.tag == "floor"){
+			grounded = true;
+			Debug.Log("I am touching floor");
+		}
+	}
+
+	void OnCollisionExit(Collision other){
+		//if (other.gameObject.layer==LayerMask.NameToLayer("whatIsGround")){
+		if (other.gameObject.tag == "floor"){
+			grounded = false;
+			Debug.Log("I am not touching floor floor");
+		}
+	}
+
 }
