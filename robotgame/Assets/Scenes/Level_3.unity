@@ -1715,11 +1715,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000022721736
+      value: -0.000000022721728
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000008708734
+      value: -0.000000008708732
       objectReference: {fileID: 0}
     - target: {fileID: 5878959581073901981, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1891,6 +1891,10 @@ PrefabInstance:
     - target: {fileID: 5264391382581952556, guid: ff8847e7b649e4e2fb7419a8c8954c8c, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264391382581952556, guid: ff8847e7b649e4e2fb7419a8c8954c8c, type: 3}
+      propertyPath: nextScene
+      value: EndWin
       objectReference: {fileID: 0}
     - target: {fileID: 6931350858331818225, guid: ff8847e7b649e4e2fb7419a8c8954c8c, type: 3}
       propertyPath: m_RootOrder
