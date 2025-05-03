@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerAttack : MonoBehaviour
 {
     public int damage = 1;
-    public float attackRange = 5f;
+    public float attackRange = 3f;
     public LayerMask enemyLayer;
     public Animator animator;
     public GameObject swordArm;
@@ -135,48 +135,11 @@ public class PlayerAttack : MonoBehaviour
         return cameraSnap;
     }
 
-    // IEnumerator SlashAttack()
-    // {
-    //     isAttacking = true;
-
-    //     // Start attack animation by setting the slashing bool to true
-    //     // animator.SetBool("slashing", true);
-    //     animator.Play("slash");
-
-    //     // Wait until the animation begins (OPTIONAL: short delay to simulate wind-up)
-        
-    //     // yield return new WaitForSeconds(0.2f);
-    //     //NOTE i got rid of this because i feel like our attack is pretty fast
-        
-    //     // Wait until the animation is fully complete — adjust to match your animation length
-    //     AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-    //     float attackDuration = stateInfo.length > 0 ? stateInfo.length : 0.7f;
-        
-
-    //     // Now we check for enemies in range
-    //     Collider[] hits = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
-    //     foreach (Collider hit in hits)
-    //     {
-    //         if (hit.CompareTag("enemy"))
-    //         {
-    //             EnemyHealth enemy = hit.GetComponent<EnemyHealth>();
-    //             if (enemy != null)
-    //             {
-    //                 enemy.TakeDamage(damage);
-    //             }
-    //         }
-    //     }
-    //     yield return new WaitForSeconds(attackDuration);
-    //     // End attack animation
-    //     animator.SetBool("slashing", false);
-    //     isAttacking = false;
-    // }
-
     public void slashTemp() {
          animator.Play("slash");
 
         // Now we check for enemies in range
-        Collider[] hits = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
+        Collider[] hits = Physics.OverlapSphere(transform.position + new Vector3(0f, 2.5f, 0f), attackRange, enemyLayer);
         foreach (Collider hit in hits)
         {
             print("collision");
@@ -189,16 +152,13 @@ public class PlayerAttack : MonoBehaviour
                     enemy.TakeDamage(damage);
                 }
             }
-            else if (hit.CompareTag("Player")) {
-                print("hi");
-            }
         }
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0f, 2.5f, 0f), attackRange);
     }
 
     public void shoot() {

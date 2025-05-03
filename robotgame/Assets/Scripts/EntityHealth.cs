@@ -10,11 +10,6 @@ public class EntityHealth : MonoBehaviour
     public Material myMaterial;
     public Color defaultColor, feedbackColor;
 
-    // public virtual void OnDeath()
-    // {
-    //     print("hi");
-    // }
-
 //temp copy pasted methods
     public virtual void OnDeath() {
     // {
@@ -71,7 +66,11 @@ public class EntityHealth : MonoBehaviour
         if (currHealth == 0) {
             alive = false;
             OnDeath();
-
+        }
+        //experimental section 
+        if(GetComponent<DogMove>() != null) {
+            DogMove dm = GetComponent<DogMove>();
+            dm.damage();
         }
     }
 
