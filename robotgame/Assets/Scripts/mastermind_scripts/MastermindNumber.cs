@@ -38,6 +38,13 @@ public class MastermindNumber : MonoBehaviour
         myNum.SetNumColor(badNum);
     }
 
+    public void Reset()
+    {
+        DeactivateAllBut(neutralBG);
+        myNum.SetNumColor(Color.white);
+        myNum.setNA();
+    }
+
     void DeactivateAllBut(GameObject ex)
     {
         neutralBG.SetActive(false);

@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 0}
-  correct_code: 03000000080000000900000005000000
+  correct_code: 0a0000000a0000000a0000000a000000
   tries:
   - {fileID: 3150538191954520618}
   - {fileID: 3496230574890211931}

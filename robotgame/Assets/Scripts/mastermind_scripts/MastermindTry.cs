@@ -57,6 +57,17 @@ public class MastermindTry : MonoBehaviour
         allGood = currGood;
     }
 
+    public void Reset()
+    {
+        for (int i = 0; i < 4; i++) {
+            myNums[i].Reset();
+            myDigits[i] = digits.none;
+            
+        }
+        allGood = false;
+        currGood = true;
+    }
+
     bool AnyGood(digits dig, digits [] code) {
         bool acc = false;
         for (int i = 0; i < 4; i++) {
