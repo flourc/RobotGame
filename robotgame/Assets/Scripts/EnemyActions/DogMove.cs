@@ -9,6 +9,9 @@ public class DogMove : MonoBehaviour
     public float visionRadius;
     public Transform player;
     public Rigidbody rb;
+    public float cooldownTime = 3f;
+    public bool cooldown = false;
+    private float coolDownTimer; 
 
     // Start is called before the first frame update
     void Start()
@@ -38,13 +41,27 @@ public class DogMove : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, target, .01f);
             anim.SetBool("Walking", true);
 
-            if (dist < 3 && !anim.GetCurrentAnimatorStateInfo(0).IsName("bite")) {
-                anim.Play("bite");
+            if (dist < 3 && !anim.GetCurrentAnimatorStateInfo(0).IsName("bite") && !cooldown) {
+                // anim.Play("bite");
+                bite();
+                cooldown = true;
+
+            }
+            if(cooldown && coolDownTimer > 0){
+                coolDownTimer -= Time.deltaTime;
+            }
+            if (cooldown && coolDownTimer == 0){
+                cooldown = false;
             }
         }
         else {
             anim.SetBool("Walking", false);
         }
+    }
+
+    public void bite() {
+        anim.Play("bite");
+        //cooldown = Time.time;
     }
  
     public void damage() {
