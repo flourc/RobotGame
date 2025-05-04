@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class bulletController : MonoBehaviour
 {
-    public int damage;
+    public int damage = 1;
     public GameObject handler;
     private HealthBar playerHP;
 
@@ -18,27 +18,28 @@ public class bulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+  
     }
 
-    private void OnTriggerEnter (Collider collider) 
+    private void OnCollisionEnter (Collision collider) 
     {
 
-        if (gameObject.tag == "weapon") {
+        if (this.gameObject.CompareTag("weapon")) {
             if (collider.gameObject.tag != "Player") {
-                Destroy (gameObject);
                 if (collider.gameObject.GetComponent<EntityHealth>() != null) {
                     collider.gameObject.GetComponent<EntityHealth>().TakeDamage(damage);
                 }
+                print("destroying");
+                Destroy (gameObject);
             }
             
         }
         else {
             if (collider.gameObject.tag != "enemy") {
-                Destroy (gameObject);
                 if (collider.gameObject.GetComponent<EntityHealth>() != null) {
                 collider.gameObject.GetComponent<EntityHealth>().TakeDamage(damage);
-            }
+                }
+                Destroy (gameObject);
             }
         }
         

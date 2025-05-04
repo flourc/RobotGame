@@ -15,14 +15,17 @@ public class CannonMove : MonoBehaviour
 
     public GameObject ball;
     public bool active = false;
-    public int shootState;
+    public bool shootState;
+
+    public Transform endWall;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         moveSpeed = .01f;
-        visionRadius = 15f;
+        visionRadius = 20f;
+        shootState = true;
     }
 
     // Update is called once per frame
@@ -33,13 +36,12 @@ public class CannonMove : MonoBehaviour
                                        transform.position.y, 
                                        player.position.z);
 
-
         float dist = Vector3.Distance(player.position, transform.position);
-        while (dist < visionRadius && dist > 5) {
-
+        
+        if (dist < visionRadius && dist > 5) {
             if (!active) {
                 print("invoking shoot");
-                InvokeRepeating("shoot", 0f, 1f);
+                InvokeRepeating("shoot", 0f, .5f);
                 active = true;
             }
 
@@ -47,26 +49,26 @@ public class CannonMove : MonoBehaviour
             transform.LookAt(target);
             transform.Rotate(new Vector3(0f, 90f, 0f));//TEMP bc i cant import stuff properly
 
-            Vector3 positionChange = target - transform.position;
-
-            rb.AddForce(positionChange * .1f);
+            // Vector3 positionChange = target - transform.position;
+            // rb.AddForce(positionChange * .1f);
+            // transform.Translate(positionChange * .1f);
+            transform.position = Vector3.MoveTowards(transform.position, target, .003f);
 
         }
-    }
-
- 
-    public void damage() {
-        rb.AddForce(-transform.forward * 10f, ForceMode.Impulse);
+        else if (dist < 5) {
+            target = endWall.position;
+            transform.position = Vector3.MoveTowards(transform.position, target, .003f);
+        }
     }
 
     public void shoot() {
-        if (shootState == 0) {
+        if (shootState) {
             shootHelper("left", leftShoot); 
-            shootState++;
+            shootState = false;
         }
-        else if (shootState == 1) {
+        else {
             shootHelper("right", rightShoot);
-            shootState--;
+            shootState = true;
         }
         
     }
@@ -75,15 +77,11 @@ public class CannonMove : MonoBehaviour
         if (direction == "left") {
             anim.Play("left_fire");
         }
-        else if (direction == "right") {
+        else {
             anim.Play("right_fire");
         }
-        // else {
-        //     anim.Play("both_fire");
-        // }
-        
 
-        GameObject cb = Instantiate(ball, leftShoot.position, transform.rotation);
+        GameObject cb = Instantiate(ball, t.position, transform.rotation);
         Vector3 shootDir = transform.forward + new Vector3(-100f, 0f, 0f);
         cb.GetComponent<Rigidbody>().velocity = -t.right * 30;
     }  

@@ -8,6 +8,7 @@ public class DogMove : MonoBehaviour
     public float moveSpeed;
     public float visionRadius;
     public Transform player;
+
     public Rigidbody rb;
     public float cooldownTime = 3f;
     public bool cooldown = false;
