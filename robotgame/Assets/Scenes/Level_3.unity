@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layerUI: {fileID: 126039702}
-  keypadObj: {fileID: 0}
+  keypadObj: {fileID: 2082624052}
   keypadInteractRadius: 8
   player: {fileID: 842642124}
 --- !u!1 &121216934 stripped
