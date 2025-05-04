@@ -25,7 +25,12 @@ public class HealthBar : EntityHealth
 
     public override void OnDeath()
     {
-        gameObject.BroadcastMessage("LoseScreen");
+        GameHandler gameHandler = FindObjectOfType<GameHandler>();
+        if (gameHandler != null)
+        {
+            gameHandler.LoseScreen();
+        }
+        //gameObject.BroadcastMessage("LoseScreen");
     }
 
     public void updateStatsDisplay()

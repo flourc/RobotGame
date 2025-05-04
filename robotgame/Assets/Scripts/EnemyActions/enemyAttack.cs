@@ -34,7 +34,7 @@ public class enemyAttack : MonoBehaviour
     IEnumerator damagePlayer()
     {
         player.GetComponent<EntityHealth>().TakeDamage(attackPower);
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.5f);
     }
 
 }
