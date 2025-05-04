@@ -7,6 +7,7 @@ public class bulletController : MonoBehaviour
     public int damage;
     public GameObject handler;
     private HealthBar playerHP;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +23,22 @@ public class bulletController : MonoBehaviour
 
     private void OnTriggerEnter (Collider collider) 
     {
-        if (collider.gameObject.tag != "Player") {
-            Destroy (gameObject);
 
-            if (collider.gameObject.GetComponent<EntityHealth>() != null) {
-            collider.gameObject.GetComponent<EntityHealth>().TakeDamage(damage);
+        if (gameObject.tag == "weapon") {
+            if (collider.gameObject.tag != "Player") {
+                Destroy (gameObject);
+                if (collider.gameObject.GetComponent<EntityHealth>() != null) {
+                    collider.gameObject.GetComponent<EntityHealth>().TakeDamage(damage);
+                }
+            }
+            
+        }
+        else {
+            if (collider.gameObject.tag != "enemy") {
+                Destroy (gameObject);
+                if (collider.gameObject.GetComponent<EntityHealth>() != null) {
+                collider.gameObject.GetComponent<EntityHealth>().TakeDamage(damage);
+            }
             }
         }
         
