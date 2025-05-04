@@ -67,6 +67,7 @@ public class DroneController : MonoBehaviour
     public void shoot() {
         if (active) {
             GameObject bul = Instantiate(bullet, gun.position, transform.rotation);
+            bul.tag = "weapon_enemy";
             Vector3 shootDir = transform.forward + new Vector3(-100f, 0f, 0f);
             bul.GetComponent<Rigidbody>().velocity = gun.forward * 30;
         }

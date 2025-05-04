@@ -31,7 +31,7 @@ public class EnemyMeleeQuick : MonoBehaviour
     {
         // Check if player is in range of the enemy
         float distance = Vector3.Distance(transform.position, player.transform.position);
-        Debug.Log("Distance to player: " + distance);
+        //Debug.Log("Distance to player: " + distance);
         return distance < 3f; // Adjust the 2f to the desired range
     }
 

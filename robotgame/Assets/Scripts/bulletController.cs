@@ -13,6 +13,7 @@ public class bulletController : MonoBehaviour
     {
         handler = GameObject.FindWithTag("GameController");
         playerHP = handler.GetComponent<HealthBar>();
+        //Debug.Log("Bullet tag at start: " + gameObject.tag);
     }
 
     // Update is called once per frame
@@ -25,6 +26,7 @@ public class bulletController : MonoBehaviour
     {
 
         if (this.gameObject.CompareTag("weapon")) {
+            Debug.Log("player bullet hit!");
             if (collider.gameObject.tag != "Player") {
                 if (collider.gameObject.GetComponent<EntityHealth>() != null) {
                     collider.gameObject.GetComponent<EntityHealth>().TakeDamage(damage);
@@ -34,7 +36,8 @@ public class bulletController : MonoBehaviour
             }
             
         }
-        else {
+        else if (this.gameObject.CompareTag("weapon_enemy")) {
+            Debug.Log("enemy bullet hit!");
             if (collider.gameObject.tag != "enemy") {
                 if (collider.gameObject.GetComponent<EntityHealth>() != null) {
                 collider.gameObject.GetComponent<EntityHealth>().TakeDamage(damage);
