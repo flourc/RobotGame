@@ -35,7 +35,7 @@ public class DroneController : MonoBehaviour
         
         if (distanceFromPlayer < 15f && !hostile && active) {
             hostile = true;
-            InvokeRepeating("shoot", .5f, .7f);
+            InvokeRepeating("shoot", 1f, 2f);
             glow.SetColor("_EmissionColor", Color.red);
             gunBody.Rotate(new Vector3(-10f, 0f, 0f));
         }
