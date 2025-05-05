@@ -52,7 +52,9 @@ public class PlayerMovement2 : MonoBehaviour
     private void Update()
     {
         // ground check
-        //grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, 1f, whatIsGround);
+
+        Debug.DrawRay(transform.position, Vector3.down * 1f, Color.red); 
 
         MyInput();
         SpeedControl();
@@ -201,18 +203,18 @@ public class PlayerMovement2 : MonoBehaviour
         readyToJump = true;
     }
 
-	void OnCollisionEnter(Collision other){
-		if (other.gameObject.layer==LayerMask.NameToLayer("whatIsGround")){
-			grounded = true;
-			//Debug.Log("I am touching floor");
-		}
-	}
+	// void OnCollisionEnter(Collision other){
+	// 	if (other.gameObject.layer==LayerMask.NameToLayer("whatIsGround")){
+	// 		grounded = true;
+	// 		//Debug.Log("I am touching floor");
+	// 	}
+	// }
 
-	void OnCollisionExit(Collision other){
-		if (other.gameObject.layer==LayerMask.NameToLayer("whatIsGround")){
-			grounded = false;
-			//Debug.Log("I am not touching floor floor");
-		}
-	}
+	// void OnCollisionExit(Collision other){
+	// 	if (other.gameObject.layer==LayerMask.NameToLayer("whatIsGround")){
+	// 		grounded = false;
+	// 		//Debug.Log("I am not touching floor floor");
+	// 	}
+	// }
 
 }
