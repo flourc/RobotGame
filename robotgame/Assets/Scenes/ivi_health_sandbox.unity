@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &74310972
 AudioListener:
   m_ObjectHideFlags: 0
@@ -397,6 +397,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7060867379205645787, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
   m_PrefabInstance: {fileID: 1013557203}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &344341103 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 964351145684727068, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+  m_PrefabInstance: {fileID: 1013557203}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &708204995 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 836624167233273680, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+  m_PrefabInstance: {fileID: 1013557203}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1013557203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -437,6 +447,10 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 964351145684727068, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 537bcecd5741bbd4e9e19947cd8cc600, type: 2}
     - target: {fileID: 1355552201147501945, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -455,19 +469,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1546427971948515075, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9439384
+      value: 0.94393843
       objectReference: {fileID: 0}
     - target: {fileID: 1546427971948515075, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.33012176
+      value: -0.33012173
       objectReference: {fileID: 0}
     - target: {fileID: 1546427971948515075, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000024569278
+      value: -0.000000003562281
       objectReference: {fileID: 0}
     - target: {fileID: 1546427971948515075, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000008592567
+      value: -0.0000000012458303
       objectReference: {fileID: 0}
     - target: {fileID: 1920126188504448837, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -577,6 +591,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.000000024305828
       objectReference: {fileID: 0}
+    - target: {fileID: 5755687803299301445, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: runAudio
+      value: 
+      objectReference: {fileID: 708204995}
+    - target: {fileID: 5755687803299301445, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: walkAudio
+      value: 
+      objectReference: {fileID: 344341103}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -591,11 +613,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000035742342
+      value: 0.00000002867777
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000134425475
+      value: 0.00000001078559
       objectReference: {fileID: 0}
     - target: {fileID: 5878959581073901981, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -730,7 +752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999545194065287734, guid: 74e7d1daf72c64b4aa19c4f347feec1b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3879833969830596858, guid: 74e7d1daf72c64b4aa19c4f347feec1b, type: 3}
       propertyPath: active

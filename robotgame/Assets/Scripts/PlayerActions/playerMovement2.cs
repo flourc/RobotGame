@@ -27,6 +27,10 @@ public class PlayerMovement2 : MonoBehaviour
     public LayerMask whatIsGround;
     public bool grounded = true;
 
+    [Header("Audio")]
+    public AudioSource walkAudio;
+    public AudioSource runAudio;  
+
     public Transform orientation;
 
     float horizontalInput;
@@ -58,6 +62,9 @@ public class PlayerMovement2 : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
+
+        // Animation State
+        UpdateAnimationState();
     }
 
     private void FixedUpdate()
@@ -102,6 +109,74 @@ public class PlayerMovement2 : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
     }
 
+    private void UpdateAnimationState()
+    {
+        if (animator != null)
+        {
+            // Check if player is moving
+            bool isMoving = horizontalInput != 0 || verticalInput != 0;
+            
+            // Set speed parameter based on movement
+            float currentSpeed = 0f; // Default to idle
+            
+            if (isMoving && grounded)
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    currentSpeed = 1f; // Running
+                    moveSpeed = 7f * 1.2f;
+                    animator.SetBool("Running", true);
+                    animator.SetBool("Walking", false);
+
+                    if (!runAudio.isPlaying)
+                    {
+                        //Debug.Log("playing audio!");
+                        runAudio.Play();
+                    }
+                    if (walkAudio.isPlaying)
+                    {
+                        walkAudio.Stop();
+                    }
+                    
+                }
+                else
+                {
+                    currentSpeed = 0.5f; // Walking
+                    moveSpeed = 7f;
+                    animator.SetBool("Walking", true);
+                    animator.SetBool("Running", false);
+
+                    if (!walkAudio.isPlaying)
+                    {
+                        //Debug.Log("playing audio!");
+                        walkAudio.Play();
+                    }
+                    if (runAudio.isPlaying)
+                    {
+                        runAudio.Stop();
+                    }
+
+
+                }
+            }
+            else
+            {
+                // Not moving - explicitly reset all movement booleans
+                animator.SetBool("Walking", false);
+                animator.SetBool("Running", false);
+                if (walkAudio.isPlaying) {walkAudio.Stop();}
+                if (runAudio.isPlaying) {runAudio.Stop();}
+
+            }
+            
+            // Set the speed parameter that controls the blend tree
+            // animator.SetFloat("Speed", currentSpeed);
+            //Debug.Log("Speed Parameter: " + currentSpeed); // Debug output
+            
+            // Rest of your code for combat animations...
+        }
+    }
+
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
@@ -130,7 +205,7 @@ public class PlayerMovement2 : MonoBehaviour
 		//if (other.gameObject.layer==LayerMask.NameToLayer("whatIsGround")){
 		if (other.gameObject.tag == "floor"){
 			grounded = true;
-			Debug.Log("I am touching floor");
+			//Debug.Log("I am touching floor");
 		}
 	}
 
@@ -138,7 +213,7 @@ public class PlayerMovement2 : MonoBehaviour
 		//if (other.gameObject.layer==LayerMask.NameToLayer("whatIsGround")){
 		if (other.gameObject.tag == "floor"){
 			grounded = false;
-			Debug.Log("I am not touching floor floor");
+			//Debug.Log("I am not touching floor floor");
 		}
 	}
 
