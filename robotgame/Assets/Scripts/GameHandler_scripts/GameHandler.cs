@@ -9,13 +9,13 @@ public class GameHandler : MonoBehaviour
     public UI_Layer_base [] my_UI_layers;
     public bool UIActive = false;
     public bool hasUI;
-    private string sceneName;
+    private string lastLevel;
 
     void Start()
     {
         Cursor.visible = true;
         
-        sceneName = SceneManager.GetActiveScene().name;
+        lastLevel = SceneManager.GetActiveScene().name;
 
         my_UI_layers = 
                     FindObjectsByType<UI_Layer_base>(FindObjectsSortMode.None);
@@ -74,7 +74,13 @@ public class GameHandler : MonoBehaviour
 
     public void LoseScreen()
     {
+        lastLevel = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("EndLose");
+    }
+
+    public void RestartLastLevel()
+    {
+        SceneManager.LoadScene(lastLevel);
     }
 
     public void Credits() 

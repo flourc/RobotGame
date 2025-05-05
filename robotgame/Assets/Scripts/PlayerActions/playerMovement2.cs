@@ -202,16 +202,14 @@ public class PlayerMovement2 : MonoBehaviour
     }
 
 	void OnCollisionEnter(Collision other){
-		//if (other.gameObject.layer==LayerMask.NameToLayer("whatIsGround")){
-		if (other.gameObject.tag == "floor"){
+		if (other.gameObject.layer==LayerMask.NameToLayer("whatIsGround")){
 			grounded = true;
 			//Debug.Log("I am touching floor");
 		}
 	}
 
 	void OnCollisionExit(Collision other){
-		//if (other.gameObject.layer==LayerMask.NameToLayer("whatIsGround")){
-		if (other.gameObject.tag == "floor"){
+		if (other.gameObject.layer==LayerMask.NameToLayer("whatIsGround")){
 			grounded = false;
 			//Debug.Log("I am not touching floor floor");
 		}
