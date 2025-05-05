@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -168,29 +168,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3215c80aadb479fa68496718cb4c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slasherOnGround: {fileID: 346305798}
-  droneOnGround: {fileID: 0}
-  slasherArm: {fileID: 0}
-  gunArm: {fileID: 0}
-  droneDistance: 0
-  player: {fileID: 0}
-  info: {fileID: 1141004717}
-  distance: 0
-  atkDistance: 0
-  rubble: {fileID: 0}
-  atkInfo: {fileID: 0}
-  holdDistance: 0
-  crate: {fileID: 0}
-  holdInfo: {fileID: 0}
-  eh: {fileID: 0}
-  holdShown: 0
-  keypad: {fileID: 0}
-  creep: {fileID: 0}
-  doorTwo: {fileID: 0}
-  keyInfo: {fileID: 0}
-  keyDistance: 0
   crosshair: {fileID: 0}
   kp: {fileID: 0}
+  droneOnGround: {fileID: 0}
+  drone: {fileID: 0}
+  gunArm: {fileID: 0}
+  swordArm: {fileID: 0}
+  droneDistance: 0
+  player: {fileID: 0}
+  df: {fileID: 0}
+  box: {fileID: 0}
 --- !u!82 &26926566
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2887,6 +2874,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c7b1a747b4641e9937ed588b610168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1028739342 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 836624167233273680, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+  m_PrefabInstance: {fileID: 1995947870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &1060800622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5454,6 +5446,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02482786, y: 0.1980419, z: 0.036294255}
   m_Center: {x: -0.0023344131, y: -0.089020774, z: 0.008610137}
+--- !u!82 &1878252220 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7641565646446308383, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+  m_PrefabInstance: {fileID: 1995947870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1888642623
 GameObject:
   m_ObjectHideFlags: 0
@@ -5896,6 +5893,14 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1246081438365017432, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: runAudio
+      value: 
+      objectReference: {fileID: 1028739342}
+    - target: {fileID: 1246081438365017432, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: walkAudio
+      value: 
+      objectReference: {fileID: 1878252220}
     - target: {fileID: 1546427971948515075, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.94184774
@@ -5906,11 +5911,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1546427971948515075, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016106098
+      value: -0.00000001620579
       objectReference: {fileID: 0}
     - target: {fileID: 1546427971948515075, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000057464633
+      value: -0.0000000057820326
       objectReference: {fileID: 0}
     - target: {fileID: 1920126188504448837, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5964,6 +5969,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.000000013058046
       objectReference: {fileID: 0}
+    - target: {fileID: 5755687803299301445, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: runAudio
+      value: 
+      objectReference: {fileID: 1028739342}
+    - target: {fileID: 5755687803299301445, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: walkAudio
+      value: 
+      objectReference: {fileID: 1878252220}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.93376356
@@ -5974,11 +5987,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016066693
+      value: -0.000000016066693
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000006158
+      value: -0.000000006158
       objectReference: {fileID: 0}
     - target: {fileID: 5878959581073901981, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6045,7 +6058,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4832848582004739443, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+    - {fileID: 6149683825906594580, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
