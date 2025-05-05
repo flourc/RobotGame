@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.5748165, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6347,6 +6347,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3777717121446094669, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: m_Height
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3777717121446094669, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: m_Center.y
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3878003954001658626, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_Name
       value: PLAYER_HANDLER_CAMERAS
@@ -7143,6 +7151,7 @@ GameObject:
   - component: {fileID: 6223726249175639075}
   - component: {fileID: 5881263930417339936}
   - component: {fileID: 12462840252097229}
+  - component: {fileID: 6223726249175639076}
   m_Layer: 11
   m_Name: wall_with_hole
   m_TagString: Untagged
@@ -8355,6 +8364,28 @@ Transform:
   m_Father: {fileID: 543450653710099209}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &6223726249175639076
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882899343009832301}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -462981019419857548, guid: d25c8e60a184c48bf968e019239916c3, type: 3}
 --- !u!33 &6251102127350899607
 MeshFilter:
   m_ObjectHideFlags: 0
