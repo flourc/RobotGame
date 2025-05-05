@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.5748165, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -997,11 +997,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1920126188504448837, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1e-45
+      value: 3e-45
       objectReference: {fileID: 0}
     - target: {fileID: 1920126188504448837, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 2996124178019316087, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_IsActive
@@ -1037,11 +1037,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3393781246661783699, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -4e-45
+      value: 4e-45
       objectReference: {fileID: 0}
     - target: {fileID: 3393781246661783699, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -1e-45
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 3740224875194532709, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_IsActive
@@ -1109,12 +1109,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4772061478108967763, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -4e-45
+      value: 4e-45
       objectReference: {fileID: 0}
     - target: {fileID: 4772061478108967763, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -1e-45
+      value: 1e-45
       objectReference: {fileID: 0}
+    - target: {fileID: 5755687803299301445, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: runAudio
+      value: 
+      objectReference: {fileID: 2078262771}
+    - target: {fileID: 5755687803299301445, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: walkAudio
+      value: 
+      objectReference: {fileID: 1898717001}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1137,11 +1145,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1.3057182e-15
+      value: 2.3531928e-16
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.2156839e-16
+      value: -3.833051e-16
       objectReference: {fileID: 0}
     - target: {fileID: 5878959581073901981, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1226,6 +1234,8 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1677271718553678751, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
     - {fileID: 1096093426541847477, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+    - {fileID: 4832848582004739443, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+    - {fileID: 6149683825906594580, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5858820666906732265, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       insertIndex: 0
@@ -2945,6 +2955,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56e1ddb375cd744e0aafcef5891f855c, type: 3}
+--- !u!82 &1898717001 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7641565646446308383, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+  m_PrefabInstance: {fileID: 561516643}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1899697069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3216,6 +3231,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5192293760262708679, guid: 9d73ae978d4de4ca8bf64bab981a1db8, type: 3}
+--- !u!82 &2078262771 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 836624167233273680, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+  m_PrefabInstance: {fileID: 561516643}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2082624051
 PrefabInstance:
   m_ObjectHideFlags: 0
