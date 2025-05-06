@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1006,11 +1006,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1546427971948515075, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016205789
+      value: 0.000000016205789
       objectReference: {fileID: 0}
     - target: {fileID: 1546427971948515075, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000057820357
+      value: 0.0000000057820357
       objectReference: {fileID: 0}
     - target: {fileID: 1920126188504448837, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1182,7 +1182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000027828325
+      value: -0.000000027828323
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -12581,7 +12581,6 @@ GameObject:
   - component: {fileID: 6027543246638805428}
   - component: {fileID: 143448900}
   - component: {fileID: 8485173161141324345}
-  - component: {fileID: 8485173161141324346}
   - component: {fileID: 8485173161141324347}
   m_Layer: 10
   m_Name: floor_electric
@@ -12611,20 +12610,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02, y: 0.019999998, z: 0.020000206}
   m_Center: {x: 0, y: 5.0931703e-11, z: 0}
---- !u!114 &8485173161141324346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8485173161141324344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49676639ac8144bebdba62640e0b4ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 2010295420}
-  attackPower: 2
 --- !u!114 &8485173161141324347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12637,6 +12622,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e04e4da810642bfa38f95be7c98cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  on: 1
+  player: {fileID: 2010295420}
 --- !u!1 &8513859188711935347
 GameObject:
   m_ObjectHideFlags: 0
@@ -13953,7 +13940,7 @@ GameObject:
   - component: {fileID: 9158743095034590150}
   m_Layer: 10
   m_Name: floor_1
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
