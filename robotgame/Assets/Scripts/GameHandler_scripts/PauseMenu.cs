@@ -8,7 +8,7 @@ public class PauseMenu : UI_Layer_base
 {
     public static bool GameisPaused = false;
     public static bool otherUIActive = false;
-    public GameObject pauseMenuUI;
+    //public GameObject pauseMenuUI;
     public AudioMixer mixer;
     public static float volumeLevel = 1.0f;
     private Slider sliderVolumeCtrl;
@@ -20,7 +20,7 @@ public class PauseMenu : UI_Layer_base
 
     void Awake()
     {
-        pauseMenuUI.SetActive(true); // so slider can be set
+        LayerOn(); // so slider can be set
         SetLevel (volumeLevel);
         tpc = camera_obj.GetComponent<ThirdPersonCam>();
         GameObject sliderTemp = GameObject.FindWithTag("PauseMenuSlider");

@@ -20,7 +20,7 @@ public class GameHandler : MonoBehaviour
         my_UI_layers = 
                     FindObjectsByType<UI_Layer_base>(FindObjectsSortMode.None);
         hasUI = !(my_UI_layers == null);
-
+        DeactivateLayers();
     }
 
     void Update()

@@ -258,6 +258,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 177201523605905841, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 227993578}
+    - target: {fileID: 177201523605905841, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
+      propertyPath: layerUI
+      value: 
+      objectReference: {fileID: 227993577}
     - target: {fileID: 604952804333509645, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
