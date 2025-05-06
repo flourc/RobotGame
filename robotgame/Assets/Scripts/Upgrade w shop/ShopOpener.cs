@@ -79,23 +79,6 @@ public class ShopOpener : MonoBehaviour
         if (shopManager != null)
         {
 
-            if (PlayerStatsCollector.instance != null && player != null){
-                PlayerStatsCollector.instance.SavePlayerPosition(player.position);
-            }
-            PlayerPrefs.SetString("LastLevelName", UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-            PlayerPrefs.Save();
-
-            
-            Vector3 pos = player.position;
-
-            PlayerPrefs.SetFloat("PlayerPosX", pos.x);
-            PlayerPrefs.SetFloat("PlayerPosY", pos.y + 0.5f); // add Y offset to prevent sinking
-            PlayerPrefs.SetFloat("PlayerPosZ", pos.z);
-            PlayerPrefs.Save(); 
-
-            Debug.Log("Saved position to PlayerPrefs: " + pos);
-            
-
 
             shopManager.OpenShop();
         }

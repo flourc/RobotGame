@@ -18,7 +18,7 @@ public class PlayerStatsCollector : MonoBehaviour
     [SerializeField] private int currentDamage;
     [SerializeField] private int currency = 0;
 
-    private float savedPosX, savedPosY, savedPosZ;
+    
 
     [Header("Base Stats")]
     [SerializeField] private float baseMoveSpeed = 7f;
@@ -48,13 +48,6 @@ public class PlayerStatsCollector : MonoBehaviour
         saveFilePath = Path.Combine(Application.persistentDataPath, "playerStats.json");
     }
     
-#if UNITY_EDITOR
-    public static void ResetFromEditor()
-    {
-        PlayerStatsCollector temp = new PlayerStatsCollector(); // Or access existing instance
-        temp.ResetSavedPlayerPosition();
-    }
-#endif
 
     private IEnumerator Start()
     {
@@ -168,9 +161,6 @@ public class PlayerStatsCollector : MonoBehaviour
             currency = currency,
             speedUpgradeLevel = speedUpgradeLevel,
             attackUpgradeLevel = attackUpgradeLevel,
-            positionX = savedPosX,
-            positionY = savedPosY,
-            positionZ = savedPosZ
         };
 
         File.WriteAllText(saveFilePath, JsonUtility.ToJson(data));
@@ -187,9 +177,6 @@ public class PlayerStatsCollector : MonoBehaviour
             currentMoveSpeed = data.moveSpeed;
             currentDamage = data.damage;
             currency = data.currency;
-            savedPosX = data.positionX;
-            savedPosY = data.positionY;
-            savedPosZ = data.positionZ;
             speedUpgradeLevel = data.speedUpgradeLevel;
             attackUpgradeLevel = data.attackUpgradeLevel;
 
@@ -205,20 +192,9 @@ public class PlayerStatsCollector : MonoBehaviour
     private void OnApplicationQuit()
     {
         SaveStats();
-        ResetSavedPlayerPosition();
+
     }
 
-    public void ResetSavedPlayerPosition() => SavePlayerPosition(Vector3.zero);
-
-    public void SavePlayerPosition(Vector3 position)
-    {
-        PlayerPrefs.SetFloat("PlayerPosX", position.x);
-        PlayerPrefs.SetFloat("PlayerPosY", position.y);
-        PlayerPrefs.SetFloat("PlayerPosZ", position.z);
-        PlayerPrefs.Save();
-    }
-
-    public Vector3 GetSavedPosition() => new Vector3(savedPosX, savedPosY, savedPosZ);
 
     [System.Serializable]
     private class PlayerStatsData

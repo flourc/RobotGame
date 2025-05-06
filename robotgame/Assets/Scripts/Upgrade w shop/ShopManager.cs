@@ -40,14 +40,6 @@ public class ShopManager : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            playerPositionBeforeShop = player.transform.position;
-            Debug.Log("Saved player position: " + playerPositionBeforeShop);
-            Vector3 pos = player.transform.position;
-            PlayerPrefs.SetFloat("PlayerPosX", pos.x);
-            PlayerPrefs.SetFloat("PlayerPosY", pos.y);
-            PlayerPrefs.SetFloat("PlayerPosZ", pos.z);
-            PlayerPrefs.Save();
-            Debug.Log($"Saved player position: {pos}");
             // Disable any player controller components that could interfere with UI
             DisablePlayerControls(player);
         }
@@ -107,13 +99,6 @@ public class ShopManager : MonoBehaviour
             if (player != null)
             {
                 // Restore the player's position
-                if (playerPositionBeforeShop != Vector3.zero)
-                {
-                    
-                    player.transform.position = playerPositionBeforeShop;
-                    Debug.Log("Restored player to position: " + playerPositionBeforeShop);
-                    playerPositionBeforeShop = Vector3.zero;
-                }
                 
                 // Re-enable player controls
                 EnablePlayerControls(player);
