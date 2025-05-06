@@ -7,12 +7,9 @@ public class PlayerMovement : MonoBehaviour
     private float baseSpeed;
     public float jumpForce = 5f;
     public float jumpCooldown = 0.25f;
-    // public float gravity = 9.81f;
-     public float gravity = 18f;
-
+    public float gravity = 18f;
     public float fallMultiplier = 9f;
     public float lowJumpMultiplier = 8.5f;
-
 
     [Header("Ground Check")]
     public float playerHeight = 2f;
@@ -23,10 +20,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform orientation;
     public Animator animator;
     public CharacterController characterController;
+    private PlayerStatsCollector statsCollector;
 
     [Header("Audio")]
     public AudioSource walkAudio;
-    public AudioSource runAudio;    
+    public AudioSource runAudio;
 
     // Movement and Input Variables
     float horizontalInput;
@@ -37,179 +35,127 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject gunArm;
     public GameObject swordArm;
-    // public AudioSource audios;
+
+    private float lastBaseSpeed = -1f;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
-        if (PlayerStatsCollector.instance != null){
+        statsCollector = PlayerStatsCollector.instance;
 
-            baseSpeed = PlayerStatsCollector.instance.GetCurrentMoveSpeed();
-            moveSpeed = baseSpeed;
-
+        if (statsCollector != null)
+        {
+            SetBaseSpeed(statsCollector.GetCurrentMoveSpeed());
         }
-        // audios = GetComponent<AudioSource>();
-        // if (animator == null)
-        //     animator = GetComponent<Animator>();
+
+        if (PlayerPositionSaver.hasSavedPosition)
+        {
+            transform.position = PlayerPositionSaver.savedPosition;
+            PlayerPositionSaver.hasSavedPosition = false;
+        }
     }
 
     private void Update()
     {
+        if (statsCollector != null)
+        {
+            float currentSpeed = statsCollector.GetCurrentMoveSpeed();
+            if (Mathf.Abs(currentSpeed - lastBaseSpeed) > 0.01f)
+            {
+                SetBaseSpeed(currentSpeed);
+                
+            }
+        }
 
-        // Ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
-        // Handle Input
         MyInput();
-
-        // Movement
         MovePlayer();
-
-        // Animation State
         UpdateAnimationState();
     }
 
-
     private void MyInput()
     {
-        // Get input axes
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        // Jump Logic
         if (Input.GetKey(KeyCode.Space) && readyToJump && grounded)
         {
             readyToJump = false;
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
-
         }
-
-        // if (animator.GetBool("Walking") == true && !audios.isPlaying) {
-        //     audios.Play();
-        // }
-        // else if (animator.GetBool("Walking") == false && audios.isPlaying){
-        //     audios.Stop();
-        // }
     }
 
-private void UpdateAnimationState()
-{
-    if (animator != null)
+    private void UpdateAnimationState()
     {
-        // Check if player is moving
-        bool isMoving = horizontalInput != 0 || verticalInput != 0;
-        
-        // Set speed parameter based on movement
-        float currentSpeed = 0f; // Default to idle
-        
-        if (isMoving && grounded)
+        if (animator != null)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                currentSpeed = 1f; // Running
-                moveSpeed = baseSpeed * 1.2f;
-                animator.SetBool("Running", true);
-                animator.SetBool("Walking", false);
+            bool isMoving = horizontalInput != 0 || verticalInput != 0;
 
-                if (!runAudio.isPlaying)
+            if (isMoving && grounded)
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    runAudio.Play();
+                    animator.SetBool("Running", true);
+                    animator.SetBool("Walking", false);
+
+                    if (!runAudio.isPlaying) runAudio.Play();
+                    if (walkAudio.isPlaying) walkAudio.Stop();
                 }
-                if (walkAudio.isPlaying)
+                else
                 {
-                    walkAudio.Stop();
+                    animator.SetBool("Walking", true);
+                    animator.SetBool("Running", false);
+
+                    if (!walkAudio.isPlaying) walkAudio.Play();
+                    if (runAudio.isPlaying) runAudio.Stop();
                 }
-                
             }
             else
             {
-                currentSpeed = 0.5f; // Walking
-                moveSpeed = baseSpeed;
-                animator.SetBool("Walking", true);
+                animator.SetBool("Walking", false);
                 animator.SetBool("Running", false);
-
-                if (!walkAudio.isPlaying)
-                {
-                    walkAudio.Play();
-                }
-                if (runAudio.isPlaying)
-                {
-                    runAudio.Stop();
-                }
-
-
+                if (walkAudio.isPlaying) walkAudio.Stop();
+                if (runAudio.isPlaying) runAudio.Stop();
             }
         }
-        else
+
+        if (Input.GetMouseButton(1))
         {
-            // Not moving - explicitly reset all movement booleans
-            animator.SetBool("Walking", false);
-            animator.SetBool("Running", false);
-            if (walkAudio.isPlaying) {walkAudio.Stop();}
-            if (runAudio.isPlaying) {runAudio.Stop();}
-
-        }
-        
-        // Set the speed parameter that controls the blend tree
-        // animator.SetFloat("Speed", currentSpeed);
-        //Debug.Log("Speed Parameter: " + currentSpeed); // Debug output
-        
-        // Rest of your code for combat animations...
-    }
-        
-        // // Combat animations - Change to use SetBool instead of SetTrigger
-        // if (Input.GetMouseButtonDown(0)) // Left-click hold for grab
-        // {
-        //     if (swordArm.activeSelf) {
-        //         animator.Play("slash");
-        //     } 
-        //     else if (gunArm.activeSelf) {
-        //         animator.Play("shoot");
-        //     }
-        // }
-
-        
-
-        if (Input.GetMouseButton(1)) // Right-click hold for slash
-        {
-            // animator.SetBool("grabbing", true);
             animator.Play("grab");
         }
         else
         {
             animator.SetBool("grabbing", false);
         }
-
-        //Debug.Log("Current State: " + animator.GetCurrentAnimatorStateInfo(0).fullPathHash);
-        //Debug.Log("Is Walking: " + animator.GetBool("Walking"));
-        //Debug.Log("Is Running: " + animator.GetBool("Running"));
-
-}
-
+    }
 
     private void MovePlayer()
     {
-        // Calculate move direction
+        moveSpeed = Input.GetKey(KeyCode.LeftShift) ? baseSpeed * 1.2f : baseSpeed;
+
+        if (float.IsNaN(baseSpeed) || float.IsNaN(moveSpeed) || float.IsInfinity(moveSpeed))
+        {
+            Debug.LogError($"Invalid speed detected! baseSpeed: {baseSpeed}, moveSpeed: {moveSpeed}. Resetting to defaults.");
+            baseSpeed = 7f;
+            moveSpeed = 7f;
+        }
+
         Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         moveDirection = inputDirection.normalized * moveSpeed;
 
-        // Apply movement
         characterController.Move(moveDirection * Time.deltaTime);
 
-        // Handle gravity
         if (!grounded)
         {
-            velocity.y -= gravity * Time.deltaTime; //TEMP
-            
+            velocity.y -= gravity * Time.deltaTime;
         }
-        else if (!grounded && velocity.y < 0)
+        else if (velocity.y < 0)
         {
-           //velocity.y = -3f; // Small downward force to keep character grounded
-           velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime; //test
-        } //TEMP
+            velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
 
-        // Apply vertical velocity
         characterController.Move(velocity * Time.deltaTime);
     }
 
@@ -217,9 +163,21 @@ private void UpdateAnimationState()
     {
         if (grounded)
         {
-            // Apply jump velocity
             velocity.y = Mathf.Sqrt(jumpForce * gravity);
         }
+    }
+
+    public void SetBaseSpeed(float newSpeed)
+    {
+        if (float.IsNaN(newSpeed) || float.IsInfinity(newSpeed) || newSpeed <= 0f)
+        {
+            Debug.LogError($"Invalid base speed from stats collector: {newSpeed}. Using fallback.");
+            baseSpeed = 7f;
+            return;
+        }
+
+        baseSpeed = newSpeed;
+        lastBaseSpeed = newSpeed;
     }
 
     private void ResetJump()

@@ -15,10 +15,12 @@ public class PlayerStatsCollector : MonoBehaviour
     [Header("Current Stats")]
     [SerializeField] private float currentMoveSpeed;
     [SerializeField] private int currentDamage;
-    [SerializeField] private int currency = 10;
-    
+    [SerializeField] private int currency = 0;
+
+    private float savedPosX, savedPosY, savedPosZ;
+
     // Base stats for calculating upgrades
-    private float baseMoveSpeed = 5f;
+    private float baseMoveSpeed = 7f;
     private int baseDamage = 1;
     
     // Upgrade increments
@@ -92,21 +94,21 @@ public class PlayerStatsCollector : MonoBehaviour
     private void Update()
     {
         // Update stats every frame to catch any changes
-        UpdateAllStats();
+        // UpdateAllStats();
     }
     
-    private void UpdateAllStats()
-    {
-        if (playerMovement != null)
-        {
-            currentMoveSpeed = playerMovement.moveSpeed;
-        }
+    // private void UpdateAllStats()
+    // {
+    //     if (playerMovement != null)
+    //     {
+    //         currentMoveSpeed = playerMovement.moveSpeed;
+    //     }
         
-        if (playerAttack != null)
-        {
-            currentDamage = playerAttack.damage;
-        }
-    }
+    //     if (playerAttack != null)
+    //     {
+    //         currentDamage = playerAttack.damage;
+    //     }
+    // }
     
     private void UpdateUI()
     {
@@ -247,6 +249,10 @@ public class PlayerStatsCollector : MonoBehaviour
         public int currency;
         public int speedUpgradeLevel;
         public int attackUpgradeLevel;
+
+        public float positionX;
+        public float positionY;
+        public float positionZ;
     }
     
     // Save player stats to a file
@@ -258,7 +264,10 @@ public class PlayerStatsCollector : MonoBehaviour
             damage = currentDamage,
             currency = currency,
             speedUpgradeLevel = speedUpgradeLevel,
-            attackUpgradeLevel = attackUpgradeLevel
+            attackUpgradeLevel = attackUpgradeLevel,
+            positionX = savedPosX,
+            positionY = savedPosY,
+            positionZ = savedPosZ
         };
         
         string json = JsonUtility.ToJson(data);
@@ -279,11 +288,16 @@ public class PlayerStatsCollector : MonoBehaviour
             currentMoveSpeed = data.moveSpeed;
             currentDamage = data.damage;
             currency = data.currency;
+            savedPosX = data.positionX;
+            savedPosY = data.positionY;
+            savedPosZ = data.positionZ;
+            
             if (Currency.instance != null)
             {
                 Currency.instance.playerCurrency = currency;
                 Currency.instance.CurrencyText.text = currency.ToString();
             }
+            
 
             speedUpgradeLevel = data.speedUpgradeLevel;
             attackUpgradeLevel = data.attackUpgradeLevel;
@@ -301,6 +315,20 @@ public class PlayerStatsCollector : MonoBehaviour
         currency = newCurrency;
         SaveStats();
 
+    }
+
+    public void SavePlayerPosition(Vector3 pos)
+    {
+        savedPosX = pos.x;
+        savedPosY = pos.y;
+        savedPosZ = pos.z;
+
+        SaveStats();
+    }
+
+    public Vector3 GetSavedPosition()
+    {
+        return new Vector3(savedPosX, savedPosY, savedPosZ);
     }
     
     // Apply current stats to player components

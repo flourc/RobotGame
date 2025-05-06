@@ -71,11 +71,18 @@ public class ShopOpener : MonoBehaviour
     
     private void OpenShop()
     {
+        
+        
         // Find the shop manager
         ShopManager shopManager = ShopManager.instance;
         
         if (shopManager != null)
         {
+
+            if (PlayerStatsCollector.instance != null && player != null){
+            PlayerStatsCollector.instance.SavePlayerPosition(player.position);
+            }
+            
             shopManager.OpenShop();
         }
         else

@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class ShopManager : MonoBehaviour
 {
-    [SerializeField] private string mainGameSceneName = "GameScene";
+    // [SerializeField] private string mainGameSceneName = "GameScene";
     [SerializeField] private string shopSceneName = "ShopScene";
     
     // Player position tracking
@@ -35,7 +35,7 @@ public class ShopManager : MonoBehaviour
     {
         // Store the current scene name
         currentLevelName = SceneManager.GetActiveScene().name;
-        
+        Debug.Log(currentLevelName);
         // Store the player's position
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -80,13 +80,12 @@ public class ShopManager : MonoBehaviour
     // Called when exiting the shop
     public void CloseShop()
     {
-        // Return to the level the player was in
-        string sceneToLoad = string.IsNullOrEmpty(currentLevelName) ? mainGameSceneName : currentLevelName;
-        
-        // Load the scene
+        // Return to the saved level the player was in
+        string sceneToLoad = string.IsNullOrEmpty(currentLevelName) 
+            ? SceneManager.GetActiveScene().name 
+            : currentLevelName;
+
         SceneManager.LoadScene(sceneToLoad);
-        
-        // Register a callback to restore player position
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     
@@ -94,7 +93,7 @@ public class ShopManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Only process if returning to the gameplay scene
-        if (scene.name == currentLevelName || scene.name == mainGameSceneName)
+        if (scene.name == currentLevelName)
         {
             // Find the player
             GameObject player = GameObject.FindGameObjectWithTag("Player");

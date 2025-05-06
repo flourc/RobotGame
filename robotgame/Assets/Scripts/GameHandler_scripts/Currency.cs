@@ -16,16 +16,16 @@ public class Currency : MonoBehaviour
         instance = this;
 
     }
-    // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
-        if (PlayerStatsCollector.instance != null){
-
-            playerCurrency = PlayerStatsCollector.instance.GetCurrency();
-
+        // Wait until PlayerStatsCollector.instance is available
+        while (PlayerStatsCollector.instance == null)
+        {
+            yield return null;
         }
 
-    
+        Debug.Log("Got the stats");
+        playerCurrency = PlayerStatsCollector.instance.GetCurrency();
         CurrencyText.text = playerCurrency.ToString();
     }
 
