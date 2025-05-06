@@ -109,6 +109,14 @@ public class PlayerStatsCollector : MonoBehaviour
     //         currentDamage = playerAttack.damage;
     //     }
     // }
+
+#if UNITY_EDITOR
+    public static void ResetFromEditor()
+    {
+        PlayerStatsCollector temp = new PlayerStatsCollector(); // Or access existing instance
+        temp.ResetSavedPlayerPosition();
+    }
+#endif
     
     private void UpdateUI()
     {
@@ -129,6 +137,13 @@ public class PlayerStatsCollector : MonoBehaviour
     {
         return currentDamage;
     }
+
+    public void ResetSavedPlayerPosition()
+    {
+        SavePlayerPosition(Vector3.zero); // Or write your own logic to clear the file
+        Debug.Log("Player position reset in JSON.");
+    }
+
     
     public int GetAttackUpgradeLevel()
     {
@@ -317,14 +332,14 @@ public class PlayerStatsCollector : MonoBehaviour
 
     }
 
-    public void SavePlayerPosition(Vector3 pos)
+    public void SavePlayerPosition(Vector3 position)
     {
-        savedPosX = pos.x;
-        savedPosY = pos.y;
-        savedPosZ = pos.z;
-
-        SaveStats();
+        PlayerPrefs.SetFloat("PlayerPosX", position.x);
+        PlayerPrefs.SetFloat("PlayerPosY", position.y);
+        PlayerPrefs.SetFloat("PlayerPosZ", position.z);
+        PlayerPrefs.Save();
     }
+
 
     public Vector3 GetSavedPosition()
     {
@@ -341,6 +356,8 @@ public class PlayerStatsCollector : MonoBehaviour
     // Call this when the game is quitting or the scene is changing
     private void OnApplicationQuit()
     {
+
         SaveStats();
+        ResetSavedPlayerPosition();
     }
 }

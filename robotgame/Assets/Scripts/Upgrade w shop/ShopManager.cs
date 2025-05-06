@@ -87,6 +87,7 @@ public class ShopManager : MonoBehaviour
 
         SceneManager.LoadScene(sceneToLoad);
         SceneManager.sceneLoaded += OnSceneLoaded;
+        playerPositionBeforeShop = Vector3.zero;
     }
     
     // Called after the scene is loaded
@@ -103,8 +104,10 @@ public class ShopManager : MonoBehaviour
                 // Restore the player's position
                 if (playerPositionBeforeShop != Vector3.zero)
                 {
+                    
                     player.transform.position = playerPositionBeforeShop;
                     Debug.Log("Restored player to position: " + playerPositionBeforeShop);
+                    playerPositionBeforeShop = Vector3.zero;
                 }
                 
                 // Re-enable player controls

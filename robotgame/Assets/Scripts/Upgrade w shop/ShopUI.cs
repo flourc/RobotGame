@@ -195,23 +195,22 @@ public class ShopUI : MonoBehaviour
     }
 
 
-    // Exit the shop and return to the game
     public void ExitShop()
     {
-        // Find the shop manager
-        ShopManager shopManager = ShopManager.instance;
+        string lastLevelName = PlayerPrefs.GetString("LastLevelName", "Level_1"); // Default fallback
         
-        if (shopManager != null)
+        if (!string.IsNullOrEmpty(lastLevelName))
         {
-            shopManager.CloseShop();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(lastLevelName);
+            Debug.Log($"Returning to previous level: {lastLevelName}");
         }
         else
         {
-            // Fallback if no shop manager found
-            UnityEngine.SceneManagement.SceneManager.LoadScene("CurrencyDrops");
-            Debug.LogWarning("ShopManager not found. Attempting to load default scene.");
+            Debug.LogWarning("LastLevelName not found in PlayerPrefs. Loading default scene.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Level_1");
         }
     }
+
     
     private System.Collections.IEnumerator ShowNotification()
     {

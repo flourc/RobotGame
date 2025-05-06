@@ -82,6 +82,8 @@ public class ShopOpener : MonoBehaviour
             if (PlayerStatsCollector.instance != null && player != null){
             PlayerStatsCollector.instance.SavePlayerPosition(player.position);
             }
+            PlayerPrefs.SetString("LastLevelName", UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+            PlayerPrefs.Save();
             
             shopManager.OpenShop();
         }
