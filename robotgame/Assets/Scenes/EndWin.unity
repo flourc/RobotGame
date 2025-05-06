@@ -196,6 +196,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4395189006576001120, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
+      propertyPath: CurrencyText
+      value: 
+      objectReference: {fileID: 535572413}
     - target: {fileID: 5801999547537730745, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -221,6 +225,22 @@ PrefabInstance:
       value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 7863341294005495620, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
+      propertyPath: layerUI
+      value: 
+      objectReference: {fileID: 397364625}
+    - target: {fileID: 7863341294005495620, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
+      propertyPath: pickups
+      value: 
+      objectReference: {fileID: 1242688266}
+    - target: {fileID: 7863341294005495620, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1242688264}
+    - target: {fileID: 7863341294005495620, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
+      propertyPath: camera_obj
+      value: 
+      objectReference: {fileID: 1932450277}
+    - target: {fileID: 7863341294005495620, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 397364625}
@@ -240,6 +260,14 @@ PrefabInstance:
       propertyPath: keypadObj
       value: 
       objectReference: {fileID: 1242688264}
+    - target: {fileID: 8841614747322570822, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
+      propertyPath: my_UI_layers.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841614747322570822, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
+      propertyPath: my_UI_layers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1287285719}
     - target: {fileID: 8894700446777336761, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -262,6 +290,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1019095977561573009, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
   m_PrefabInstance: {fileID: 535572411}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &535572413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5474703670155723399, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
+  m_PrefabInstance: {fileID: 535572411}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &759468674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -384,7 +423,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826381131053008272, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitGame
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 6826381131053008272, guid: dbb1f53a6c06d584bab2d1ceef7f9686, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -565,6 +604,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1242688265}
+  - component: {fileID: 1242688266}
+  - component: {fileID: 1242688267}
   m_Layer: 0
   m_Name: dummy
   m_TagString: Untagged
@@ -587,6 +628,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1242688266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242688264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f02e2d889a9e4ca68635daa3970856c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1242688264}
+  holdPos: {fileID: 1242688265}
+  throwForce: 500
+  pickUpRange: 5
+  sphereRadius: 0.2
+  canDrop: 0
+--- !u!114 &1242688267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242688264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b5900960c774e11aa34e72a2e63212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1287285716 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8841614747322570822, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
@@ -596,6 +667,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4676dd7d251934ac3b752b927ad5375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1287285719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8797078691195388592, guid: e6219e3523630421480dc6034a3dd93d, type: 3}
+  m_PrefabInstance: {fileID: 535572411}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d9cb941451249df959a9e242640e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1682679725
