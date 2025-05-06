@@ -45,16 +45,17 @@ public class levelOneHandler : MonoBehaviour
     public deathFloor df;
     public GameObject box;
 
+    public GameObject equipInfo;
+    public GameObject doorInfo;
+    public GameObject door;
+    public float doorDistance;
+
     // public AudioSource audios;
 
     // Start is called before the first frame update
     void Start()
     {
-        // info.SetActive(false);
-        // atkInfo.SetActive(false);
-        // holdInfo.SetActive(false);
-        // keyInfo.SetActive(false);
-        // holdShown = false;
+        equipInfo.SetActive(false);
         crosshair.SetActive(false);
 
         swordArm.SetActive(true);
@@ -66,110 +67,41 @@ public class levelOneHandler : MonoBehaviour
     void Update() {
 
         droneDistance = Vector3.Distance(player.position, droneOnGround.transform.position);
-        
+        doorDistance = Vector3.Distance(player.position, door.transform.position);
+
         if (drone == null) {
             droneOnGround.SetActive(true);
+        }
 
+        if (droneDistance<7 && droneOnGround.activeSelf && !gunArm.activeSelf) {
+            equipInfo.SetActive(true);
+        }
+        else if (droneDistance > 7) {
+            equipInfo.SetActive(false);
         }
 
         if (Input.GetKey(KeyCode.E) && droneDistance < 7 && droneOnGround.activeSelf) {
             gunArm.SetActive(true);
             swordArm.SetActive(false);
+            equipInfo.SetActive(false);
         }
 
         if (box == null) {
             //Debug.Log("FLOOR SHOULD BE OFF");
             df.turnOff();
         }
+
+
+        if (doorDistance < 7 && !doorInfo.activeSelf) {
+            doorInfo.SetActive(true);
+        }
+        else if (doorDistance > 7 && doorInfo.activeSelf) {
+            doorInfo.SetActive(false);
+        }
+
+
         
     }
-
-
-
-
-        // if (!eh.returnAlive()) {
-        //     droneOnGround.SetActive(true);
-        // } 
-
-        // distance = Vector3.Distance(player.position, slasherOnGround.transform.position);
-        // if (distance < 7 && !slasherArm.activeSelf && !info.activeSelf) {
-        //     info.SetActive(true);
-        // }
-        // else if (distance >= 7 && info.activeSelf){
-        //     info.SetActive(false);
-        // }
-
-        // if (Input.GetKey(KeyCode.E) && distance < 7 && slasherOnGround.activeSelf) {
-        //     slasherOnGround.SetActive(false);
-        //     gunArm.SetActive(false);
-        //     slasherArm.SetActive(true);
-        //     info.SetActive(false);
-        //     // audios.Play();
-        // }
-
-    //     droneDistance = Vector3.Distance(player.position, droneOnGround.transform.position);
-    //     if (droneDistance < 7 && !gunArm.activeSelf && !info.activeSelf && droneOnGround.activeSelf) {
-    //         info.SetActive(true);
-    //     }
-    //     else if (distance >= 7 && droneDistance >= 7 && info.activeSelf){
-    //         info.SetActive(false);
-    //     }
-
-    //     if (Input.GetKey(KeyCode.E) && droneDistance < 7 && droneOnGround.activeSelf) {
-    //         gunArm.SetActive(true);
-    //         crosshair.SetActive(true);
-    //         info.SetActive(false);
-    //         slasherArm.SetActive(false);
-    //     }
-    // //rubble info
-
-    //     if (rubble != null) {
-    //         atkDistance = Vector3.Distance(player.position, rubble.transform.position);
-    //         if (atkDistance < 4 && slasherArm.activeSelf && !atkInfo.activeSelf && rubble.activeSelf) {
-    //             atkInfo.SetActive(true);
-    //         }
-    //         else if ((atkDistance >= 4 && atkInfo.activeSelf) || !rubble.activeSelf){
-    //             atkInfo.SetActive(false);
-    //         }
-    //     }
-
-    // //crate info
-
-    //     if (crate != null) {
-    //         holdDistance = Vector3.Distance(player.position, crate.transform.position);
-    //         if (holdDistance < 15 && !holdInfo.activeSelf && !holdShown) {
-    //             holdInfo.SetActive(true);
-    //             StartCoroutine(waitForSeconds(3f));
-    //         }
-    //     }
-
-    // //misc
-
-    //     // if (creep == null) {
-    //     //     doorTwo.Translate(5f, 0f, 0f);
-    //     // }
-
-    // //keypad info
-
-    //     keyDistance = Vector3.Distance(player.position, keypad.transform.position);
-    //     if (keyDistance < 8 && !keyInfo.activeSelf && !kp.returnLayerOn()) {
-    //         keyInfo.SetActive(true);
-    //     }
-    //     else if ((keyDistance > 8 && keyInfo.activeSelf) || kp.returnLayerOn()) {
-    //         keyInfo.SetActive(false);
-    //     }
-        
-    // }
-
-    //     IEnumerator waitForSeconds(float duration)
-    //     {
-    //         yield return new WaitForSeconds(duration);
-    //         if (holdInfo.activeSelf) {
-    //             holdInfo.SetActive(false);
-    //             holdShown = true;
-    //         }
-    //     }
-    
 
     
 }
