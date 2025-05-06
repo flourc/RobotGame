@@ -19,6 +19,7 @@ public class deathFloor : MonoBehaviour
     }
 
     public void turnOff() {
+        Debug.Log("turning off");
         myRenderer.material.color = Color.black;
         myRenderer.material.DisableKeyword("_EMISSION");
         enemyAttack ea = GetComponent<enemyAttack>();
