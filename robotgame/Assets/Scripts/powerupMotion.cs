@@ -21,7 +21,7 @@ public class powerupMotion : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        player.jumpForce += 5f;
+        player.jumpForce += 6f;
         Destroy(gameObject);
     }
 }
