@@ -176,6 +176,21 @@ public class PlayerMovement2 : MonoBehaviour
             //Debug.Log("Speed Parameter: " + currentSpeed); // Debug output
             
             // Rest of your code for combat animations...
+            print(rb.velocity.y);
+            //[JUMP STUFF]
+ 
+            if (!grounded && rb.velocity.y > 0) {
+                print("jumping");
+                animator.SetBool("jumping", true);
+            }
+            else if (!grounded && rb.velocity.y <= 0) {
+                animator.SetBool("landing", true);
+            }
+
+            if (grounded || rb.velocity.y == 0) {
+                animator.SetBool("landing", false);
+                animator.SetBool("jumping", false);
+            }
         }
     }
 
