@@ -9,7 +9,7 @@ public class GameHandler : MonoBehaviour
     public UI_Layer_base [] my_UI_layers;
     public bool UIActive = false;
     public bool hasUI;
-    private string lastLevel;
+    private static string lastLevel;
 
     void Start()
     {
