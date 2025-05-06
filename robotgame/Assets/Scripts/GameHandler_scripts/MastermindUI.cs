@@ -16,6 +16,9 @@ public class MastermindUI : UI_Layer_base
     // Update is called once per frame
     void Update()
     {
+        if (PauseMenu.GameisPaused || PauseMenu.otherUIActive)
+            return;
+
         if (playerNearby() && Input.GetKeyDown(KeyCode.E)) {
             LayerOn();
         }

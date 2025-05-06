@@ -23,6 +23,7 @@ public abstract class UI_Layer_base : MonoBehaviour
 
     public void LayerOn()
     {
+        Debug.Log("LayerOn called. layerUI is: " + (layerUI != null ? layerUI.name : "NULL"));
         SendMessageUpwards("LayerActive");
         layerActive = true;
         layerUI.SetActive(true);

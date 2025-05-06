@@ -8,7 +8,7 @@ public class ThirdPersonCam : MonoBehaviour
     public Transform orientation;
     public Transform player;
     public Transform playerObj;
-    public CharacterController characterController; // Changed from Rigidbody to CharacterController
+    //public CharacterController characterController; // Changed from Rigidbody to CharacterController
     public float rotationSpeed;
     public GameObject thirdPersonCam;
     
@@ -22,14 +22,14 @@ public class ThirdPersonCam : MonoBehaviour
     private void Start()
     {
         // If the character controller wasn't set in the inspector, try to find it
-        if (characterController == null)
-        {
-            characterController = player.GetComponent<CharacterController>();
-            if (characterController == null)
-            {
-                Debug.LogError("No CharacterController found on the player. Please assign it in the inspector.");
-            }
-        }
+        // if (characterController == null)
+        // {
+        //     characterController = player.GetComponent<CharacterController>();
+        //     if (characterController == null)
+        //     {
+        //         Debug.LogError("No CharacterController found on the player. Please assign it in the inspector.");
+        //     }
+        // }
         
         // Lock cursor at start
         LockCursor();

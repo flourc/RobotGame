@@ -62,6 +62,7 @@ public class PauseMenu : UI_Layer_base
 
     public void Pause()
     {
+        //Debug.Log("Trying to pause");
         if (!GameisPaused)
         {
             pickups.SetLock(false);
@@ -72,7 +73,6 @@ public class PauseMenu : UI_Layer_base
         }
         else 
         { 
-
             Resume ();
         }
         // NOTE: This added conditional is for a pause button
