@@ -7,6 +7,8 @@ public class Mastermind : MonoBehaviour
 
     public GameHandler handler;
 
+    public GameObject myDoor;
+
     public const int NUM_TRIES = 6;
     private const int NUM_DIGITS = 4;
     public enum digits 
@@ -43,8 +45,8 @@ public class Mastermind : MonoBehaviour
         ValidateLatest();
         tryNum++;
         if (got_it) {
-            // do something here
-            // yay they got the code!!
+            myDoor.SetActive(false);
+            handler.BroadcastMessage("DeactivateLayers");
         } else if (tryNum >= NUM_TRIES) {
             Reset();
         } 
