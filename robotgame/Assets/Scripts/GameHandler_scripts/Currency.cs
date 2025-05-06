@@ -7,7 +7,7 @@ public class Currency : MonoBehaviour
 {
     public static Currency instance;
     public TMP_Text CurrencyText;
-    private int playerCurrency = 0;
+    public int playerCurrency = 0;
 
 
     void Awake()
@@ -19,12 +19,26 @@ public class Currency : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerStatsCollector.instance != null){
+
+            playerCurrency = PlayerStatsCollector.instance.GetCurrency();
+
+        }
+
+    
         CurrencyText.text = playerCurrency.ToString();
     }
 
     public void AddCurrency(int currency){
+
         playerCurrency += currency;
         CurrencyText.text = playerCurrency.ToString();
+
+        if (PlayerStatsCollector.instance != null){
+
+            PlayerStatsCollector.instance.SetCurrency(playerCurrency);
+
+        }
 
     }
 

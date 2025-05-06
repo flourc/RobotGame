@@ -1,18 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private Button upgradeButton;
+    
+    private PlayerStatsCollector playerStats;
+    
     void Start()
     {
+        // Get reference to the PlayerStatsCollector
+        playerStats = PlayerStatsCollector.instance;
         
+        if (playerStats == null)
+        {
+            Debug.LogError("PlayerStatsCollector not found! Make sure it's in the scene.");
+            enabled = false;
+            return;
+        }
+        
+        // Set up button click listener
+        if (upgradeButton != null)
+        {
+            upgradeButton.onClick.AddListener(AttemptUpgrade);
+        }
+        else
+        {
+            Debug.LogWarning("Upgrade button reference not set!");
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void AttemptUpgrade()
     {
+        if (playerStats == null) return;
         
+        // Check if player has enough currency
+        if (playerStats.TryPurchaseUpgrade())
+        {
+            // Successful purchase, upgrade attack
+            playerStats.UpgradeAttack(1);
+            Debug.Log("Attack upgraded! New damage: " + playerStats.GetCurrentDamage());
+        }
+        else
+        {
+            // Not enough currency
+            Debug.Log("Not enough currency to upgrade attack!");
+        }
     }
 }
