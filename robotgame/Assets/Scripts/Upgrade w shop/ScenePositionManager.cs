@@ -22,7 +22,7 @@ public class ScenePositionManager : MonoBehaviour
         {
             PlayerStatsCollector stats = PlayerStatsCollector.instance;
 
-            if (stats != null && stats.playerMovement != null)
+            if (stats != null && stats.playerMovement2 != null)
             {
                 // Optional: Delay 1 frame to ensure player exists in the scene
                 StartCoroutine(DelayedSetPosition(stats));
@@ -35,7 +35,7 @@ public class ScenePositionManager : MonoBehaviour
         yield return null; // wait one frame
 
         Vector3 savedPos = stats.GetSavedPosition();
-        stats.playerMovement.transform.position = savedPos;
+        stats.playerMovement2.transform.position = savedPos;
 
         Debug.Log("Player position restored to: " + savedPos);
     }
