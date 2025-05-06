@@ -78,6 +78,7 @@ public class levelOneHandler : MonoBehaviour
         }
 
         if (box == null) {
+            //Debug.Log("FLOOR SHOULD BE OFF");
             df.turnOff();
         }
         

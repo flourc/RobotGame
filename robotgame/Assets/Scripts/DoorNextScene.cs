@@ -14,6 +14,8 @@ public class DoorNextScene : MonoBehaviour
     public Material activeMaterial;
     public Material passiveMaterial;
     private Renderer myRenderer;
+    private List<Material> myMaterials;
+    public int materialIdxSwap;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +23,7 @@ public class DoorNextScene : MonoBehaviour
         myRenderer = GetComponentInChildren<MeshRenderer>();
         playerLoc = GameObject.FindWithTag("Player").GetComponent<Transform>();
         inRadius = false;
-        myRenderer.material = passiveMaterial;
+        myMaterials = new List<Material>(myRenderer.materials);
         interactRadius = 5;
     }
 
@@ -31,9 +33,11 @@ public class DoorNextScene : MonoBehaviour
         float dist = Vector3.Distance(playerLoc.position, transform.position);
         inRadius = dist <= interactRadius;
         if (inRadius && !locked) {
-            myRenderer.material = activeMaterial;
+            myMaterials[materialIdxSwap] = activeMaterial;
+            myRenderer.SetMaterials(myMaterials);
         } else {
-            myRenderer.material = passiveMaterial;
+            myMaterials[materialIdxSwap] = passiveMaterial;
+            myRenderer.SetMaterials(myMaterials);
         }
     }
 

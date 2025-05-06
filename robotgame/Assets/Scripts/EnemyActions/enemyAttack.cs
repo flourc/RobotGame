@@ -18,23 +18,22 @@ public class enemyAttack : MonoBehaviour
         
     }
 
-     private void OnCollisionEnter (Collision collider) 
+    private void OnCollisionEnter (Collision collider) 
     {
         if (collider.gameObject.tag == "Player") {
-            StartCoroutine("damagePlayer");
+           InvokeRepeating("damagePlayer", 0f, 1f);
 
         }
     }
     private void OnCollisionExit (Collision collider) {
         if (collider.gameObject.tag == "Player") {
-            StopCoroutine("damagePlayer");
+            CancelInvoke("damagePlayer");
         }
     }
 
-    IEnumerator damagePlayer()
+    public void damagePlayer()
     {
         player.GetComponent<EntityHealth>().TakeDamage(attackPower);
-        yield return new WaitForSeconds(0.5f);
     }
 
 }

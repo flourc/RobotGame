@@ -8,7 +8,7 @@ public class bulletController : MonoBehaviour
     public GameObject handler;
     private HealthBar playerHP;
     private Vector3 startPosition;
-    public float maxDistance = 30f;
+    public float maxDistance = 80f;
 
     // Start is called before the first frame update
     void Start()
