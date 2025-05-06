@@ -87,9 +87,20 @@ public class PlayerMovement2 : MonoBehaviour
         if (statsCollector != null)
         {
             float currentSpeed = statsCollector.GetCurrentMoveSpeed();
+            Debug.Log($"Stats collector returned speed: {currentSpeed}, lastBaseSpeed: {lastBaseSpeed}");
+            
             if (Mathf.Abs(currentSpeed - lastBaseSpeed) > 0.01f)
             {
                 SetBaseSpeed(currentSpeed);
+            }
+        }
+        else
+        {
+            // If we somehow lost the reference to the stats collector, try to find it again
+            statsCollector = PlayerStatsCollector.instance;
+            if (statsCollector != null)
+            {
+                Debug.Log("Reconnected to PlayerStatsCollector");
             }
         }
 

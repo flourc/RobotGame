@@ -14,14 +14,12 @@ public class PlayerStatsCollector : MonoBehaviour
     public ShopUI shopUI;
 
     [Header("Current Stats")]
-    [SerializeField] private float currentMoveSpeed;
+    [SerializeField] private float currentMoveSpeed = 10f; // Initialize to a default value
     [SerializeField] private int currentDamage;
     [SerializeField] private int currency = 0;
 
-    
-
     [Header("Base Stats")]
-    [SerializeField] private float baseMoveSpeed = 7f;
+    [SerializeField] private float baseMoveSpeed = 10f;
     [SerializeField] private int baseDamage = 1;
 
     [Header("Upgrades")]
@@ -31,6 +29,7 @@ public class PlayerStatsCollector : MonoBehaviour
     [SerializeField] private int upgradeCost = 10;
 
     private string saveFilePath;
+    private bool hasInitialized = false;
 
     private void Awake()
     {
@@ -46,11 +45,17 @@ public class PlayerStatsCollector : MonoBehaviour
         }
 
         saveFilePath = Path.Combine(Application.persistentDataPath, "playerStats.json");
+        
+        // Initialize currentMoveSpeed to match baseMoveSpeed
+        currentMoveSpeed = baseMoveSpeed;
+        
+        Debug.Log($"[PlayerStatsCollector] Awake - Initial currentMoveSpeed: {currentMoveSpeed}");
     }
     
-
     private IEnumerator Start()
     {
+        Debug.Log($"[PlayerStatsCollector] Start coroutine beginning");
+        
         yield return new WaitUntil(() => Currency.instance != null);
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -65,18 +70,35 @@ public class PlayerStatsCollector : MonoBehaviour
         if (shopUI == null)
             shopUI = FindObjectOfType<ShopUI>();
 
-        LoadStats();
-
-        baseMoveSpeed = playerMovement2 != null ? playerMovement2.baseSpeed : baseMoveSpeed;
-        baseDamage = playerAttack != null ? playerAttack.damage : baseDamage;
+        bool hadSave = LoadStats();
+        
+        // Only get base stats from player components if no save was found
+        if (!hadSave)
+        {
+            // Only use player values as fallback, don't overwrite loaded values
+            Debug.Log($"[PlayerStatsCollector] Using fallback values from player components");
+            if (playerMovement2 != null && playerMovement2.baseSpeed > 0)
+                baseMoveSpeed = playerMovement2.baseSpeed;
+                
+            if (playerAttack != null && playerAttack.damage > 0)
+                baseDamage = playerAttack.damage;
+        }
 
         ApplyStats();
         UpdateUI();
+        
+        hasInitialized = true;
+        Debug.Log($"[PlayerStatsCollector] Initialization complete - currentMoveSpeed: {currentMoveSpeed}");
     }
 
     private void UpdateUI() => shopUI?.UpdateUI();
 
-    public float GetCurrentMoveSpeed() => currentMoveSpeed;
+    public float GetCurrentMoveSpeed() 
+    {
+        Debug.Log($"[PlayerStatsCollector] GetCurrentMoveSpeed called, returning: {currentMoveSpeed}");
+        return currentMoveSpeed;
+    }
+    
     public int GetCurrentDamage() => currentDamage;
     public int GetAttackUpgradeLevel() => attackUpgradeLevel;
     public int GetSpeedUpgradeLevel() => speedUpgradeLevel;
@@ -148,7 +170,10 @@ public class PlayerStatsCollector : MonoBehaviour
 
     private void ApplyStats()
     {
-        SetMoveSpeed(baseMoveSpeed + speedUpgradeLevel * speedBonusPerLevel);
+        float calculatedSpeed = baseMoveSpeed + speedUpgradeLevel * speedBonusPerLevel;
+        Debug.Log($"[PlayerStatsCollector] ApplyStats - baseMoveSpeed: {baseMoveSpeed}, bonus: {speedUpgradeLevel * speedBonusPerLevel}, total: {calculatedSpeed}");
+        
+        SetMoveSpeed(calculatedSpeed);
         SetDamage(baseDamage + attackUpgradeLevel);
     }
 
@@ -167,7 +192,7 @@ public class PlayerStatsCollector : MonoBehaviour
         Debug.Log("[PlayerStatsCollector] Stats saved.");
     }
 
-    public void LoadStats()
+    public bool LoadStats()
     {
         if (File.Exists(saveFilePath))
         {
@@ -181,26 +206,26 @@ public class PlayerStatsCollector : MonoBehaviour
             attackUpgradeLevel = data.attackUpgradeLevel;
 
             Currency.instance?.SetCurrency(currency);
-            Debug.Log("[PlayerStatsCollector] Stats loaded.");
+            Debug.Log($"[PlayerStatsCollector] Stats loaded. moveSpeed: {currentMoveSpeed}");
+            return true;
         }
         else
         {
             Debug.Log("[PlayerStatsCollector] No saved stats found. Using defaults.");
+            return false;
         }
     }
 
     private void OnApplicationQuit()
     {
         SaveStats();
-
     }
-
 
     [System.Serializable]
     private class PlayerStatsData
     {
-        public float moveSpeed;
-        public int damage;
+        public float moveSpeed = 10f; // Default value
+        public int damage = 1;        // Default value
         public int currency;
         public int speedUpgradeLevel;
         public int attackUpgradeLevel;

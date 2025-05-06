@@ -20,7 +20,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI speedLevelText;
     
     [Header("Shop Navigation")]
-    [SerializeField] private KeyCode exitShopKey = KeyCode.Escape;
+    [SerializeField] private KeyCode exitShopKey = KeyCode.Return;
     [SerializeField] private TextMeshProUGUI exitPromptText;
     [SerializeField] private string exitPrompt = "Press ESC to return to game";
     
@@ -197,18 +197,7 @@ public class ShopUI : MonoBehaviour
 
     public void ExitShop()
     {
-        string lastLevelName = PlayerPrefs.GetString("LastLevelName", "Level_1"); // Default fallback
-        
-        if (!string.IsNullOrEmpty(lastLevelName))
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(lastLevelName);
-            Debug.Log($"Returning to previous level: {lastLevelName}");
-        }
-        else
-        {
-            Debug.LogWarning("LastLevelName not found in PlayerPrefs. Loading default scene.");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Level_1");
-        }
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level_2");
     }
 
     
