@@ -1,17 +1,18 @@
 using UnityEngine;
 using System.IO;
+using System.Collections;
 
 public class PlayerStatsCollector : MonoBehaviour
 {
     public static PlayerStatsCollector instance;
 
     [Header("References")]
-    public PlayerMovement playerMovement;
+    public PlayerMovement2 playerMovement2;
     public PlayerAttack playerAttack;
-    
+
     [Header("Shop UI Reference")]
     public ShopUI shopUI;
-    
+
     [Header("Current Stats")]
     [SerializeField] private float currentMoveSpeed;
     [SerializeField] private int currentDamage;
@@ -19,21 +20,16 @@ public class PlayerStatsCollector : MonoBehaviour
 
     private float savedPosX, savedPosY, savedPosZ;
 
-    // Base stats for calculating upgrades
-    private float baseMoveSpeed = 7f;
-    private int baseDamage = 1;
-    
-    // Upgrade increments
+    [Header("Base Stats")]
+    [SerializeField] private float baseMoveSpeed = 7f;
+    [SerializeField] private int baseDamage = 1;
+
+    [Header("Upgrades")]
     [SerializeField] private int speedUpgradeLevel = 0;
     [SerializeField] private int attackUpgradeLevel = 0;
-    
-    // Speed bonus per upgrade point (can be adjusted)
     [SerializeField] private float speedBonusPerLevel = 0.5f;
-    
-    // Cost per upgrade
     [SerializeField] private int upgradeCost = 10;
 
-    // Save data path
     private string saveFilePath;
 
     private void Awake()
@@ -46,70 +42,12 @@ public class PlayerStatsCollector : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
-        
-        // Set save file path
+
         saveFilePath = Path.Combine(Application.persistentDataPath, "playerStats.json");
     }
-
-    private void Start()
-    {
-        // If references aren't set in the inspector, try to find them
-        if (playerMovement == null)
-        {
-            playerMovement = FindObjectOfType<PlayerMovement>();
-        }
-        
-        if (playerAttack == null)
-        {
-            playerAttack = FindObjectOfType<PlayerAttack>();
-        }
-        
-        if (shopUI == null)
-        {
-            shopUI = FindObjectOfType<ShopUI>();
-        }
-        
-        // Load saved stats if available, otherwise use defaults
-        LoadStats();
-        
-        // Store initial base values if not loaded from save
-        if (playerMovement != null)
-        {
-            baseMoveSpeed = playerMovement.moveSpeed;
-        }
-        
-        if (playerAttack != null)
-        {
-            baseDamage = playerAttack.damage;
-        }
-        
-        // Apply current stats to player
-        ApplyStats();
-        
-        // Initialize UI
-        UpdateUI();
-    }
-
-    private void Update()
-    {
-        // Update stats every frame to catch any changes
-        // UpdateAllStats();
-    }
     
-    // private void UpdateAllStats()
-    // {
-    //     if (playerMovement != null)
-    //     {
-    //         currentMoveSpeed = playerMovement.moveSpeed;
-    //     }
-        
-    //     if (playerAttack != null)
-    //     {
-    //         currentDamage = playerAttack.damage;
-    //     }
-    // }
-
 #if UNITY_EDITOR
     public static void ResetFromEditor()
     {
@@ -117,160 +55,110 @@ public class PlayerStatsCollector : MonoBehaviour
         temp.ResetSavedPlayerPosition();
     }
 #endif
-    
-    private void UpdateUI()
+
+    private IEnumerator Start()
     {
-        // Update the single shop UI if it exists
-        if (shopUI != null)
+        yield return new WaitUntil(() => Currency.instance != null);
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            shopUI.UpdateUI();
+            if (playerMovement2 == null)
+                playerMovement2 = player.GetComponent<PlayerMovement2>();
+            if (playerAttack == null)
+                playerAttack = player.GetComponent<PlayerAttack>();
         }
-    }
-    
-    // Getter methods for other scripts to access the stats
-    public float GetCurrentMoveSpeed()
-    {
-        return currentMoveSpeed;
-    }
-    
-    public int GetCurrentDamage()
-    {
-        return currentDamage;
+
+        if (shopUI == null)
+            shopUI = FindObjectOfType<ShopUI>();
+
+        LoadStats();
+
+        baseMoveSpeed = playerMovement2 != null ? playerMovement2.baseSpeed : baseMoveSpeed;
+        baseDamage = playerAttack != null ? playerAttack.damage : baseDamage;
+
+        ApplyStats();
+        UpdateUI();
     }
 
-    public void ResetSavedPlayerPosition()
+    private void UpdateUI() => shopUI?.UpdateUI();
+
+    public float GetCurrentMoveSpeed() => currentMoveSpeed;
+    public int GetCurrentDamage() => currentDamage;
+    public int GetAttackUpgradeLevel() => attackUpgradeLevel;
+    public int GetSpeedUpgradeLevel() => speedUpgradeLevel;
+    public int GetCurrency() => currency;
+    public int GetUpgradeCost() => upgradeCost;
+
+    public void SetCurrency(int newCurrency)
     {
-        SavePlayerPosition(Vector3.zero); // Or write your own logic to clear the file
-        Debug.Log("Player position reset in JSON.");
+        currency = newCurrency;
+        SaveStats();
     }
 
-    
-    public int GetAttackUpgradeLevel()
-    {
-        return attackUpgradeLevel;
-    }
-    
-    public int GetSpeedUpgradeLevel()
-    {
-        return speedUpgradeLevel;
-    }
-    
-    public int GetCurrency()
-    {
-        return currency;
-    }
-    
-    public int GetUpgradeCost()
-    {
-        return upgradeCost;
-    }
-    
-    // Methods to handle upgrades
     public void UpgradeSpeed(int points)
     {
         speedUpgradeLevel += points;
-        
-        // Apply the speed upgrade to the player
-        float newSpeed = baseMoveSpeed + speedUpgradeLevel;
-        SetMoveSpeed(newSpeed);
-        
-        // Update the UI
-        if (shopUI != null)
-        {
-            shopUI.UpdateUI();
-        }
-        
-        // Save stats after upgrade
+        ApplyStats();
+        shopUI?.UpdateUI();
         SaveStats();
     }
-    
+
     public void UpgradeAttack(int points)
     {
         attackUpgradeLevel += points;
-        
-        // Apply the attack upgrade to the player
-        SetDamage(baseDamage + attackUpgradeLevel);
-        
-        // Update the UI
-        if (shopUI != null)
-        {
-            shopUI.UpdateUI();
-        }
-        
-        // Save stats after upgrade
+        ApplyStats();
+        shopUI?.UpdateUI();
         SaveStats();
     }
-    
-    // Setter methods if you want to modify these stats from elsewhere
+
     public void SetMoveSpeed(float newSpeed)
     {
-        if (playerMovement != null)
+        currentMoveSpeed = Mathf.Clamp(newSpeed, 1f, 20f);
+        Debug.Log($"[PlayerStatsCollector] Setting move speed to: {currentMoveSpeed}");
+
+        if (playerMovement2 != null)
         {
-            playerMovement.moveSpeed = newSpeed;
-            currentMoveSpeed = newSpeed;
+            playerMovement2.SetBaseSpeed(currentMoveSpeed);
         }
     }
-    
+
     public void SetDamage(int newDamage)
     {
+        currentDamage = newDamage;
         if (playerAttack != null)
         {
-            playerAttack.damage = newDamage;
-            currentDamage = newDamage;
+            playerAttack.damage = currentDamage;
         }
     }
-    
-    // Currency methods
+
     public void AddCurrency(int amount)
     {
         currency += amount;
-        if (Currency.instance != null)
-        {
-            Currency.instance.playerCurrency = currency;
-            Currency.instance.CurrencyText.text = currency.ToString();
-        }
+        Currency.instance?.SetCurrency(currency);
         SaveStats();
     }
-    
+
     public bool SpendCurrency(int amount)
     {
         if (currency >= amount)
         {
             currency -= amount;
-            if (Currency.instance != null)
-            {
-                Currency.instance.playerCurrency = currency;
-                Currency.instance.CurrencyText.text = currency.ToString();
-            }
-
+            Currency.instance?.SetCurrency(currency);
             SaveStats();
             return true;
         }
         return false;
     }
-    
-    // Try to purchase an upgrade
-    public bool TryPurchaseUpgrade()
-    {
-        return SpendCurrency(upgradeCost);
-    }
-    
-    // Serializable class for saving player stats
-    [System.Serializable]
-    private class PlayerStatsData
-    {
-        public float moveSpeed;
-        public int damage;
-        public int currency;
-        public int speedUpgradeLevel;
-        public int attackUpgradeLevel;
 
-        public float positionX;
-        public float positionY;
-        public float positionZ;
+    public bool TryPurchaseUpgrade() => SpendCurrency(upgradeCost);
+
+    private void ApplyStats()
+    {
+        SetMoveSpeed(baseMoveSpeed + speedUpgradeLevel * speedBonusPerLevel);
+        SetDamage(baseDamage + attackUpgradeLevel);
     }
-    
-    // Save player stats to a file
+
     public void SaveStats()
     {
         PlayerStatsData data = new PlayerStatsData
@@ -284,53 +172,43 @@ public class PlayerStatsCollector : MonoBehaviour
             positionY = savedPosY,
             positionZ = savedPosZ
         };
-        
-        string json = JsonUtility.ToJson(data);
-        File.WriteAllText(saveFilePath, json);
-        
-        Debug.Log("Player stats saved to: " + saveFilePath);
+
+        File.WriteAllText(saveFilePath, JsonUtility.ToJson(data));
+        Debug.Log("[PlayerStatsCollector] Stats saved.");
     }
-    
-    // Load player stats from file
+
     public void LoadStats()
     {
         if (File.Exists(saveFilePath))
         {
             string json = File.ReadAllText(saveFilePath);
             PlayerStatsData data = JsonUtility.FromJson<PlayerStatsData>(json);
-            
-            // Apply loaded data
+
             currentMoveSpeed = data.moveSpeed;
             currentDamage = data.damage;
             currency = data.currency;
             savedPosX = data.positionX;
             savedPosY = data.positionY;
             savedPosZ = data.positionZ;
-            
-            if (Currency.instance != null)
-            {
-                Currency.instance.playerCurrency = currency;
-                Currency.instance.CurrencyText.text = currency.ToString();
-            }
-            
-
             speedUpgradeLevel = data.speedUpgradeLevel;
             attackUpgradeLevel = data.attackUpgradeLevel;
-            
-            Debug.Log("Player stats loaded from: " + saveFilePath);
+
+            Currency.instance?.SetCurrency(currency);
+            Debug.Log("[PlayerStatsCollector] Stats loaded.");
         }
         else
         {
-            Debug.Log("No saved player stats found. Using default values.");
+            Debug.Log("[PlayerStatsCollector] No saved stats found. Using defaults.");
         }
     }
 
-    public void SetCurrency(int newCurrency){
-
-        currency = newCurrency;
+    private void OnApplicationQuit()
+    {
         SaveStats();
-
+        ResetSavedPlayerPosition();
     }
+
+    public void ResetSavedPlayerPosition() => SavePlayerPosition(Vector3.zero);
 
     public void SavePlayerPosition(Vector3 position)
     {
@@ -340,24 +218,18 @@ public class PlayerStatsCollector : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    public Vector3 GetSavedPosition() => new Vector3(savedPosX, savedPosY, savedPosZ);
 
-    public Vector3 GetSavedPosition()
+    [System.Serializable]
+    private class PlayerStatsData
     {
-        return new Vector3(savedPosX, savedPosY, savedPosZ);
-    }
-    
-    // Apply current stats to player components
-    private void ApplyStats()
-    {
-        SetMoveSpeed(currentMoveSpeed);
-        SetDamage(currentDamage);
-    }
-    
-    // Call this when the game is quitting or the scene is changing
-    private void OnApplicationQuit()
-    {
-
-        SaveStats();
-        ResetSavedPlayerPosition();
+        public float moveSpeed;
+        public int damage;
+        public int currency;
+        public int speedUpgradeLevel;
+        public int attackUpgradeLevel;
+        public float positionX;
+        public float positionY;
+        public float positionZ;
     }
 }

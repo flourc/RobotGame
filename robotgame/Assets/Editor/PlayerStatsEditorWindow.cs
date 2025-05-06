@@ -122,9 +122,10 @@ public class PlayerStatsEditorWindow : EditorWindow
     {
         stats = new PlayerStatsData
         {
-            moveSpeed = 5f,
+            moveSpeed = 10f,
             damage = 1,
             currency = 10,
+            
             speedUpgradeLevel = 0,
             attackUpgradeLevel = 0
         };

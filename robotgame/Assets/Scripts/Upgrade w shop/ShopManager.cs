@@ -42,7 +42,12 @@ public class ShopManager : MonoBehaviour
         {
             playerPositionBeforeShop = player.transform.position;
             Debug.Log("Saved player position: " + playerPositionBeforeShop);
-            
+            Vector3 pos = player.transform.position;
+            PlayerPrefs.SetFloat("PlayerPosX", pos.x);
+            PlayerPrefs.SetFloat("PlayerPosY", pos.y);
+            PlayerPrefs.SetFloat("PlayerPosZ", pos.z);
+            PlayerPrefs.Save();
+            Debug.Log($"Saved player position: {pos}");
             // Disable any player controller components that could interfere with UI
             DisablePlayerControls(player);
         }

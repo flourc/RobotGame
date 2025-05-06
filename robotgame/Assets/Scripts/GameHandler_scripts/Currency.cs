@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro; 
+using TMPro;
 
 public class Currency : MonoBehaviour
 {
@@ -9,42 +8,60 @@ public class Currency : MonoBehaviour
     public TMP_Text CurrencyText;
     public int playerCurrency = 0;
 
-
     void Awake()
     {
-
-        instance = this;
-
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // Persist across scenes
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+
     IEnumerator Start()
     {
-        // Wait until PlayerStatsCollector.instance is available
+        // Wait until PlayerStatsCollector is available
         while (PlayerStatsCollector.instance == null)
         {
             yield return null;
         }
 
-        Debug.Log("Got the stats");
+        // Get initial currency from stats
         playerCurrency = PlayerStatsCollector.instance.GetCurrency();
-        CurrencyText.text = playerCurrency.ToString();
+        UpdateCurrencyText();
+
+        Debug.Log("Currency initialized with: " + playerCurrency);
     }
 
-    public void AddCurrency(int currency){
-
-        playerCurrency += currency;
-        CurrencyText.text = playerCurrency.ToString();
-
-        if (PlayerStatsCollector.instance != null){
-
-            PlayerStatsCollector.instance.SetCurrency(playerCurrency);
-
-        }
-
-    }
-
-    // Update is called once per frame
-    void Update()
+    public void AddCurrency(int currency)
     {
-        
+        playerCurrency += currency;
+        UpdateCurrencyText();
+
+        if (PlayerStatsCollector.instance != null)
+        {
+            PlayerStatsCollector.instance.SetCurrency(playerCurrency);
+        }
+    }
+
+    public void SetCurrency(int newAmount)
+    {
+        playerCurrency = newAmount;
+        UpdateCurrencyText();
+    }
+
+    private void UpdateCurrencyText()
+    {
+        if (CurrencyText != null)
+        {
+            CurrencyText.text = playerCurrency.ToString();
+        }
+        else
+        {
+            Debug.LogWarning("CurrencyText is not assigned in the inspector!");
+        }
     }
 }
