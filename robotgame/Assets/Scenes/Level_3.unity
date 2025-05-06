@@ -1196,6 +1196,14 @@ PrefabInstance:
       propertyPath: feedbackColor.r
       value: 0.4811321
       objectReference: {fileID: 0}
+    - target: {fileID: 3777717121446094669, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: m_Height
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3777717121446094669, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
+      propertyPath: m_Center.y
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3878003954001658626, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_Name
       value: PLAYER_HANDLER_CAMERAS
@@ -1266,11 +1274,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016066698
+      value: -0.000000016066686
       objectReference: {fileID: 0}
     - target: {fileID: 5866638632511544930, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000061580057
+      value: -0.0000000061580017
       objectReference: {fileID: 0}
     - target: {fileID: 5878959581073901981, guid: ff84ac215512b4df7a9c1365fec0c17a, type: 3}
       propertyPath: m_AnchorMax.x
