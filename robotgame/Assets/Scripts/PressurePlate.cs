@@ -6,7 +6,7 @@ public class PressurePlate : MonoBehaviour
 {
     private Renderer plateRenderer; // Renderer of the plate
     public static bool open;
-    // public GameObject plateInfo;
+    public GameObject plateInfo;
     public Transform player;
     public float distance;
 
@@ -18,17 +18,17 @@ public class PressurePlate : MonoBehaviour
         plateRenderer.material.color = Color.red;
         plateRenderer.material.SetColor("_EmissionColor", Color.red);
 
-        // plateInfo.SetActive(false);
+        plateInfo.SetActive(false);
     }
 
     void Update() {
-        // distance = Vector3.Distance(player.position, transform.position);
-        // if (!open && distance < 3 && !plateInfo.activeSelf) {
-        //     plateInfo.SetActive(true);
-        // }
-        // else if (distance >= 3 && plateInfo.activeSelf){
-        //     plateInfo.SetActive(false);
-        // }
+        distance = Vector3.Distance(player.position, transform.position);
+        if (!open && distance < 3 && !plateInfo.activeSelf) {
+            plateInfo.SetActive(true);
+        }
+        else if (distance >= 3 && plateInfo.activeSelf){
+            plateInfo.SetActive(false);
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -41,7 +41,7 @@ public class PressurePlate : MonoBehaviour
             plateRenderer.material.color = Color.green;
             plateRenderer.material.SetColor("_EmissionColor", Color.green);
             open = true;
-            // plateInfo.SetActive(true);
+            plateInfo.SetActive(true);
         }
     }
 
@@ -54,7 +54,7 @@ public class PressurePlate : MonoBehaviour
             plateRenderer.material.color = Color.red;
             plateRenderer.material.SetColor("_EmissionColor", Color.red);
             open = false;
-            // plateInfo.SetActive(false);
+            plateInfo.SetActive(false);
         }
     }
 }
