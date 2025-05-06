@@ -154,7 +154,7 @@ public class PlayerStatsCollector : MonoBehaviour
         speedUpgradeLevel += points;
         
         // Apply the speed upgrade to the player
-        float newSpeed = baseMoveSpeed + (speedUpgradeLevel * speedBonusPerLevel);
+        float newSpeed = baseMoveSpeed + speedUpgradeLevel;
         SetMoveSpeed(newSpeed);
         
         // Update the UI
@@ -300,7 +300,7 @@ public class PlayerStatsCollector : MonoBehaviour
 
         currency = newCurrency;
         SaveStats();
-        
+
     }
     
     // Apply current stats to player components

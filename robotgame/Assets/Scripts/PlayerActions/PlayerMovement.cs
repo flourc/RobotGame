@@ -3,7 +3,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed = 5f;
+    public float moveSpeed = 7f;
+    private float baseSpeed;
     public float jumpForce = 5f;
     public float jumpCooldown = 0.25f;
     // public float gravity = 9.81f;
@@ -41,6 +42,12 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+        if (PlayerStatsCollector.instance != null){
+
+            baseSpeed = PlayerStatsCollector.instance.GetCurrentMoveSpeed();
+            moveSpeed = baseSpeed;
+
+        }
         // audios = GetComponent<AudioSource>();
         // if (animator == null)
         //     animator = GetComponent<Animator>();
@@ -101,7 +108,7 @@ private void UpdateAnimationState()
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 currentSpeed = 1f; // Running
-                moveSpeed = 7f * 1.2f;
+                moveSpeed = baseSpeed * 1.2f;
                 animator.SetBool("Running", true);
                 animator.SetBool("Walking", false);
 
@@ -118,7 +125,7 @@ private void UpdateAnimationState()
             else
             {
                 currentSpeed = 0.5f; // Walking
-                moveSpeed = 7f;
+                moveSpeed = baseSpeed;
                 animator.SetBool("Walking", true);
                 animator.SetBool("Running", false);
 

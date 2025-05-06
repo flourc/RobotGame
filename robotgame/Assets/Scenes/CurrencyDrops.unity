@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &62145510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6834537194215834189, guid: 1e5d3d37267414ff5a589e08e65c615d, type: 3}
+  m_PrefabInstance: {fileID: 1846881884}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &104249124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -179,6 +184,10 @@ PrefabInstance:
       propertyPath: currencyPickupPrefab
       value: 
       objectReference: {fileID: 586270602}
+    - target: {fileID: 5826072781291225233, guid: 06c70db3deae84f5c84b3bfa60d781b5, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 62145510}
     - target: {fileID: 5831901083871109985, guid: 06c70db3deae84f5c84b3bfa60d781b5, type: 3}
       propertyPath: rb
       value: 
@@ -198,6 +207,10 @@ PrefabInstance:
     - target: {fileID: 6197572986294983125, guid: 06c70db3deae84f5c84b3bfa60d781b5, type: 3}
       propertyPath: m_Name
       value: robot_dog
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197572986294983125, guid: 06c70db3deae84f5c84b3bfa60d781b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1327,6 +1340,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: drone
       objectReference: {fileID: 0}
+    - target: {fileID: 2999545194065287734, guid: 74e7d1daf72c64b4aa19c4f347feec1b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3879833969830596858, guid: 74e7d1daf72c64b4aa19c4f347feec1b, type: 3}
       propertyPath: aimFor
       value: 
@@ -1572,7 +1589,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7792273536267583792, guid: 1e5d3d37267414ff5a589e08e65c615d, type: 3}
   m_PrefabInstance: {fileID: 1846881884}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 62145510}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f02e2d889a9e4ca68635daa3970856c, type: 3}
@@ -1800,7 +1817,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4412714260872911902, guid: 1e5d3d37267414ff5a589e08e65c615d, type: 3}
   m_PrefabInstance: {fileID: 1846881884}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 62145510}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b67b84eb421d8449aba466edd6392fa0, type: 3}
@@ -1816,7 +1833,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3345860414732255950, guid: 1e5d3d37267414ff5a589e08e65c615d, type: 3}
   m_PrefabInstance: {fileID: 1846881884}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 62145510}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d0e96e0925834a57892944c8e772b10, type: 3}
