@@ -7,6 +7,10 @@ public class Push : MonoBehaviour
 {
     public float pushForce = 1f;
 
+	void Start(){
+		//added start so the script can be enabled/disabled in the Inspector
+	}
+
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         // Only push tagged objects

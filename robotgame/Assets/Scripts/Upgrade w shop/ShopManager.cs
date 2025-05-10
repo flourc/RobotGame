@@ -30,6 +30,10 @@ public class ShopManager : MonoBehaviour
         }
     }
     
+	private void Start(){
+		//dded start method so script can be enabled/disabled in Inspector
+	}
+
     // Called to open the shop UI
     public void OpenShop()
     {
